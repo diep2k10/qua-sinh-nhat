@@ -169,6 +169,13 @@ h1 span{display:block;margin-top:6px;background:linear-gradient(180deg,#fff4fb 3
 .btn.full{width:100%;margin-top:8px}
 .btnrow{display:flex;gap:8px;flex-wrap:wrap}.btnrow .btn{flex:1}
 .help{font-size:11px;color:#cfc6ff;line-height:1.5}
+.sb-status{display:flex;align-items:flex-start;gap:8px;margin:10px 0;padding:10px 12px;border:1px solid #d6b16b66;border-radius:11px;background:#fffaf0;color:#78505a;font-size:12px;line-height:1.5}
+.sb-status .status-dot{flex:0 0 9px;width:9px;height:9px;border-radius:50%;margin-top:4px;background:#b6a6a6;box-shadow:0 0 0 3px #b6a6a622}
+.sb-status[data-state="checking"] .status-dot{background:#d7a84b;box-shadow:0 0 0 3px #d7a84b22}
+.sb-status[data-state="success"]{border-color:#6aab83;background:#f0fff4;color:#245c3c}
+.sb-status[data-state="success"] .status-dot{background:#269b57;box-shadow:0 0 0 3px #269b5722}
+.sb-status[data-state="error"]{border-color:#d77979;background:#fff1f1;color:#8a3030}
+.sb-status[data-state="error"] .status-dot{background:#d83c3c;box-shadow:0 0 0 3px #d83c3c22}
 .preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:8px}
 .preview-item{position:relative;aspect-ratio:1;border-radius:9px;overflow:hidden;background:#120b2d;box-shadow:0 4px 10px #0005}
 .preview-item img{width:100%;height:100%;object-fit:cover}
@@ -1153,7 +1160,9 @@ button,.cake-stage{-webkit-touch-callout:none}
 
   <h3>🔌 KẾT NỐI SUPABASE</h3>
   <label for="sbUrl">Project URL</label><input id="sbUrl" type="url" placeholder="https://xxxx.supabase.co">
-  <label for="sbKey">Publishable / anon key</label><input id="sbKey" type="text" placeholder="sb_publishable_... hoặc anon key">
+  <label for="sbKey">Publishable / anon key</label><input id="sbKey" type="text" autocomplete="off" placeholder="sb_publishable_... hoặc anon key">
+  <button class="btn primary full" id="connectSupabase">🔌 Kiểm tra kết nối Supabase</button>
+  <div class="sb-status" id="sbStatus" data-state="idle" role="status" aria-live="polite"><span class="status-dot"></span><span id="sbStatusText">Chưa kiểm tra kết nối. Nhập Project URL và Publishable/anon key rồi bấm nút phía trên.</span></div>
   <button class="btn full" id="saveConfig">Lưu cấu hình trên máy này</button>
   <p class="help">Chỉ dùng publishable/anon key, tuyệt đối không đặt service_role key trong HTML.</p>
 
@@ -1188,7 +1197,8 @@ Chúc mọi điều dịu dàng nhất sẽ đến với em. Yêu em nhiều! �
   <p class="help" id="giftLinkHelp">Đăng file HTML lên GitHub Pages trước, dán link trang GitHub Pages vào ô bên dưới.</p>
   <label for="githubBaseUrl">Link trang GitHub Pages (HTTPS)</label><input id="githubBaseUrl" type="url" placeholder="https://tenban.github.io/ten-repo/">
   <input id="giftLink" type="url" readonly placeholder="Link quà riêng sẽ hiện ở đây">
-  <div class="btnrow"><button class="btn" id="copyGiftLink">Sao chép link</button><button class="btn" id="makeQR">Tạo mã QR</button></div>
+  <div class="btnrow"><button class="btn" id="makeLink">🔗 Tạo link</button><button class="btn" id="copyGiftLink">Sao chép link</button></div>
+  <button class="btn primary full" id="makeQR">▦ Tạo mã QR từ link</button>
   <div class="qr-wrap" id="qrWrap" aria-label="Mã QR quà sinh nhật"></div>
   <button class="btn full" id="downloadQR" disabled>⬇ Tải mã QR PNG</button>
 
@@ -1267,13 +1277,48 @@ function config(){
     key:($('sbKey')?.value||'').trim()||saved.key||SUPABASE_ANON_KEY
   };
 }
+function setSupabaseStatus(state,message){
+  const box=$('sbStatus'),label=$('sbStatusText');
+  if(box)box.dataset.state=state;
+  if(label)label.textContent=message;
+}
 function connect(){
   const c=config();
   if(!c.url||!c.key||c.url.includes('PASTE_YOUR_')||c.key.includes('PASTE_YOUR_')||
      !/^https:\/\/[\w.-]+\.supabase\.co$/i.test(c.url)||!window.supabase){
-    toast('Nhập đúng Project URL và anon key của Supabase.');return null;
+    setSupabaseStatus('error','Kết nối thất bại: hãy kiểm tra Project URL, key và thư viện Supabase.');
+    toast('Nhập đúng Project URL và Publishable/anon key của Supabase.');return null;
   }
-  supabaseClient=window.supabase.createClient(c.url,c.key);return supabaseClient;
+  try{
+    supabaseClient=window.supabase.createClient(c.url,c.key);
+    return supabaseClient;
+  }catch(err){
+    setSupabaseStatus('error','Không khởi tạo được Supabase: '+(err.message||'hãy kiểm tra URL và key.'));
+    return null;
+  }
+}
+async function checkSupabaseConnection(){
+  setSupabaseStatus('checking','Đang kiểm tra URL, key và quyền truy cập bảng birthday_gifts…');
+  const client=connect();
+  if(!client)return false;
+  const c=config();
+  try{
+    const {error}=await client.from('birthday_gifts').select('id').limit(1);
+    if(error)throw error;
+    localStorage.setItem('giftSupabaseConfig',JSON.stringify(c));
+    setSupabaseStatus('success','Kết nối thành công! Supabase truy cập được bảng birthday_gifts. Cấu hình đã lưu trên trình duyệt này.');
+    toast('Kết nối Supabase thành công 💗');
+    return true;
+  }catch(err){
+    console.error('Supabase connection check:',err);
+    let detail=err.message||'Không thể truy cập bảng birthday_gifts.';
+    if(/failed to fetch|networkerror/i.test(detail))detail='Không thể kết nối mạng tới Supabase. Kiểm tra Project URL, Internet và thử lại.';
+    else if(/relation .* does not exist|could not find the table/i.test(detail))detail='Chưa có bảng birthday_gifts. Hãy chạy SQL thiết lập trong Supabase → SQL Editor.';
+    else if(/permission denied|row-level security|violates row-level security|not allowed/i.test(detail))detail='Supabase đã phản hồi nhưng quyền truy cập bảng chưa đúng. Kiểm tra RLS và policy cho birthday_gifts.';
+    setSupabaseStatus('error','Kết nối chưa thành công: '+detail);
+    toast('Kết nối chưa thành công. Xem thông báo màu đỏ.');
+    return false;
+  }
 }
 
 function applyText(){
@@ -1502,11 +1547,12 @@ letterEl.addEventListener('touchend',e=>{
 $('gear').onclick=()=>{if(isMobile())return;panel.classList.toggle('open')};
 $('closePanel').onclick=()=>panel.classList.remove('open');
 
-$('saveConfig').onclick=()=>{
+$('connectSupabase').onclick=checkSupabaseConnection;
+$('saveConfig').onclick=async()=>{
   const c=config();
-  if(!c.url||!c.key){toast('Hãy điền Project URL và anon key trước.');return}
+  if(!c.url||!c.key){setSupabaseStatus('error','Hãy nhập Project URL và Publishable/anon key trước.');toast('Hãy điền Project URL và key trước.');return}
   localStorage.setItem('giftSupabaseConfig',JSON.stringify(c));
-  connect();toast('Đã lưu cấu hình trên trình duyệt này.');
+  await checkSupabaseConnection();
 };
 
 // ==== PHOTO RAIN ====
@@ -1652,15 +1698,27 @@ function generateQR(link){
   $('downloadQR').disabled=false;toast('Đã tạo mã QR. Bạn có thể tải ảnh PNG.');
 }
 
-$('makeQR').onclick=()=>{
+function createGiftLink(){
   const base=($('githubBaseUrl').value||'').trim();
   const id=loadedGift?.id||new URLSearchParams(location.search).get('gift');
-  if(!base){toast('Dán link GitHub Pages trước nhé.');return}
-  if(!id){toast('Hãy lưu quà lên Supabase trước để tạo link riêng.');return}
+  if(!base){toast('Hãy dán link GitHub Pages trước nhé.');return ''}
+  if(!id){toast('Hãy bấm “Lưu quà lên Supabase và tạo link” trước để lưu quà và tạo ID riêng.');return ''}
   try{
-    const url=new URL(base);url.searchParams.set('gift',id);
-    $('giftLink').value=url.href;generateQR(url.href);
-  }catch{toast('Link GitHub Pages chưa đúng.')}
+    const url=new URL(base);
+    if(url.protocol!=='https:')throw new Error('Link phải bắt đầu bằng https://');
+    url.searchParams.set('gift',id);
+    $('giftLink').value=url.href;
+    $('giftLinkHelp').textContent='Đã tạo link riêng. Hãy sao chép link hoặc bấm “Tạo mã QR từ link”.';
+    return url.href;
+  }catch(err){toast(err.message||'Link GitHub Pages chưa đúng.');return ''}
+}
+$('makeLink').onclick=()=>{
+  const link=createGiftLink();
+  if(link)toast('Đã tạo link quà riêng 💗');
+};
+$('makeQR').onclick=()=>{
+  const link=($('giftLink').value||'').trim()||createGiftLink();
+  if(link)generateQR(link);
 };
 
 $('downloadQR').onclick=()=>{
@@ -1787,7 +1845,7 @@ $('reset').onclick=()=>{
   }
   try{
     const c=JSON.parse(localStorage.getItem('giftSupabaseConfig')||'null');
-    if(c){$('sbUrl').value=c.url||'';$('sbKey').value=c.key||''}
+    if(c){$('sbUrl').value=c.url||'';$('sbKey').value=c.key||'';setSupabaseStatus('idle','Đã tìm thấy cấu hình đã lưu trên máy này. Bấm “Kiểm tra kết nối Supabase” để xác minh.')}
   }catch{}
   applyText();updateCakeAge();setTimeout(startCakeDrop,1000);loadGift();
 })();
