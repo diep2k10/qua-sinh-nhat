@@ -1049,10 +1049,41 @@ button,.cake-stage{-webkit-touch-callout:none}
 <style id="birthday-scene-no-icons-and-finger-pop">
 /* Birthday landing screen: hide Hello Kitty character stickers only; keep other birthday decorations/icons. */
 .scene .kitty-decorations,.scene .kitty-floating{display:none!important} /* Keep Hello Kitty stickers in the “ANH YÊU EM” confession scene. */
-.secret-moon-trigger{font-size:0!important;color:transparent!important;background:linear-gradient(135deg,#ffb5d9ee,#b45be8ee)!important}
+.secret-moon-trigger{font-size:24px!important;color:#fff!important;background:linear-gradient(135deg,#ffb5d9ee,#b45be8ee)!important}
+.secret-moon-trigger::before{content:'♥';display:block;font-size:25px;line-height:1;color:#fff;text-shadow:0 0 8px #ff4fa5,0 0 15px #ff4fa5;transform:translateY(-1px)}
 /* The playful middle-finger symbol grows smoothly and disappears within 2 seconds. */
 .middle-finger-pop{width:auto!important;height:auto!important;max-width:none!important;max-height:none!important;overflow:visible!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;font-size:clamp(48px,12vw,76px)!important;line-height:1!important;animation:fingerPop 2s cubic-bezier(.2,.65,.25,1) forwards!important}
 .middle-finger-pop img{display:none!important}
+
+/* ===== Mobile cake proportions: balanced size and safe spacing ===== */
+@media screen and (max-width:600px){
+  .cake-stage{
+    width:min(88vw,350px) !important;
+    height:clamp(205px,58vw,255px) !important;
+    bottom:calc(19% + var(--safe-bottom)) !important;
+    perspective:850px;
+    filter:drop-shadow(0 13px 17px #b34c8b2b) !important;
+  }
+  .cake-glow{inset:18% -8% -3%;filter:blur(17px)}
+  .icing{height:clamp(11px,4vw,17px)}
+  .candle-row{top:clamp(-25px,-7vw,-16px);gap:clamp(4px,1.5vw,7px)}
+  .candle{width:clamp(5px,1.8vw,7px);height:clamp(19px,6vw,25px)}
+  .candle:before{width:clamp(8px,2.7vw,10px);height:clamp(10px,4vw,14px);top:clamp(-13px,-4vw,-10px)}
+  .cake-decoration{font-size:clamp(10px,3vw,15px)}
+  .cake-age{font-size:clamp(14px,4vw,20px)}
+  .cake-plate{height:8%;box-shadow:0 6px 12px #a84a8133,0 0 11px #ffb7d955}
+  .cake-sparkles span{font-size:clamp(13px,4vw,18px)}
+}
+@media screen and (max-width:380px){
+  .cake-stage{width:90vw !important;height:205px !important;bottom:calc(18% + var(--safe-bottom)) !important}
+  .cake-decoration{font-size:10px}
+  .cake-age{font-size:14px}
+}
+@media screen and (max-width:600px) and (max-height:700px){
+  .cake-stage{width:min(80vw,300px) !important;height:clamp(165px,34vh,205px) !important;bottom:calc(17% + var(--safe-bottom)) !important}
+  .candle-row{top:-16px}
+  .candle{height:18px}
+}
 </style>
 
 </head>
