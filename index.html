@@ -1046,6 +1046,15 @@ button,.cake-stage{-webkit-touch-callout:none}
 @media(prefers-reduced-motion:reduce){.kitty-deco{animation:none!important}}
 </style>
 
+<style id="birthday-scene-no-icons-and-finger-pop">
+/* Birthday landing screen: hide Hello Kitty character stickers only; keep other birthday decorations/icons. */
+.scene .kitty-decorations,.scene .kitty-floating{display:none!important} /* Keep Hello Kitty stickers in the “ANH YÊU EM” confession scene. */
+.secret-moon-trigger{font-size:0!important;color:transparent!important;background:linear-gradient(135deg,#ffb5d9ee,#b45be8ee)!important}
+/* The playful middle-finger symbol grows smoothly and disappears within 2 seconds. */
+.middle-finger-pop{width:auto!important;height:auto!important;max-width:none!important;max-height:none!important;overflow:visible!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;font-size:clamp(48px,12vw,76px)!important;line-height:1!important;animation:fingerPop 2s cubic-bezier(.2,.65,.25,1) forwards!important}
+.middle-finger-pop img{display:none!important}
+</style>
+
 </head>
 <body>
 
@@ -1061,7 +1070,7 @@ button,.cake-stage{-webkit-touch-callout:none}
 </div>
 
 <!-- Easter egg: nút bí mật nằm gần mặt trăng -->
-<button class="secret-moon-trigger" id="secretMoonTrigger" aria-label="Mở biểu tượng bí mật" title="Nhấn thử nhé">❤️</button>
+<button class="secret-moon-trigger" id="secretMoonTrigger" aria-label="Mở biểu tượng bí mật" title="Nhấn thử nhé"></button>
 
 <!-- PHOTO RAIN -->
 <div class="orbit" id="orbit"></div>
@@ -1076,7 +1085,7 @@ button,.cake-stage{-webkit-touch-callout:none}
   </div>
   <div class="main">
     <div class="eyebrow">Một món quà nhỏ dành riêng cho em</div>
-    <h1 id="headline">Chúc mừng sinh nhật<span>Em yêu ♥</span></h1>
+    <h1 id="headline">Chúc mừng sinh nhật<span>Em yêu</span></h1>
     <p class="subtitle" id="subtitle">Một năm mới, thêm nhiều niềm vui,<br>Thêm nhiều yêu thương và luôn là chính mình nhé!</p>
 
     <div class="cake-stage" id="cakeStage" role="button" tabindex="0" aria-label="Chạm vào bánh sinh nhật để mở thư">
@@ -1102,7 +1111,7 @@ button,.cake-stage{-webkit-touch-callout:none}
     </div>
   </div>
 
-  <div class="cake-hint" id="cakeHint" aria-live="polite">🎀 Chạm nhẹ vào bánh để khám phá món quà 🎀</div>
+  <div class="cake-hint" id="cakeHint" aria-live="polite">Chạm nhẹ vào bánh để khám phá món quà</div>
 </main>
 
 <!-- SETTINGS -->
@@ -1699,11 +1708,8 @@ $('reset').onclick=()=>{
     fingerPopup=document.createElement('div');
     fingerPopup.className='middle-finger-pop';
     fingerPopup.setAttribute('role','img');
-    fingerPopup.setAttribute('aria-label','Hello Kitty màu hồng tạo dáng tinh nghịch');
-    const kittyFinger=document.createElement('img');
-    kittyFinger.src='https://files.idyllic.app/files/static/2310826?optimizer=image&width=3840';
-    kittyFinger.alt='Hello Kitty màu hồng tạo dáng tinh nghịch';
-    fingerPopup.appendChild(kittyFinger);
+    fingerPopup.setAttribute('aria-label','Biểu tượng ngón giữa phóng to');
+    fingerPopup.textContent='🖕';
     document.body.appendChild(fingerPopup);
     setTimeout(()=>{if(fingerPopup){fingerPopup.remove();fingerPopup=null;}},2000);
   }
