@@ -592,9 +592,11 @@ h1 span{background:linear-gradient(180deg,#fff8e9 15%,#f6dfac 58%,#e9b9ad 100%);
 .scene.opened:after{content:"";position:fixed;z-index:8;left:50%;top:62%;width:8vmax;height:8vmax;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#fff9df 0,#f5d58a99 28%,#d9949d33 58%,transparent 72%);transform:translate(-50%,-50%) scale(.2);animation:royalBurst .95s ease-out both}
 @keyframes royalBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}18%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(12)}}
 .moon-wrap{cursor:pointer;filter:drop-shadow(0 0 8px #f5d58a22)}
-.secret-moon-trigger{position:fixed;z-index:12;top:clamp(24px,6.5vh,74px);left:clamp(25px,9vw,125px);width:clamp(60px,12vw,132px);aspect-ratio:1;border:0;border-radius:50%;background:transparent;color:#fff0bf;font-size:clamp(14px,2vw,22px);text-shadow:0 0 10px #f5d58a;opacity:.5;cursor:pointer;transition:opacity .25s,transform .25s}
-.secret-moon-trigger:hover,.secret-moon-trigger:focus-visible{opacity:1;transform:scale(1.08)}
-@media(max-width:600px){.secret-moon-trigger{top:calc(5% + 3px);left:calc(6% + 3px);width:76px;font-size:15px}}
+.secret-moon-trigger{position:fixed;z-index:120;top:calc(12px + var(--safe-top));right:14px;width:46px;height:46px;aspect-ratio:1;border:1px solid #ffffff88;border-radius:50%;background:linear-gradient(135deg,#ffb5d9ee,#b45be8ee);color:#fff;font-size:24px;display:grid;place-items:center;text-shadow:0 0 10px #ff4fa5;box-shadow:0 8px 25px #0005,0 0 18px #ff70bd66;cursor:pointer;transition:transform .2s,filter .2s}
+.secret-moon-trigger:hover,.secret-moon-trigger:focus-visible{filter:brightness(1.12);transform:scale(1.08)}
+.middle-finger-pop{position:fixed;z-index:121;top:calc(68px + var(--safe-top));right:14px;width:76px;height:76px;display:grid;place-items:center;background:transparent;border:0;box-shadow:none;font-size:48px;line-height:1;transform-origin:center;pointer-events:none;animation:fingerPop 2s cubic-bezier(.2,.65,.25,1) forwards}
+@keyframes fingerPop{0%{opacity:0;transform:scale(.08)}12%{opacity:1;transform:scale(.45)}72%{opacity:1;transform:scale(7)}100%{opacity:0;transform:scale(12)}}
+@media(max-width:600px){.secret-moon-trigger{top:calc(12px + var(--safe-top));right:12px;width:46px;height:46px;font-size:24px}.middle-finger-pop{right:12px;top:calc(66px + var(--safe-top))}}
 @media(max-width:600px){.letter{background:linear-gradient(115deg,#fffaf0,#fff3e3 55%,#f7e4d3)!important}.letter:after{right:14px;bottom:14px;font-size:21px}}
 
 
@@ -993,7 +995,7 @@ button,.cake-stage{-webkit-touch-callout:none}
 </div>
 
 <!-- Easter egg: nút bí mật nằm gần mặt trăng -->
-<button class="secret-moon-trigger" id="secretMoonTrigger" aria-label="Khám phá bí mật của mặt trăng" title="Một bí mật nhỏ">✧</button>
+<button class="secret-moon-trigger" id="secretMoonTrigger" aria-label="Mở biểu tượng bí mật" title="Nhấn thử nhé">❤️</button>
 
 <!-- PHOTO RAIN -->
 <div class="orbit" id="orbit"></div>
@@ -1247,8 +1249,8 @@ function closeLetter(){
     cake.classList.remove('melting','cake-finale','dropping','cake-ready');
     $('cakeHint').classList.remove('visible');
     launchWingedHeart(foldedLetterRect);
-    setTimeout(()=>{ closing=false; },6100);
-  },2850);
+    setTimeout(()=>{ closing=false; },7600);
+  },4350);
 }
 
 // Hello Kitty: bánh tự rơi theo thứ tự tầng 3 → 2 → 1 khi trang mở.
@@ -1340,16 +1342,17 @@ function launchWingedHeart(rect){
   finale.style.top=y+'px';
   finale.innerHTML='<span class="winged-spark spark-a">✦</span><span class="winged-spark spark-b">♡</span><span class="winged-spark spark-c">✧</span><div class="winged-heart-art"><span class="angel-wing left-wing" aria-hidden="true"><svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="whiteFeather" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fffaff"/><stop offset="1" stop-color="#ffdff2"/></linearGradient></defs><path d="M111 78C91 76 73 67 59 54 43 40 32 20 7 7c5 18 2 29 12 43 17 24 43 34 76 35Z" fill="url(#whiteFeather)" stroke="#fff" stroke-width="2"/><path d="M99 74C76 65 57 46 38 24M84 78C63 66 48 52 29 34M70 81C51 72 38 61 22 47M57 82C42 77 32 68 23 59" fill="none" stroke="#f4cfe4" stroke-width="2.3" stroke-linecap="round"/><path d="M10 10C25 17 39 31 48 43c-10-3-20-12-28-23M18 28c13 8 23 19 31 30-12-5-22-15-31-30M29 46c11 6 19 15 26 23-10-3-20-11-26-23" fill="#fff" opacity=".95"/></svg></span><span class="angel-wing right-wing" aria-hidden="true"><svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="whiteFeather2" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fffaff"/><stop offset="1" stop-color="#ffdff2"/></linearGradient></defs><path d="M111 78C91 76 73 67 59 54 43 40 32 20 7 7c5 18 2 29 12 43 17 24 43 34 76 35Z" fill="url(#whiteFeather2)" stroke="#fff" stroke-width="2"/><path d="M99 74C76 65 57 46 38 24M84 78C63 66 48 52 29 34M70 81C51 72 38 61 22 47M57 82C42 77 32 68 23 59" fill="none" stroke="#f4cfe4" stroke-width="2.3" stroke-linecap="round"/><path d="M10 10C25 17 39 31 48 43c-10-3-20-12-28-23M18 28c13 8 23 19 31 30-12-5-22-15-31-30M29 46c11 6 19 15 26 23-10-3-20-11-26-23" fill="#fff" opacity=".95"/></svg></span><span class="pink-heart">💗</span></div><div class="winged-heart-caption">Gửi em tất cả yêu thương ✨</div>';
   document.body.append(finale);
-  // Trái tim hiện hoàn chỉnh, đứng yên 1 giây rồi mới bay lên trong 4 giây.
+  // Sau khi thư gấp xong, chờ 1,5 giây mới hóa thành trái tim.
+  // Trái tim hiện hoàn chỉnh, đứng yên thêm 1,5 giây rồi bay lên trong 4 giây.
   // Bánh sinh nhật rơi trở lại 2 giây sau khi trái tim bay xong.
-  setTimeout(()=>finale.classList.add('fly-up'),1000);
+  setTimeout(()=>finale.classList.add('fly-up'),1500);
   finale.addEventListener('animationend',e=>{if(e.target===finale)finale.remove()},{once:true});
-  setTimeout(()=>finale.remove(),5100);
+  setTimeout(()=>finale.remove(),5600);
   setTimeout(()=>{
     const cake=$('cakeStage');
     cake.style.visibility='visible';
     startCakeDrop();
-  },7000);
+  },7500);
 }
 function openCakeFromTap(){
   if(!cakeHasLanded||cakeSequenceRunning||closing||modal.classList.contains('show'))return;
@@ -1616,19 +1619,19 @@ $('reset').onclick=()=>{
     },{passive:true});
   }
 
-  // Easter egg: chạm vào mặt trăng hoặc thỏ để mở lời nhắn bí mật.
-  let secretShown=false;
+  // Nút trái tim ở góc trên bên phải: nhấn để hiện biểu tượng ngón giữa.
+  let fingerPopup=null;
   function revealSecret(){
-    if(secretShown)return;
-    secretShown=true;
-    toast('🌹 Bí mật nhỏ: dù thế giới rộng lớn đến đâu, anh vẫn muốn dành những điều dịu dàng nhất cho em. ✨');
-    burst();
-    const moon=document.querySelector('.moon-wrap');
-    if(moon){moon.animate([{filter:'brightness(1)',transform:'scale(1)'},{filter:'brightness(1.8)',transform:'scale(1.12)'},{filter:'brightness(1)',transform:'scale(1)'}],{duration:900,easing:'ease-out'});}
-    setTimeout(()=>{secretShown=false},4500);
+    if(fingerPopup){fingerPopup.remove();fingerPopup=null;return;}
+    fingerPopup=document.createElement('div');
+    fingerPopup.className='middle-finger-pop';
+    fingerPopup.setAttribute('role','img');
+    fingerPopup.setAttribute('aria-label','Ngón giữa');
+    fingerPopup.textContent='🖕';
+    document.body.appendChild(fingerPopup);
+    setTimeout(()=>{if(fingerPopup){fingerPopup.remove();fingerPopup=null;}},2000);
   }
   $('secretMoonTrigger')?.addEventListener('click',revealSecret);
-  document.querySelector('.moon-wrap')?.addEventListener('click',revealSecret);
 
   // Init
   (function init(){
