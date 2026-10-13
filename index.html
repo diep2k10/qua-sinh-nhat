@@ -349,10 +349,6 @@ h1 span{display:block;margin-top:6px;background:linear-gradient(180deg,#fff4fb 3
 .close-letter{display:block;margin:14px auto 0}
 
 /* Nút X đóng cố định — chỉ mobile */
-.close-x{position:fixed;top:calc(12px + var(--safe-top));right:14px;z-index:70;
-  width:44px;height:44px;border-radius:50%;border:1px solid #ffffff66;background:#392064e6;color:#fff;font-size:22px;
-  display:none;place-items:center;box-shadow:0 8px 24px #0008;backdrop-filter:blur(6px);cursor:pointer;
-  transition:transform .15s}
 .close-x:active{transform:scale(.9)}
 .modal.show ~ .close-x{display:grid;animation:fadeIn .35s 1s both}
 @keyframes fadeIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
@@ -736,7 +732,7 @@ h1 span{background:linear-gradient(180deg,#ff8dbf,#c65a9c);-webkit-background-cl
   padding:22px 28px;border:2px solid #fff;border-radius:28px;background:#fff8;box-shadow:0 0 0 7px #ffb4d944,0 18px 50px #c85b9840,inset 0 0 25px #fff;
   text-shadow:0 2px #fff,0 0 22px #ff79b8;transform:scale(.25);opacity:0;animation:confessionPop .8s .25s cubic-bezier(.18,.9,.3,1.25) forwards}
 .heart-confession .confession-text small{display:block;margin-top:5px;font-size:clamp(12px,3vw,18px);letter-spacing:1px;color:#a76bc3}
-.heart-confession.growing .confession-text{animation:confessionGrow 1.15s cubic-bezier(.2,.8,.2,1) forwards}
+.heart-confession.growing .confession-text{animation:confessionGrow 2.5s cubic-bezier(.22,.61,.36,1) forwards}
 .heart-confession .kitty-corner{position:absolute;z-index:3;font-size:clamp(27px,6vw,54px);filter:drop-shadow(0 5px 8px #d45b9944);animation:kittyFloat 2s ease-in-out infinite alternate}
 .heart-confession .kitty-corner.one{left:8%;bottom:14%}.heart-confession .kitty-corner.two{right:8%;bottom:16%;animation-delay:-.8s}
 @keyframes heartSceneIn{to{opacity:1}}
@@ -853,6 +849,132 @@ button,.cake-stage{-webkit-touch-callout:none}
 @media(prefers-reduced-motion:reduce){
   .cake-hint,.cake-stage.cake-ready,.moon-wrap,.bunny,.cloud,.stars i,.particles span{animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
+
+
+
+/* ===== MOBILE-FIRST PERFORMANCE + TIMING POLISH ===== */
+@media(max-width:600px){
+  html,body{width:100%;max-width:100%;overflow:hidden}
+  .scene{min-height:0;height:100dvh;height:100svh}
+  .main{width:100%;padding:calc(70px + var(--safe-top)) 12px calc(118px + var(--safe-bottom))}
+  .eyebrow{font-size:9px;letter-spacing:1.4px;max-width:90vw}
+  h1{font-size:clamp(40px,11vw,60px);max-width:94vw;margin-top:12px;overflow-wrap:anywhere}
+  .subtitle{font-size:12px;line-height:1.55;max-width:88vw;margin-top:10px}
+  .cake-stage{width:min(88vw,340px);height:clamp(205px,48vw,270px);bottom:calc(17% + var(--safe-bottom));filter:drop-shadow(0 12px 18px #13052144)}
+  .cake-glow{filter:blur(14px)}
+  .cake-hint{max-width:88vw;font-size:12px;padding:10px 15px}
+  .hold{width:min(88vw,330px);min-height:48px;padding:12px 16px;bottom:calc(2.5% + var(--safe-bottom));font-size:13px}
+  .hold small{font-size:10px}
+  .modal{padding:10px!important}
+  .letter{width:min(94vw,460px)!important;max-height:calc(100dvh - 20px)!important;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:46px 17px 24px!important}
+  .letter h2{font-size:clamp(27px,8vw,37px)!important}
+  .letter p{font-size:14px!important;line-height:1.8!important}
+  .close-letter,.close-x{min-height:44px}
+  .heart-confession .confession-text{max-width:88vw;padding:17px 18px;font-size:clamp(23px,6.5vw,38px);letter-spacing:1px}
+  .heart-confession canvas{contain:strict}
+  /* Giảm tải GPU trên điện thoại nhưng vẫn giữ nền lung linh. */
+  .aurora{filter:blur(34px);opacity:.38}
+  .cloud{filter:blur(5px);opacity:.55}
+  .lake:before{opacity:.5}
+  .sky:after{display:none}
+  .stars i{box-shadow:0 0 5px #fff8e8,0 0 9px #f5d58a}
+  .particles span{text-shadow:0 0 6px #f5d58a}
+}
+@media(max-height:650px) and (max-width:600px){
+  .main{padding-top:calc(48px + var(--safe-top))}
+  h1{font-size:clamp(34px,9vw,48px)}
+  .subtitle{margin-top:6px}
+  .cake-stage{height:175px;bottom:calc(16% + var(--safe-bottom))}
+  .hold{bottom:calc(1.5% + var(--safe-bottom));padding:9px 14px}
+}
+@media(prefers-reduced-motion:reduce){
+  .cake-stage,.cake-tier,.heart-confession .confession-text{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+
+/* ===== DREAMY NEON HEART · ORNATE BUT MOBILE-LIGHT ===== */
+.heart-confession.neon-scene{
+  background:
+    radial-gradient(ellipse at 50% 43%,rgba(255,55,160,.23) 0%,transparent 34%),
+    radial-gradient(ellipse at 18% 24%,rgba(120,70,255,.20) 0%,transparent 32%),
+    radial-gradient(ellipse at 84% 76%,rgba(255,119,198,.16) 0%,transparent 34%),
+    radial-gradient(ellipse at center,#32102f 0%,#170d29 57%,#070711 100%);
+  isolation:isolate;
+}
+.heart-confession.neon-scene:before{
+  inset:12px;border:1px solid rgba(255,164,222,.62);border-radius:28px;opacity:.72;
+  box-shadow:inset 0 0 35px #ff4fa51a,0 0 24px #ff4fa52b;
+}
+.heart-confession.neon-scene:after{
+  content:"✦  ♡  ✧  LOVE  ✧  ♡  ✦";top:6.2%;color:#ffe0f4;
+  font-size:clamp(14px,3.2vw,23px);letter-spacing:clamp(2px,.8vw,7px);
+  text-shadow:0 0 8px #ff4fa5,0 0 22px #ff4fa5;animation:topGlimmer 3s ease-in-out infinite alternate;
+}
+.heart-confession.neon-scene .heart-aura{position:absolute;left:50%;top:47%;width:min(92vw,560px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;z-index:1;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,65,166,.17),rgba(185,67,255,.08) 38%,transparent 68%);filter:blur(5px);animation:auraBreathe 3.2s ease-in-out infinite}
+.heart-confession.neon-scene .heart-orbit{position:absolute;left:50%;top:47%;width:min(83vw,460px);height:min(70vw,390px);border:1px solid rgba(255,160,224,.36);border-radius:50%;z-index:1;pointer-events:none;box-shadow:0 0 15px #ff60bb24,inset 0 0 15px #ff60bb14}
+.heart-confession.neon-scene .heart-orbit.orbit-one{transform:translate(-50%,-50%) rotate(-24deg);border-style:dashed;animation:orbitSpin 18s linear infinite}
+.heart-confession.neon-scene .heart-orbit.orbit-two{width:min(72vw,390px);height:min(84vw,440px);transform:translate(-50%,-50%) rotate(29deg);border-color:rgba(188,133,255,.3);animation:orbitSpinReverse 24s linear infinite}
+.heart-confession.neon-scene .heart-spark{position:absolute;z-index:3;color:#fff0fa;font-size:clamp(14px,3.2vw,24px);text-shadow:0 0 7px #fff,0 0 18px #ff4fa5;pointer-events:none;animation:sparkleFloat 2.4s ease-in-out infinite}
+.heart-confession.neon-scene .heart-spark.s1{left:16%;top:29%;animation-delay:-.5s}.heart-confession.neon-scene .heart-spark.s2{right:15%;top:35%;font-size:clamp(18px,4vw,30px);animation-delay:-1.3s}.heart-confession.neon-scene .heart-spark.s3{left:21%;bottom:26%;animation-delay:-1.8s}.heart-confession.neon-scene .heart-spark.s4{right:20%;bottom:25%;animation-delay:-.9s}.heart-confession.neon-scene .heart-spark.s5{left:50%;top:20%;font-size:13px;animation-delay:-1.1s}
+.heart-confession.neon-scene .neon-heart{
+  position:absolute;left:50%;top:46%;width:clamp(290px,76vw,445px);height:clamp(260px,68vw,400px);
+  transform:translate(-50%,-57%);z-index:2;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 200'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23fff0fb'/%3E%3Cstop offset='.35' stop-color='%23ff4db5'/%3E%3Cstop offset='.7' stop-color='%23d875ff'/%3E%3Cstop offset='1' stop-color='%23ff9ed9'/%3E%3C/linearGradient%3E%3Cfilter id='glow'%3E%3CfeGaussianBlur stdDeviation='1.6' result='b'/%3E%3CfeMerge%3E%3CfeMergeNode in='b'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M110 181 C94 165 18 111 18 61 C18 20 70 4 110 48 C150 4 202 20 202 61 C202 111 126 165 110 181 Z' fill='%23ff4fa5' fill-opacity='.045' stroke='url(%23g)' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' filter='url(%23glow)'/%3E%3Cpath d='M110 158 C91 141 37 101 37 65 C37 39 70 29 110 66 C150 29 183 39 183 65 C183 101 129 141 110 158 Z' fill='none' stroke='%23ffb8e6' stroke-opacity='.72' stroke-width='1.15' stroke-dasharray='2 5'/%3E%3Cpath d='M110 91 l4 9 10 1 -7.5 6.5 2.2 10 -8.7 -5.2 -8.7 5.2 2.2 -10 -7.5 -6.5 10 -1 Z' fill='%23fff2fb' fill-opacity='.85'/%3E%3Cpath d='M75 91 q-8 -10 -15 -1 q-5 8 15 20 q20 -12 15 -20 q-7 -9 -15 1 M145 91 q-8 -10 -15 -1 q-5 8 15 20 q20 -12 15 -20 q-7 -9 -15 1' fill='none' stroke='%23ffd4ef' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  filter:drop-shadow(0 0 5px #ff4fa5) drop-shadow(0 0 17px #ff4fa5a6) drop-shadow(0 0 38px #bd5cff55);
+  animation:neonHeartbeat 2s ease-in-out infinite;pointer-events:none;
+}
+.heart-confession.neon-scene .confession-text{
+  position:relative;z-index:4;text-align:center;color:#fff8fd;border:0;background:transparent;box-shadow:none;
+  text-shadow:0 0 5px #fff,0 0 12px #ff4fa5,0 0 26px #ff4fa5,0 0 48px #c35cff;
+  padding:18px 12px;transform:scale(.9);animation:neonTextIn 1.1s cubic-bezier(.2,.8,.2,1) forwards;
+  letter-spacing:clamp(1px,.6vw,4px);font-weight:900;
+}
+.heart-confession.neon-scene .confession-text small{color:#ffe2f4;text-shadow:0 0 8px #ff4fa5,0 0 20px #c35cff;letter-spacing:1px}
+.heart-confession.neon-scene.growing .confession-text{animation:confessionGrow 2.5s cubic-bezier(.22,.61,.36,1) forwards}
+.heart-confession.neon-scene.growing .neon-heart{animation:neonHeartFade 2.5s ease-in forwards}
+.heart-confession.neon-scene.growing .heart-aura{animation:auraFade 2.5s ease-in forwards}
+.heart-confession.neon-scene .kitty-corner{filter:drop-shadow(0 0 10px #ff75c4);animation:kittyFloat 2.4s ease-in-out infinite alternate;z-index:4}
+@keyframes neonHeartbeat{0%,100%{transform:translate(-50%,-57%) scale(1);filter:drop-shadow(0 0 5px #ff4fa5) drop-shadow(0 0 17px #ff4fa5a6) drop-shadow(0 0 38px #bd5cff55)}50%{transform:translate(-50%,-57%) scale(1.055);filter:drop-shadow(0 0 9px #ff9bd6) drop-shadow(0 0 25px #ff4fa5) drop-shadow(0 0 48px #bd5cff88)}}
+@keyframes neonHeartFade{to{opacity:0;transform:translate(-50%,-57%) scale(1.18)}}
+@keyframes neonTextIn{from{opacity:0;transform:scale(.72) translateY(12px);filter:blur(8px)}to{opacity:1;transform:scale(1) translateY(0);filter:blur(0)}}
+@keyframes topGlimmer{from{opacity:.55;letter-spacing:3px}to{opacity:1;letter-spacing:clamp(3px,1vw,8px)}}
+@keyframes auraBreathe{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.92)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+@keyframes auraFade{to{opacity:0;transform:translate(-50%,-50%) scale(1.4)}}
+@keyframes orbitSpin{to{transform:translate(-50%,-50%) rotate(336deg)}}
+@keyframes orbitSpinReverse{to{transform:translate(-50%,-50%) rotate(-331deg)}}
+@keyframes sparkleFloat{0%,100%{opacity:.42;transform:translateY(4px) scale(.75) rotate(0)}50%{opacity:1;transform:translateY(-9px) scale(1.18) rotate(18deg)}}
+@media(max-width:600px){
+  .heart-confession.neon-scene:before{inset:8px;border-radius:20px}
+  .heart-confession.neon-scene .neon-heart{width:min(88vw,350px);height:min(79vw,320px);top:45%}
+  .heart-confession.neon-scene .heart-orbit{width:88vw;height:74vw;top:46%}
+  .heart-confession.neon-scene .heart-orbit.orbit-two{width:76vw;height:88vw}
+  .heart-confession.neon-scene .confession-text{font-size:clamp(23px,7vw,39px);max-width:92vw}
+  .heart-confession.neon-scene:after{top:calc(6% + var(--safe-top,0px));letter-spacing:2px}
+}
+@media(prefers-reduced-motion:reduce){
+  .heart-confession.neon-scene .neon-heart,.heart-confession.neon-scene .heart-orbit,.heart-confession.neon-scene .heart-spark,.heart-confession.neon-scene .heart-aura,.heart-confession.neon-scene:after{animation:none!important}
+}
+
+/* Thư gấp lại hóa thành trái tim thiên thần bay lên trời */
+.winged-heart-finale{position:fixed;z-index:10050;left:50%;top:70%;width:1px;height:1px;pointer-events:none;transform:translate(-50%,-50%);animation:wingedHeartAscend 4s cubic-bezier(.22,.62,.28,1) forwards;filter:drop-shadow(0 0 18px #ff6ebd);}
+.winged-heart-art{position:absolute;left:0;top:0;width:clamp(190px,56vw,300px);height:clamp(105px,30vw,155px);transform:translate(-50%,-50%);animation:angelHeartBeat .72s ease-in-out infinite alternate;}
+.pink-heart{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(54px,15vw,100px);line-height:1;text-shadow:0 0 12px #ff72c2,0 0 30px #ff3eaa,0 0 55px #ff9bd7;animation:pinkHeartShimmer 1.2s ease-in-out infinite alternate;}
+.angel-wing{position:absolute;top:50%;width:clamp(82px,24vw,126px);height:auto;overflow:visible;filter:drop-shadow(0 0 5px rgba(255,255,255,.95)) drop-shadow(0 0 12px rgba(255,181,226,.75));}
+.angel-wing svg{display:block;width:100%;height:auto;overflow:visible}
+.left-wing{left:0;transform:translateY(-50%) rotate(-8deg);transform-origin:90% 60%;animation:wingFlapLeft .48s ease-in-out infinite alternate;}
+.right-wing{right:0;transform:translateY(-50%) scaleX(-1) rotate(-8deg);transform-origin:10% 60%;animation:wingFlapRight .48s ease-in-out infinite alternate;}
+.winged-heart-caption{position:absolute;top:clamp(52px,14vw,92px);left:50%;transform:translateX(-50%);width:max-content;max-width:88vw;color:#fff1fa;font-size:clamp(12px,3.4vw,17px);font-weight:700;letter-spacing:.5px;text-shadow:0 0 8px #ff4fa5,0 0 20px #ff4fa5;text-align:center;animation:captionGlow .9s ease-in-out infinite alternate;}
+.winged-spark{position:absolute;color:#fff2fb;font-size:clamp(18px,5vw,28px);text-shadow:0 0 12px #ff72c2,0 0 25px #ff4fa5;animation:wingedSparkDrift 1.1s ease-in-out infinite alternate;}
+.spark-a{left:-58px;top:-45px}.spark-b{left:45px;top:-68px;animation-delay:-.5s}.spark-c{left:65px;top:24px;animation-delay:-.25s}
+@keyframes wingedHeartAscend{0%{opacity:0;transform:translate(-50%,-50%) scale(.28) rotate(-12deg)}12%{opacity:1;transform:translate(-50%,-50%) scale(1.08) rotate(5deg)}24%{transform:translate(-50%,-50%) scale(1) rotate(-3deg)}65%{opacity:1;transform:translate(calc(-50% + 14px),calc(-50% - 55vh)) scale(.78) rotate(7deg)}100%{opacity:0;transform:translate(calc(-50% - 10px),calc(-50% - 112vh)) scale(.22) rotate(-10deg);filter:drop-shadow(0 0 35px #ffd3ef) blur(2px)}}
+@keyframes angelHeartBeat{from{transform:translate(-50%,-50%) scale(.96)}to{transform:translate(-50%,-54%) scale(1.08)}}
+@keyframes pinkHeartShimmer{from{filter:saturate(1);transform:translate(-50%,-50%) scale(.97)}to{filter:saturate(1.35) brightness(1.16);transform:translate(-50%,-50%) scale(1.06)}}
+@keyframes wingFlapLeft{from{transform:translateY(-50%) rotate(-15deg) scaleY(.92)}to{transform:translateY(-50%) rotate(8deg) scaleY(1.06)}}
+@keyframes wingFlapRight{from{transform:translateY(-50%) scaleX(-1) rotate(-15deg) scaleY(.92)}to{transform:translateY(-50%) scaleX(-1) rotate(8deg) scaleY(1.06)}}
+@keyframes wingedSparkDrift{from{opacity:.35;transform:translateY(5px) scale(.7) rotate(-12deg)}to{opacity:1;transform:translateY(-9px) scale(1.18) rotate(15deg)}}
+@keyframes captionGlow{from{opacity:.65}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.winged-heart-finale,.winged-heart-art,.pink-heart,.angel-wing,.winged-spark,.winged-heart-caption{animation-duration:.01ms!important}}
 
 </style>
 </head>
@@ -981,8 +1103,6 @@ Chúc mọi điều dịu dàng nhất sẽ đến với em. Yêu em nhiều! �
     </div>
   </article>
 </section>
-<button class="close-x" id="closeX" aria-label="Đóng thư">×</button>
-
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button id="lightboxClose" aria-label="Đóng ảnh">×</button>
@@ -1090,10 +1210,11 @@ function openLetter(){
   modal.classList.remove('closing','envelope-closing');
   modal.classList.add('show');
   document.querySelector('.scene')?.classList.add('opened');
+  // Đợi 3 giây sau khi lá thư xuất hiện rồi mới bắt đầu chạy chữ.
   setTimeout(()=>{
     if(modal.classList.contains('show'))
       typeLetter(loadedGift?.letter||$('letterInput').value||'Gửi em những lời yêu thương nhất 💗');
-  },900);
+  },3000);
   if(audio.src)audio.play().catch(()=>{});
 }
 
@@ -1120,18 +1241,12 @@ function closeLetter(){
     letter.classList.remove('folding','folded-enter');
     document.querySelector('.scene')?.classList.remove('opened');
     document.body.style.overflow='';
-    // Sau khi gấp thư, chờ 2 giây rồi bánh lại rơi lần lượt tầng 3 → 2 → 1.
+    // Lá thư gấp lại biến thành trái tim hồng có cánh, bay lên trời rồi tan vào ánh sáng.
     cake.style.visibility='hidden';
     cake.classList.remove('melting','cake-finale','dropping','cake-ready');
     $('cakeHint').classList.remove('visible');
-    flyParticlesBetween(foldedLetterRect,cake,1900,'to-cake');
-    setTimeout(()=>{
-      cake.style.visibility='';
-      cake.classList.remove('melting','cake-finale','dropping','cake-ready');
-      void cake.offsetWidth;
-      startCakeDrop();
-      closing=false;
-    },2000);
+    launchWingedHeart(foldedLetterRect);
+    setTimeout(()=>{ closing=false; },6100);
   },1950);
 }
 
@@ -1157,7 +1272,7 @@ function startCakeDrop(){
   cakeHasLanded=false;
   void cake.offsetWidth;
   cake.classList.add('dropping');
-  // Các tầng rơi theo CSS lần lượt: tầng trên, giữa, dưới.
+  // Rơi đúng thứ tự tầng 3 (trên) → tầng 2 (giữa) → tầng 1 (dưới).
   setTimeout(()=>{
     cake.classList.remove('dropping');
     cake.classList.add('cake-ready');
@@ -1200,124 +1315,38 @@ function flyParticlesBetween(fromEl,toEl,duration=2200,mode='to-letter'){
   setTimeout(()=>layer.remove(),duration+800);
 }
 function showLoveHeartThenLetter(){
+  // Phiên bản nhẹ: trái tim viền neon bằng CSS, không dùng canvas hay hàng nghìn hạt.
   const scene=document.createElement('div');
-  scene.className='heart-confession';
-  scene.innerHTML='<canvas aria-hidden="true"></canvas><div class="confession-text">ANH YÊU EM<small>♡ món quà nhỏ dành riêng cho em ♡</small></div><span class="kitty-corner one">🎀</span><span class="kitty-corner two">🐱</span>';
+  scene.className='heart-confession neon-scene';
+  scene.innerHTML='<div class="heart-aura" aria-hidden="true"></div><div class="heart-orbit orbit-one" aria-hidden="true"></div><div class="heart-orbit orbit-two" aria-hidden="true"></div><div class="neon-heart" aria-hidden="true"></div><span class="heart-spark s1">✧</span><span class="heart-spark s2">✦</span><span class="heart-spark s3">♡</span><span class="heart-spark s4">✧</span><span class="heart-spark s5">✦</span><div class="confession-text">ANH YÊU EM<small>♡ món quà nhỏ dành riêng cho em ♡</small></div><span class="kitty-corner one">🎀</span><span class="kitty-corner two">🐱</span>';
   document.body.append(scene);
 
-  // Dùng đúng thuật toán trái tim hạt từ file trái tim.txt của bạn.
-  // Chỉ điều chỉnh kích thước theo màn hình và thời điểm chuyển sang lá thư.
-  const canvas=scene.querySelector('canvas');
-  const context=canvas.getContext('2d');
-  const mobile=matchMedia('(max-width: 600px)').matches;
-  const settings={particles:{length:mobile?2300:4500,duration:2.5,velocity:140,effect:-1.2,size:2}};
-  let alive=true, raf=0, time;
-
-  const Point=function(x,y){this.x=x||0;this.y=y||0};
-  Point.prototype.clone=function(){return new Point(this.x,this.y)};
-  Point.prototype.length=function(length){
-    if(typeof length==='undefined')return Math.sqrt(this.x*this.x+this.y*this.y);
-    this.normalize();this.x*=length;this.y*=length;return this;
-  };
-  Point.prototype.normalize=function(){const length=this.length()||1;this.x/=length;this.y/=length;return this};
-
-  const Particle=function(){this.position=new Point();this.velocity=new Point();this.acceleration=new Point();this.age=0};
-  Particle.prototype.initialize=function(x,y,dx,dy){
-    this.position.x=x;this.position.y=y;this.velocity.x=dx;this.velocity.y=dy;
-    this.acceleration.x=dx*settings.particles.effect;this.acceleration.y=dy*settings.particles.effect;this.age=0;
-  };
-  Particle.prototype.update=function(dt){
-    this.position.x+=this.velocity.x*dt;this.position.y+=this.velocity.y*dt;
-    this.velocity.x+=this.acceleration.x*dt;this.velocity.y+=this.acceleration.y*dt;this.age+=dt;
-  };
-  Particle.prototype.draw=function(ctx,img){
-    const t=this.age/settings.particles.duration;
-    const eased=1-Math.pow(1-t,3);
-    const size=img.width*(1-eased);
-    ctx.globalAlpha=Math.max(0,1-t);
-    ctx.drawImage(img,this.position.x-size/2,this.position.y-size/2,size,size);
-  };
-
-  const ParticlePool=function(length){
-    this.particles=Array.from({length},()=>new Particle());this.firstActive=0;this.firstFree=0;this.duration=settings.particles.duration;
-  };
-  ParticlePool.prototype.add=function(x,y,dx,dy){
-    this.particles[this.firstFree].initialize(x,y,dx,dy);
-    this.firstFree=(this.firstFree+1)%this.particles.length;
-    if(this.firstActive===this.firstFree)this.firstActive=(this.firstActive+1)%this.particles.length;
-  };
-  ParticlePool.prototype.update=function(dt){
-    let i;
-    if(this.firstActive<this.firstFree){for(i=this.firstActive;i<this.firstFree;i++)this.particles[i].update(dt)}
-    else if(this.firstFree<this.firstActive){
-      for(i=this.firstActive;i<this.particles.length;i++)this.particles[i].update(dt);
-      for(i=0;i<this.firstFree;i++)this.particles[i].update(dt);
-    }
-    while(this.firstActive!==this.firstFree&&this.particles[this.firstActive].age>=this.duration){
-      this.firstActive=(this.firstActive+1)%this.particles.length;
-    }
-  };
-  ParticlePool.prototype.draw=function(ctx,img){
-    let i;
-    if(this.firstActive<this.firstFree){for(i=this.firstActive;i<this.firstFree;i++)this.particles[i].draw(ctx,img)}
-    else if(this.firstFree<this.firstActive){
-      for(i=this.firstActive;i<this.particles.length;i++)this.particles[i].draw(ctx,img);
-      for(i=0;i<this.firstFree;i++)this.particles[i].draw(ctx,img);
-    }
-  };
-
-  let width=0,height=0,scale=1;
-  const resize=()=>{
-    const dpr=Math.min(window.devicePixelRatio||1,2);
-    width=window.innerWidth;height=window.innerHeight;
-    canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
-    canvas.style.width=width+'px';canvas.style.height=height+'px';
-    context.setTransform(dpr,0,0,dpr,0,0);
-    scale=Math.min(width/430,height/560,1.35);
-  };
-  resize();window.addEventListener('resize',resize);
-
-  const particlePool=new ParticlePool(settings.particles.length);
-  const particleRate=settings.particles.length/settings.particles.duration;
-  function pointOnHeart(t){
-    return new Point(160*Math.pow(Math.sin(t),3),130*Math.cos(t)-50*Math.cos(2*t)-20*Math.cos(3*t)-10*Math.cos(4*t));
-  }
-  const imageCanvas=document.createElement('canvas');
-  const imageContext=imageCanvas.getContext('2d');
-  imageCanvas.width=settings.particles.size*2;imageCanvas.height=settings.particles.size*2;
-  const gradient=imageContext.createRadialGradient(2,2,0,2,2,2);
-  gradient.addColorStop(0,'rgba(255,105,180,1)');
-  gradient.addColorStop(.4,'rgba(240,20,130,.8)');
-  gradient.addColorStop(1,'rgba(0,0,0,0)');
-  imageContext.fillStyle=gradient;imageContext.beginPath();imageContext.arc(2,2,2,0,Math.PI*2);imageContext.fill();
-  const particleImage=new Image();particleImage.src=imageCanvas.toDataURL();
-
-  function render(){
-    if(!alive)return;
-    raf=requestAnimationFrame(render);
-    const now=performance.now()/1000,dt=Math.min(.04,now-(time||now));time=now;
-    context.clearRect(0,0,width,height);
-    // Phát hạt dọc theo đúng đường cong trái tim trong code gốc.
-    const amount=particleRate*dt;
-    for(let i=0;i<amount;i++){
-      const pos=pointOnHeart(Math.PI-2*Math.PI*Math.random());
-      const dir=pos.clone().length(settings.particles.velocity);
-      particlePool.add(width/2+pos.x*scale,height/2-pos.y*scale,dir.x*scale,-dir.y*scale);
-    }
-    particlePool.update(dt);
-    context.save();
-    context.shadowColor='#ff4f9f';context.shadowBlur=7;
-    particlePool.draw(context,particleImage);
-    context.restore();context.globalAlpha=1;
-  }
-  particleImage.onload=()=>{if(alive&&!raf)render()};
-
-  // Trái tim hạt xuất hiện rõ gần 2,3 giây, rồi phóng lớn trước khi mở thư.
-  setTimeout(()=>scene.classList.add('growing'),2250);
+  // Giữ cảnh trái tim đủ 7 giây; gần cuối trái tim và dòng chữ dần bay sáng.
+  setTimeout(()=>scene.classList.add('growing'),4500);
   setTimeout(()=>{
-    alive=false;cancelAnimationFrame(raf);window.removeEventListener('resize',resize);scene.remove();
-    openLetter();cakeSequenceRunning=false;
-  },3300);
+    scene.remove();
+    openLetter();
+    cakeSequenceRunning=false;
+  },7000);
+}
+
+function launchWingedHeart(rect){
+  const finale=document.createElement('div');
+  finale.className='winged-heart-finale';
+  const x=rect && rect.width ? rect.left+rect.width/2 : innerWidth/2;
+  const y=rect && rect.height ? rect.top+rect.height/2 : innerHeight*.68;
+  finale.style.left=x+'px';
+  finale.style.top=y+'px';
+  finale.innerHTML='<span class="winged-spark spark-a">✦</span><span class="winged-spark spark-b">♡</span><span class="winged-spark spark-c">✧</span><div class="winged-heart-art"><span class="angel-wing left-wing" aria-hidden="true"><svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="whiteFeather" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fffaff"/><stop offset="1" stop-color="#ffdff2"/></linearGradient></defs><path d="M111 78C91 76 73 67 59 54 43 40 32 20 7 7c5 18 2 29 12 43 17 24 43 34 76 35Z" fill="url(#whiteFeather)" stroke="#fff" stroke-width="2"/><path d="M99 74C76 65 57 46 38 24M84 78C63 66 48 52 29 34M70 81C51 72 38 61 22 47M57 82C42 77 32 68 23 59" fill="none" stroke="#f4cfe4" stroke-width="2.3" stroke-linecap="round"/><path d="M10 10C25 17 39 31 48 43c-10-3-20-12-28-23M18 28c13 8 23 19 31 30-12-5-22-15-31-30M29 46c11 6 19 15 26 23-10-3-20-11-26-23" fill="#fff" opacity=".95"/></svg></span><span class="angel-wing right-wing" aria-hidden="true"><svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="whiteFeather2" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fffaff"/><stop offset="1" stop-color="#ffdff2"/></linearGradient></defs><path d="M111 78C91 76 73 67 59 54 43 40 32 20 7 7c5 18 2 29 12 43 17 24 43 34 76 35Z" fill="url(#whiteFeather2)" stroke="#fff" stroke-width="2"/><path d="M99 74C76 65 57 46 38 24M84 78C63 66 48 52 29 34M70 81C51 72 38 61 22 47M57 82C42 77 32 68 23 59" fill="none" stroke="#f4cfe4" stroke-width="2.3" stroke-linecap="round"/><path d="M10 10C25 17 39 31 48 43c-10-3-20-12-28-23M18 28c13 8 23 19 31 30-12-5-22-15-31-30M29 46c11 6 19 15 26 23-10-3-20-11-26-23" fill="#fff" opacity=".95"/></svg></span><span class="pink-heart">💗</span></div><div class="winged-heart-caption">Gửi em tất cả yêu thương ✨</div>';
+  document.body.append(finale);
+  // Trái tim bay trong đúng 4 giây rồi biến mất. Hai giây sau bánh rơi trở lại.
+  finale.addEventListener('animationend',e=>{if(e.target===finale)finale.remove()},{once:true});
+  setTimeout(()=>finale.remove(),4100);
+  setTimeout(()=>{
+    const cake=$('cakeStage');
+    cake.style.visibility='visible';
+    startCakeDrop();
+  },6000);
 }
 function openCakeFromTap(){
   if(!cakeHasLanded||cakeSequenceRunning||closing||modal.classList.contains('show'))return;
@@ -1339,7 +1368,6 @@ $('cakeStage').addEventListener('click',openCakeFromTap);
 $('cakeStage').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCakeFromTap()}});
 
 $('closeLetter').onclick=closeLetter;
-$('closeX').onclick=closeLetter;
 modal.addEventListener('click',e=>{if(e.target===modal)closeLetter()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLetter();closeLightbox();panel.classList.remove('open')}});
 
@@ -1642,7 +1670,7 @@ $('reset').onclick=()=>{
     const c=JSON.parse(localStorage.getItem('giftSupabaseConfig')||'null');
     if(c){$('sbUrl').value=c.url||'';$('sbKey').value=c.key||''}
   }catch{}
-  applyText();updateCakeAge();startCakeDrop();loadGift();
+  applyText();updateCakeAge();setTimeout(startCakeDrop,3000);loadGift();
 })();
 })();
 </script>
