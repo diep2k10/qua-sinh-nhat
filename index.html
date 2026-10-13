@@ -594,9 +594,9 @@ h1 span{background:linear-gradient(180deg,#fff8e9 15%,#f6dfac 58%,#e9b9ad 100%);
 .moon-wrap{cursor:pointer;filter:drop-shadow(0 0 8px #f5d58a22)}
 .secret-moon-trigger{position:fixed;z-index:120;top:calc(12px + var(--safe-top));right:14px;width:46px;height:46px;aspect-ratio:1;border:1px solid #ffffff88;border-radius:50%;background:linear-gradient(135deg,#ffb5d9ee,#b45be8ee);color:#fff;font-size:24px;display:grid;place-items:center;text-shadow:0 0 10px #ff4fa5;box-shadow:0 8px 25px #0005,0 0 18px #ff70bd66;cursor:pointer;transition:transform .2s,filter .2s}
 .secret-moon-trigger:hover,.secret-moon-trigger:focus-visible{filter:brightness(1.12);transform:scale(1.08)}
-.middle-finger-pop{position:fixed;z-index:121;top:calc(68px + var(--safe-top));right:14px;width:76px;height:76px;display:grid;place-items:center;background:transparent;border:0;box-shadow:none;font-size:48px;line-height:1;transform-origin:center;pointer-events:none;animation:fingerPop 2s cubic-bezier(.2,.65,.25,1) forwards}
-@keyframes fingerPop{0%{opacity:0;transform:scale(.08)}12%{opacity:1;transform:scale(.45)}72%{opacity:1;transform:scale(7)}100%{opacity:0;transform:scale(12)}}
-@media(max-width:600px){.secret-moon-trigger{top:calc(12px + var(--safe-top));right:12px;width:46px;height:46px;font-size:24px}.middle-finger-pop{right:12px;top:calc(66px + var(--safe-top))}}
+.middle-finger-pop{position:fixed;z-index:121;left:50%;top:50%;width:76px;height:76px;display:grid;place-items:center;background:transparent;border:0;box-shadow:none;font-size:48px;line-height:1;transform:translate(-50%,-50%) scale(.08);transform-origin:center;pointer-events:none;animation:fingerPop 2s cubic-bezier(.2,.65,.25,1) forwards}
+@keyframes fingerPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.08)}12%{opacity:1;transform:translate(-50%,-50%) scale(.45)}72%{opacity:1;transform:translate(-50%,-50%) scale(7)}100%{opacity:0;transform:translate(-50%,-50%) scale(12)}}
+@media(max-width:600px){.secret-moon-trigger{top:calc(12px + var(--safe-top));right:12px;width:46px;height:46px;font-size:24px}}
 @media(max-width:600px){.letter{background:linear-gradient(115deg,#fffaf0,#fff3e3 55%,#f7e4d3)!important}.letter:after{right:14px;bottom:14px;font-size:21px}}
 
 
