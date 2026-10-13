@@ -957,7 +957,8 @@ button,.cake-stage{-webkit-touch-callout:none}
 }
 
 /* Thư gấp lại hóa thành trái tim thiên thần bay lên trời */
-.winged-heart-finale{position:fixed;z-index:10050;left:50%;top:70%;width:1px;height:1px;pointer-events:none;transform:translate(-50%,-50%);animation:wingedHeartAscend 4s cubic-bezier(.22,.62,.28,1) forwards;filter:drop-shadow(0 0 18px #ff6ebd);}
+.winged-heart-finale{position:fixed;z-index:10050;left:50%;top:70%;width:1px;height:1px;pointer-events:none;transform:translate(-50%,-50%);opacity:1;filter:drop-shadow(0 0 18px #ff6ebd);}
+.winged-heart-finale.fly-up{animation:wingedHeartAscend 4s cubic-bezier(.22,.62,.28,1) forwards;}
 .winged-heart-art{position:absolute;left:0;top:0;width:clamp(190px,56vw,300px);height:clamp(105px,30vw,155px);transform:translate(-50%,-50%);animation:angelHeartBeat .72s ease-in-out infinite alternate;}
 .pink-heart{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(54px,15vw,100px);line-height:1;text-shadow:0 0 12px #ff72c2,0 0 30px #ff3eaa,0 0 55px #ff9bd7;animation:pinkHeartShimmer 1.2s ease-in-out infinite alternate;}
 .angel-wing{position:absolute;top:50%;width:clamp(82px,24vw,126px);height:auto;overflow:visible;filter:drop-shadow(0 0 5px rgba(255,255,255,.95)) drop-shadow(0 0 12px rgba(255,181,226,.75));}
@@ -1339,14 +1340,16 @@ function launchWingedHeart(rect){
   finale.style.top=y+'px';
   finale.innerHTML='<span class="winged-spark spark-a">✦</span><span class="winged-spark spark-b">♡</span><span class="winged-spark spark-c">✧</span><div class="winged-heart-art"><span class="angel-wing left-wing" aria-hidden="true"><svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="whiteFeather" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fffaff"/><stop offset="1" stop-color="#ffdff2"/></linearGradient></defs><path d="M111 78C91 76 73 67 59 54 43 40 32 20 7 7c5 18 2 29 12 43 17 24 43 34 76 35Z" fill="url(#whiteFeather)" stroke="#fff" stroke-width="2"/><path d="M99 74C76 65 57 46 38 24M84 78C63 66 48 52 29 34M70 81C51 72 38 61 22 47M57 82C42 77 32 68 23 59" fill="none" stroke="#f4cfe4" stroke-width="2.3" stroke-linecap="round"/><path d="M10 10C25 17 39 31 48 43c-10-3-20-12-28-23M18 28c13 8 23 19 31 30-12-5-22-15-31-30M29 46c11 6 19 15 26 23-10-3-20-11-26-23" fill="#fff" opacity=".95"/></svg></span><span class="angel-wing right-wing" aria-hidden="true"><svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="whiteFeather2" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fffaff"/><stop offset="1" stop-color="#ffdff2"/></linearGradient></defs><path d="M111 78C91 76 73 67 59 54 43 40 32 20 7 7c5 18 2 29 12 43 17 24 43 34 76 35Z" fill="url(#whiteFeather2)" stroke="#fff" stroke-width="2"/><path d="M99 74C76 65 57 46 38 24M84 78C63 66 48 52 29 34M70 81C51 72 38 61 22 47M57 82C42 77 32 68 23 59" fill="none" stroke="#f4cfe4" stroke-width="2.3" stroke-linecap="round"/><path d="M10 10C25 17 39 31 48 43c-10-3-20-12-28-23M18 28c13 8 23 19 31 30-12-5-22-15-31-30M29 46c11 6 19 15 26 23-10-3-20-11-26-23" fill="#fff" opacity=".95"/></svg></span><span class="pink-heart">💗</span></div><div class="winged-heart-caption">Gửi em tất cả yêu thương ✨</div>';
   document.body.append(finale);
-  // Trái tim bay trong đúng 4 giây rồi biến mất. Hai giây sau bánh rơi trở lại.
+  // Trái tim hiện hoàn chỉnh, đứng yên 1 giây rồi mới bay lên trong 4 giây.
+  // Bánh sinh nhật rơi trở lại 2 giây sau khi trái tim bay xong.
+  setTimeout(()=>finale.classList.add('fly-up'),1000);
   finale.addEventListener('animationend',e=>{if(e.target===finale)finale.remove()},{once:true});
-  setTimeout(()=>finale.remove(),4100);
+  setTimeout(()=>finale.remove(),5100);
   setTimeout(()=>{
     const cake=$('cakeStage');
     cake.style.visibility='visible';
     startCakeDrop();
-  },6000);
+  },7000);
 }
 function openCakeFromTap(){
   if(!cakeHasLanded||cakeSequenceRunning||closing||modal.classList.contains('show'))return;
