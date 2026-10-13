@@ -261,7 +261,7 @@ h1 span{display:block;margin-top:6px;background:linear-gradient(180deg,#fff4fb 3
 }
 .letter.folding .letter-inner{
   transform-origin:50% 50%;
-  animation:foldInner .55s cubic-bezier(.6,0,.4,1) forwards;
+  animation:foldInner 1.2s cubic-bezier(.6,0,.4,1) forwards;
 }
 @keyframes foldInner{
   0%{transform:scaleY(1)}
@@ -273,7 +273,7 @@ h1 span{display:block;margin-top:6px;background:linear-gradient(180deg,#fff4fb 3
   background:linear-gradient(145deg,#fffef8 0%,#fff4f8 55%,#fbe5ef 100%);
   border-radius:5px 5px 0 0;
   transform-origin:bottom center;
-  transition:transform .65s cubic-bezier(.6,0,.4,1),box-shadow .65s;
+  transition:transform 1.2s cubic-bezier(.6,0,.4,1),box-shadow 1.2s;
   z-index:5;pointer-events:none;
   box-shadow:none;
   display:none;
@@ -290,7 +290,7 @@ h1 span{display:block;margin-top:6px;background:linear-gradient(180deg,#fff4fb 3
   background:linear-gradient(90deg,transparent,#8a5a7366 20%,#8a5a73aa 50%,#8a5a7366 80%,transparent);
   transform:translateY(-1px) scaleX(0);
   transform-origin:center;
-  transition:transform .4s ease .2s;
+  transition:transform .8s ease .3s;
   z-index:7;pointer-events:none;opacity:0;
   box-shadow:0 0 6px #ffffff;
 }
@@ -301,14 +301,14 @@ h1 span{display:block;margin-top:6px;background:linear-gradient(180deg,#fff4fb 3
 
 /* Nửa dưới + nửa trên chập vào nhau → gấp lại */
 .letter.folding .letter-inner{
-  animation:foldInner .55s cubic-bezier(.6,0,.4,1) forwards;
+  animation:foldInner 1.2s cubic-bezier(.6,0,.4,1) forwards;
 }
 @keyframes foldInner{
   0%{transform:scaleY(1)}
   100%{transform:scaleY(.5)}
 }
 .letter.folding .letter-inner .content-wrap{
-  animation:foldContent .55s cubic-bezier(.6,0,.4,1) forwards;
+  animation:foldContent 1.2s cubic-bezier(.6,0,.4,1) forwards;
 }
 @keyframes foldContent{
   0%{opacity:1}
@@ -317,7 +317,7 @@ h1 span{display:block;margin-top:6px;background:linear-gradient(180deg,#fff4fb 3
 }
 /* Sau khi gấp xong → bay vào phong bì */
 .letter.folded-enter{
-  animation:letterIntoEnvelope .55s cubic-bezier(.6,0,.4,1) forwards !important;
+  animation:letterIntoEnvelope .8s cubic-bezier(.6,0,.4,1) forwards !important;
   transition:none !important;
 }
 @keyframes letterIntoEnvelope{
@@ -1234,8 +1234,8 @@ function closeLetter(){
     letter.classList.remove('folding');
     letter.classList.add('folded-enter');
     modal.classList.add('closing');
-  },680);
-  setTimeout(()=>modal.classList.add('envelope-closing'),1250);
+  },1250);
+  setTimeout(()=>modal.classList.add('envelope-closing'),2050);
   setTimeout(()=>{
     const foldedLetterRect=letter.getBoundingClientRect();
     modal.classList.remove('show','closing','envelope-closing');
@@ -1248,7 +1248,7 @@ function closeLetter(){
     $('cakeHint').classList.remove('visible');
     launchWingedHeart(foldedLetterRect);
     setTimeout(()=>{ closing=false; },6100);
-  },1950);
+  },2850);
 }
 
 // Hello Kitty: bánh tự rơi theo thứ tự tầng 3 → 2 → 1 khi trang mở.
@@ -1673,7 +1673,7 @@ $('reset').onclick=()=>{
     const c=JSON.parse(localStorage.getItem('giftSupabaseConfig')||'null');
     if(c){$('sbUrl').value=c.url||'';$('sbKey').value=c.key||''}
   }catch{}
-  applyText();updateCakeAge();setTimeout(startCakeDrop,3000);loadGift();
+  applyText();updateCakeAge();setTimeout(startCakeDrop,1000);loadGift();
 })();
 })();
 </script>
