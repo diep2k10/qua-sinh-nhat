@@ -1142,7 +1142,7 @@ button,.cake-stage{-webkit-touch-callout:none}
     </div>
   </div>
 
-  <div class="cake-hint" id="cakeHint" aria-live="polite">Chạm nhẹ vào bánh để khám phá món quà</div>
+  <div class="cake-hint" id="cakeHint" aria-live="polite"><span class="hint-bow" aria-hidden="true">🎀</span><span>Chạm nhẹ vào bánh để khám phá món quà</span><span class="hint-bow" aria-hidden="true">🎀</span></div>
 </main>
 
 <!-- SETTINGS -->
@@ -1793,5 +1793,14 @@ $('reset').onclick=()=>{
 })();
 })();
 </script>
+
+<style>
+/* Nơ hồng trang trí riêng cho lời nhắc chạm vào bánh */
+.cake-hint{display:flex;align-items:center;justify-content:center;gap:7px}
+.cake-hint .hint-bow{display:inline-block;flex:0 0 auto;font-size:1.25em;line-height:1;filter:drop-shadow(0 2px 3px #e98bb855);animation:bowFloat 2.4s ease-in-out infinite}
+.cake-hint .hint-bow:last-child{animation-delay:.25s}
+@keyframes bowFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-2px) rotate(5deg)}}
+@media(prefers-reduced-motion:reduce){.cake-hint .hint-bow{animation:none}}
+</style>
 </body>
 </html>
