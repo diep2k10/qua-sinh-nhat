@@ -1412,6 +1412,60 @@ html, body { min-height:100%; overscroll-behavior:none; -webkit-tap-highlight-co
   .cloud, .star-group, .kitty-bow, .moon-main { animation:none !important; }
 }
 
+
+/* ===== HELLO KITTY: HỒNG DỄ ĐỌC HƠN + 3D MOBILE ===== */
+:root{
+ --pink:#e84f91; --blue:#f7b8d2; --gold:#ffe6a8; --night:#fff0f7;
+}
+body{
+ background:radial-gradient(ellipse at 15% 15%,#fffaff 0%,transparent 34%),
+ radial-gradient(ellipse at 85% 80%,#f7c2dc 0%,transparent 42%),
+ linear-gradient(145deg,#fff6fb 0%,#ffe5f1 48%,#f8cde2 100%);
+ color:#71314f;
+}
+#app{background:transparent}
+.float-text{
+ color:#c52e72!important;
+ -webkit-text-stroke:.25px #fff;
+ text-shadow:0 1px 0 #fff,0 2px 0 #ffe2ef,0 4px 12px rgba(117,28,70,.28)!important;
+ filter:drop-shadow(0 2px 5px rgba(255,255,255,.9))!important;
+}
+@keyframes riseFull{
+ 0%{transform:translate3d(var(--startX),110vh,calc(var(--depth) - 180px)) rotateY(-22deg) rotateZ(-12deg) scale(.45);opacity:0;color:#c52e72}
+ 8%{opacity:1;color:#c52e72}
+ 25%{transform:translate3d(var(--x25),78vh,var(--depth)) rotateY(14deg) rotateZ(-5deg) scale(.75);opacity:1;color:#d43b7f}
+ 45%{transform:translate3d(var(--x45),53vh,calc(var(--depth) + 100px)) rotateY(-18deg) rotateZ(4deg) scale(.95);opacity:1;color:#b93679}
+ 65%{transform:translate3d(var(--x65),30vh,var(--depth)) rotateY(18deg) rotateZ(-4deg) scale(1.02);opacity:.95;color:#a94a91}
+ 82%{transform:translate3d(var(--x82),8vh,calc(var(--depth) - 80px)) rotateY(-12deg) rotateZ(5deg) scale(1.05);opacity:.8;color:#c52e72}
+ 92%{transform:translate3d(var(--endX),-5vh,var(--depth)) rotateY(10deg) rotateZ(7deg) scale(1.08);opacity:.35}
+ 100%{transform:translate3d(var(--endX),-18vh,calc(var(--depth) + 120px)) rotateY(24deg) rotateZ(8deg) scale(1.1);opacity:0}
+}
+.nav button{
+ background:rgba(255,255,255,.88)!important;
+ color:#a92d68!important;
+ border:1px solid rgba(222,83,143,.28)!important;
+ box-shadow:0 4px 16px rgba(177,54,109,.16);
+}
+.letter{
+ background:linear-gradient(145deg,#fffdfd 0%,#fff0f6 100%);
+ color:#563046;
+ box-shadow:0 24px 65px rgba(108,35,72,.28),0 0 0 5px rgba(255,255,255,.28),0 0 30px rgba(231,83,147,.2);
+}
+.letter-body{color:#563046}
+.sidebar{background:rgba(255,249,252,.98)!important}
+@media(max-width:800px){
+ #stage{touch-action:none!important;cursor:default}
+ .float-text{
+   font-size:clamp(19px,5.2vw,25px)!important;
+   color:#bd2d6c!important;
+   -webkit-text-stroke:.2px #fff!important;
+   text-shadow:0 1px 0 #fff,0 2px 0 #ffe5f0,0 4px 10px rgba(107,32,67,.28)!important;
+   filter:drop-shadow(0 1px 4px rgba(255,255,255,.9))!important;
+ }
+ .nav{gap:7px;right:10px;top:10px}
+ .nav button{width:42px;height:42px;min-height:42px}
+}
+
 </style>
 </head>
 
@@ -1463,6 +1517,7 @@ html, body { min-height:100%; overscroll-behavior:none; -webkit-tap-highlight-co
 
     <div class="nav">
             <button id="musicBtn" title="Nhạc">🔊</button>
+            <button id="motionBtn" title="Bật xoay theo chuyển động điện thoại" aria-label="Bật xoay theo chuyển động điện thoại">🌀</button>
             <button id="settingsBtn" class="mobile-settings" title="Cài đặt">⚙️</button>
         </div>
 
@@ -2442,6 +2497,64 @@ stage.addEventListener(
     }
 );
 
+
+/* ===== XOAY THEO CẢM BIẾN ĐIỆN THOẠI =====
+   Bấm nút 🌀 để cấp quyền trên iPhone/iPad nếu trình duyệt yêu cầu.
+   Có thể tắt/bật cảm biến bất cứ lúc nào.
+*/
+const motionBtn = document.getElementById("motionBtn");
+let motionEnabled = false;
+let motionBaseBeta = null;
+let motionBaseGamma = null;
+let motionSmoothX = 0;
+let motionSmoothY = 0;
+
+function handleDeviceOrientation(event){
+    if(!motionEnabled || event.beta == null || event.gamma == null) return;
+    if(motionBaseBeta === null){
+        motionBaseBeta = event.beta;
+        motionBaseGamma = event.gamma;
+    }
+    const targetX = Math.max(-28, Math.min(28, (event.beta - motionBaseBeta) * 0.75));
+    const targetY = Math.max(-38, Math.min(38, (event.gamma - motionBaseGamma) * 1.05));
+    motionSmoothX += (targetX - motionSmoothX) * 0.12;
+    motionSmoothY += (targetY - motionSmoothY) * 0.12;
+    rotX = motionSmoothX;
+    rotY = motionSmoothY;
+    updateView();
+}
+
+async function togglePhoneMotion(){
+    if(motionEnabled){
+        motionEnabled = false;
+        motionBaseBeta = null;
+        motionBaseGamma = null;
+        motionBtn.textContent = "🌀";
+        motionBtn.title = "Bật xoay theo chuyển động điện thoại";
+        window.removeEventListener("deviceorientation", handleDeviceOrientation);
+        return;
+    }
+    try{
+        if(typeof DeviceOrientationEvent !== "undefined" &&
+           typeof DeviceOrientationEvent.requestPermission === "function"){
+            const permission = await DeviceOrientationEvent.requestPermission();
+            if(permission !== "granted") throw new Error("permission");
+        }
+        if(!("DeviceOrientationEvent" in window)){
+            alert("Điện thoại hoặc trình duyệt này chưa hỗ trợ cảm biến xoay.");
+            return;
+        }
+        motionEnabled = true;
+        motionBaseBeta = null;
+        motionBaseGamma = null;
+        motionBtn.textContent = "📱";
+        motionBtn.title = "Đang bật xoay theo điện thoại — bấm để tắt";
+        window.addEventListener("deviceorientation", handleDeviceOrientation, true);
+    }catch(error){
+        alert("Không bật được cảm biến xoay. Hãy mở trang bằng HTTPS trên trình duyệt điện thoại và cho phép quyền Chuyển động nếu được hỏi.");
+    }
+}
+if(motionBtn) motionBtn.addEventListener("click", togglePhoneMotion);
 
 /* Góc nhìn ban đầu */
 updateView();
