@@ -1189,8 +1189,11 @@ Chúc mọi điều dịu dàng nhất sẽ đến với em. Yêu em nhiều! �
   <div class="preview-grid" id="previewGrid"></div>
 
   <h3>🎵 NHẠC NỀN</h3>
-  <label for="musicInput">Chọn tệp nhạc</label><input id="musicInput" type="file" accept="audio/*">
-  <div class="btnrow"><button class="btn" id="playMusic">▶ Phát nhạc</button><button class="btn" id="stopMusic">Ⅱ Tạm dừng</button></div>
+  <label for="musicInput">Chọn tệp nhạc (tùy chọn)</label><input id="musicInput" type="file" accept="audio/*">
+  <label for="musicUrlInput">Hoặc dán URL nhạc trực tiếp</label>
+  <input id="musicUrlInput" type="url" inputmode="url" placeholder="https://.../nhac.mp3">
+  <p class="help">Dùng link HTTPS mở trực tiếp file âm thanh (MP3, OGG, WAV...). Link trang YouTube/Spotify thường không phát trực tiếp được.</p>
+  <div class="btnrow"><button class="btn" id="useMusicUrl">Dùng URL nhạc</button><button class="btn" id="playMusic">▶ Phát nhạc</button><button class="btn" id="stopMusic">Ⅱ Tạm dừng</button></div>
   <label for="volume">Âm lượng</label><input id="volume" type="range" min="0" max="1" step=".01" value=".65">
 
   <button class="btn primary full" id="saveGift">☁ Lưu quà lên Supabase và tạo link</button>
@@ -1248,7 +1251,10 @@ Chúc mọi điều dịu dàng nhất sẽ đến với em. Yêu em nhiều! �
 const $=id=>document.getElementById(id);
 let qrInstance=null;
 
-// ⚠️ ĐIỀN 2 GIÁ TRỊ NÀY SAU KHI TẠO SUPABASE PROJECT
+// ⚠️ BẮT BUỘC: điền Project URL và publishable/anon key thật của bạn tại đây.
+// Cấu hình lưu trong localStorage chỉ dùng trên máy tạo quà; người nhận mở link
+// bằng thiết bị khác cần hai giá trị này được điền sẵn trong file HTML.
+// Chỉ dùng publishable/anon key; TUYỆT ĐỐI KHÔNG dùng service_role/secret key.
 const SUPABASE_URL='PASTE_YOUR_SUPABASE_PROJECT_URL_HERE';
 const SUPABASE_ANON_KEY='PASTE_YOUR_SUPABASE_ANON_KEY_HERE';
 
@@ -1606,12 +1612,27 @@ $('photoInput').addEventListener('change',e=>{
 });
 $('musicInput').addEventListener('change',e=>{
   const f=e.target.files[0];if(!f)return;
+  if(!f.type.startsWith('audio/')){toast('Tệp đã chọn không phải âm thanh.');return;}
   if(musicObjectURL)URL.revokeObjectURL(musicObjectURL);
-  musicFile=f;musicObjectURL=URL.createObjectURL(f);audio.src=musicObjectURL;
+  musicFile=f;$('musicUrlInput').value='';musicObjectURL=URL.createObjectURL(f);audio.src=musicObjectURL;
   audio.play().catch(()=>toast('Đã chọn nhạc. Chạm Phát nhạc để nghe.'));
-  e.target.value='';toast('Đã chọn nhạc nền');
+  e.target.value='';toast('Đã chọn nhạc nền. Nhấn Lưu quà để tải lên Supabase.');
 });
-$('playMusic').onclick=()=>{if(!audio.src){$('musicInput').click();return}audio.play().catch(()=>toast('Không phát được tệp nhạc này'))};
+function applyMusicUrl(){
+  const value=$('musicUrlInput').value.trim();
+  if(!value){toast('Hãy dán URL nhạc trước.');return;}
+  try{
+    const u=new URL(value);
+    if(u.protocol!=='https:'&&u.protocol!=='http:')throw new Error('scheme');
+    if(musicObjectURL){URL.revokeObjectURL(musicObjectURL);musicObjectURL='';}
+    musicFile=null;audio.src=u.href;audio.load();
+    audio.play().then(()=>toast('Đang phát nhạc từ URL. Nhấn Lưu quà để lưu URL vào Supabase.'))
+      .catch(()=>toast('Đã gắn URL. Nếu không phát được, hãy dùng link MP3/OGG/WAV trực tiếp và kiểm tra quyền truy cập.'));
+  }catch(e){toast('URL không hợp lệ. Hãy dán link bắt đầu bằng https://');}
+}
+$('useMusicUrl').onclick=applyMusicUrl;
+$('musicUrlInput').addEventListener('change',applyMusicUrl);
+$('playMusic').onclick=()=>{if(!audio.src){$('musicInput').click();return}audio.play().catch(()=>toast('Không phát được nhạc. Hãy kiểm tra URL có trỏ trực tiếp tới file âm thanh không.'))};
 $('stopMusic').onclick=()=>audio.pause();
 $('volume').oninput=e=>audio.volume=Number(e.target.value);audio.volume=.65;
 
@@ -1653,12 +1674,27 @@ async function saveGift(){
       const p=photos[i];
       if(p.file){
         const path=prefix+'/photo-'+(i+1)+'-'+p.file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-        p.remoteUrl=await uploadAsset(client,p.file,path);p.path=path;
+        const oldObjectUrl=p.owned && p.url && p.url.startsWith('blob:') ? p.url : '';
+        p.remoteUrl=await uploadAsset(client,p.file,path);
+        p.path=path;
+        // Use the permanent Supabase URL after upload, not the temporary blob URL.
+        p.url=p.remoteUrl;
+        p.owned=false;
+        p.file=null;
+        if(oldObjectUrl)URL.revokeObjectURL(oldObjectUrl);
       }
-      uploaded.push({url:p.remoteUrl||p.url,path:p.path||null});
+      const permanentUrl=p.remoteUrl||p.url;
+      if(!permanentUrl || permanentUrl.startsWith('blob:') || permanentUrl.startsWith('file:')){
+        throw new Error('Ảnh '+(i+1)+' chưa có URL lưu trên Supabase. Hãy chọn lại ảnh rồi lưu lại.');
+      }
+      uploaded.push({url:permanentUrl,path:p.path||null});
     }
-    let musicUrl=loadedGift?.musicUrl||'';
-    if(musicFile){
+    // Nếu người dùng nhập URL thì lưu URL đó; nếu không, upload tệp nhạc đã chọn.
+    let musicUrl=$('musicUrlInput').value.trim()||loadedGift?.musicUrl||'';
+    if(musicUrl){
+      const u=new URL(musicUrl);
+      if(u.protocol!=='https:'&&u.protocol!=='http:')throw new Error('URL nhạc phải bắt đầu bằng https:// hoặc http://');
+    }else if(musicFile){
       const path=prefix+'/background-'+musicFile.name.replace(/[^a-zA-Z0-9._-]/g,'_');
       musicUrl=await uploadAsset(client,musicFile,path);
     }
@@ -1757,9 +1793,23 @@ async function loadGift(){
     $('recipient').value=g.recipient||defaults.recipient;
     $('letterInput').value=g.letter||defaults.letter;
     $('cakeAge').value=g.age||17;updateCakeAge();
-    photos=(g.photos||[]).map(x=>({url:x.url,remoteUrl:x.url,path:x.path||null,owned:false,file:null}));
-    if(g.musicUrl)audio.src=g.musicUrl;
+    photos=(g.photos||[]).filter(x=>x&&typeof x.url==='string'&&/^https:\/\//i.test(x.url)).map(x=>({url:x.url,remoteUrl:x.url,path:x.path||null,owned:false,file:null}));
+    if((g.photos||[]).length && !photos.length){
+      toast('Quà đã tải được nhưng ảnh lưu trong dữ liệu không có URL công khai. Hãy chọn ảnh và lưu lại.');
+    }
+    if(g.musicUrl){
+      $('musicUrlInput').value=g.musicUrl;
+      audio.src=g.musicUrl;
+    }else{
+      $('musicUrlInput').value='';
+    }
     applyText();renderPhotos();
+    // Report broken public image URLs instead of silently showing an empty scene.
+    document.querySelectorAll('#previewGrid img').forEach((img)=>{
+      img.addEventListener('error',()=>{
+        toast('Không tải được ảnh từ Supabase. Kiểm tra bucket gift-assets đã đặt Public và đã chạy SQL policy.');
+      },{once:true});
+    });
     const base=($('githubBaseUrl').value||'').trim();
     if(base){
       const share=new URL(base);share.searchParams.set('gift',id);
