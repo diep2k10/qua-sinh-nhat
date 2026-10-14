@@ -44,677 +44,6 @@ button,input,textarea{font:inherit}
 .layer{position:absolute;inset:0;pointer-events:none}
 
 /* =========================
-   KHÔNG GIAN SINH NHẬT PASTEL
-========================= */
-
-/* MÂY */
-.cloud{
-    position:absolute;
-    width:180px;
-    height:55px;
-    border-radius:50%;
-    background:rgba(255,255,255,.10);
-    filter:blur(2px);
-    opacity:.45;
-    z-index:1;
-    pointer-events:none;
-    transform-style:preserve-3d;
-}
-
-.cloud::before,
-.cloud::after{
-    content:"";
-    position:absolute;
-    border-radius:50%;
-    background:inherit;
-}
-
-.cloud::before{
-    width:90px;
-    height:90px;
-    left:30px;
-    bottom:0;
-}
-
-.cloud::after{
-    width:115px;
-    height:75px;
-    right:20px;
-    bottom:0;
-}
-
-.cloud1{
-    left:-40px;
-    top:22%;
-    transform:translateZ(-1700px) scale(1.3);
-    animation:cloudMove1 18s ease-in-out infinite alternate;
-}
-
-.cloud2{
-    right:-60px;
-    top:42%;
-    transform:translateZ(-2100px) scale(.9);
-    animation:cloudMove2 22s ease-in-out infinite alternate;
-}
-
-.cloud3{
-    left:35%;
-    top:8%;
-    transform:translateZ(-2500px) scale(.7);
-    opacity:.25;
-    animation:cloudMove3 25s ease-in-out infinite alternate;
-}
-
-@keyframes cloudMove1{
-    from{margin-left:-30px}
-    to{margin-left:70px}
-}
-
-@keyframes cloudMove2{
-    from{margin-right:-20px}
-    to{margin-right:80px}
-}
-
-@keyframes cloudMove3{
-    from{transform:translateZ(-2500px) translateX(-40px) scale(.7)}
-    to{transform:translateZ(-2500px) translateX(60px) scale(.7)}
-}
-
-
-/* =========================
-   SAO LẤP LÁNH PHÍA XA
-========================= */
-
-.star-group{
-    position:absolute;
-    color:#fff7c7;
-    font-size:22px;
-    text-shadow:
-        0 0 8px #fff,
-        0 0 18px #ffe68a,
-        0 0 30px #fff0a0;
-    z-index:1;
-    pointer-events:none;
-    transform-style:preserve-3d;
-    animation:starTwinkle 2s ease-in-out infinite alternate;
-}
-
-.sg1{
-    left:12%;
-    top:18%;
-    transform:translateZ(-2200px) scale(.8);
-}
-
-.sg2{
-    left:25%;
-    top:52%;
-    transform:translateZ(-1800px) scale(.55);
-    animation-delay:.7s;
-}
-
-.sg3{
-    right:18%;
-    top:25%;
-    transform:translateZ(-2400px) scale(.7);
-    animation-delay:1.2s;
-}
-
-.sg4{
-    right:32%;
-    top:62%;
-    transform:translateZ(-1600px) scale(.5);
-    animation-delay:.4s;
-}
-
-.sg5{
-    left:52%;
-    top:14%;
-    transform:translateZ(-2800px) scale(.45);
-    animation-delay:1.5s;
-}
-
-@keyframes starTwinkle{
-    from{
-        opacity:.25;
-        scale:.7;
-    }
-    to{
-        opacity:1;
-        scale:1.15;
-    }
-}
-
-
-/* =========================
-   HOA TRÔI PHÍA SAU
-========================= */
-
-.moon-flower{
-    position:absolute;
-    z-index:2;
-    pointer-events:none;
-    filter:
-        drop-shadow(0 0 8px rgba(255,180,220,.7))
-        drop-shadow(0 0 18px rgba(255,120,200,.35));
-    transform-style:preserve-3d;
-    opacity:.65;
-}
-
-.mf1{
-    left:7%;
-    top:67%;
-    font-size:38px;
-    transform:translateZ(-1300px) rotate(-15deg);
-    animation:flowerFloat1 7s ease-in-out infinite alternate;
-}
-
-.mf2{
-    right:10%;
-    top:72%;
-    font-size:30px;
-    transform:translateZ(-1800px) rotate(20deg);
-    animation:flowerFloat2 9s ease-in-out infinite alternate;
-}
-
-.mf3{
-    right:25%;
-    top:35%;
-    font-size:25px;
-    transform:translateZ(-2200px);
-    animation:flowerFloat1 8s ease-in-out infinite alternate;
-}
-
-@keyframes flowerFloat1{
-    to{
-        transform:
-            translateZ(-1300px)
-            translateY(-25px)
-            rotate(15deg);
-    }
-}
-
-@keyframes flowerFloat2{
-    to{
-        transform:
-            translateZ(-1800px)
-            translateY(-35px)
-            rotate(-15deg);
-    }
-}
-
-
-/* =========================
-   TRÁI TIM PHÍA XA
-========================= */
-
-.bg-heart{
-    position:absolute;
-    color:#ff8fca;
-    font-family:Arial;
-    text-shadow:
-        0 0 8px #ff72b6,
-        0 0 22px #ff72b6;
-    z-index:1;
-    pointer-events:none;
-    opacity:.4;
-    transform-style:preserve-3d;
-    animation:bgHeartFloat 6s ease-in-out infinite alternate;
-}
-
-.bh1{
-    left:17%;
-    top:35%;
-    font-size:45px;
-    transform:translateZ(-1700px);
-}
-
-.bh2{
-    right:16%;
-    top:48%;
-    font-size:65px;
-    transform:translateZ(-2300px);
-    animation-delay:1.5s;
-}
-
-.bh3{
-    left:42%;
-    top:72%;
-    font-size:32px;
-    transform:translateZ(-1400px);
-    animation-delay:3s;
-}
-
-@keyframes bgHeartFloat{
-    from{
-        transform:
-            translateZ(-1800px)
-            translateY(15px)
-            rotate(-8deg);
-    }
-    to{
-        transform:
-            translateZ(-1800px)
-            translateY(-20px)
-            rotate(8deg);
-    }
-}
-
-
-/* =========================
-   VÒNG SÁNG MẶT TRĂNG
-========================= */
-
-.moon-ring{
-    position:absolute;
-    left:50%;
-    top:50%;
-    border:1px solid rgba(255,235,150,.12);
-    border-radius:50%;
-    pointer-events:none;
-    z-index:0;
-    transform-style:preserve-3d;
-}
-/* =========================
-   🌙 MẶT TRĂNG TRONG KHÔNG GIAN - RÕ NÉT
-========================= */
-
-.space-moon{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:190px;
-    height:190px;
-
-    margin-left:-95px;
-    margin-top:-95px;
-
-    border-radius:50%;
-
-    /* mặt trăng rõ nét */
-    background:
-        radial-gradient(circle at 32% 28%,
-            #fffef0 0%,
-            #fff7c2 28%,
-            #ffe99a 55%,
-            #e8bd62 78%,
-            #b98238 100%
-        );
-
-    box-shadow:
-        0 0 25px rgba(255,238,155,.95),
-        0 0 60px rgba(255,220,100,.65),
-        0 0 110px rgba(255,210,80,.3);
-
-    z-index:4;
-    transform-style:preserve-3d;
-
-    transform:
-        translateZ(-900px)
-        rotateY(-12deg);
-
-    opacity:.98;
-}
-
-/* Các hố trên mặt trăng */
-.space-moon::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(circle at 25% 32%,
-            rgba(150,105,45,.28) 0 8px,
-            transparent 9px
-        ),
-        radial-gradient(circle at 62% 25%,
-            rgba(150,105,45,.22) 0 13px,
-            transparent 14px
-        ),
-        radial-gradient(circle at 72% 58%,
-            rgba(150,105,45,.24) 0 10px,
-            transparent 11px
-        ),
-        radial-gradient(circle at 38% 68%,
-            rgba(150,105,45,.2) 0 15px,
-            transparent 16px
-        ),
-        radial-gradient(circle at 52% 45%,
-            rgba(150,105,45,.2) 0 7px,
-            transparent 8px
-        );
-
-    opacity:.8;
-}
-
-/* Ánh sáng viền */
-.space-moon::after{
-    content:"";
-
-    position:absolute;
-    inset:-8px;
-
-    border-radius:50%;
-
-    border:2px solid rgba(255,245,190,.55);
-
-    box-shadow:
-        0 0 18px rgba(255,235,150,.8),
-        inset 0 0 25px rgba(255,255,210,.25);
-
-    pointer-events:none;
-}
-
-
-/* =========================
-   🐇 THỎ CƯỠI MẶT TRĂNG
-========================= */
-
-.rabbit-moon{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    margin-left:-42px;
-    margin-top:-105px;
-
-    font-size:72px;
-
-    z-index:6;
-
-    transform:
-        translateZ(-760px)
-        rotate(-8deg);
-
-    filter:
-        drop-shadow(0 0 8px rgba(255,255,255,.9))
-        drop-shadow(0 0 18px rgba(255,220,130,.65));
-
-    transform-style:preserve-3d;
-
-    animation:
-        rabbitFloat 4s ease-in-out infinite alternate;
-}
-
-@keyframes rabbitFloat{
-    from{
-        transform:
-            translateZ(-760px)
-            translateY(4px)
-            rotate(-8deg);
-    }
-
-    to{
-        transform:
-            translateZ(-760px)
-            translateY(-7px)
-            rotate(6deg);
-    }
-}
-
-
-/* =========================
-   🏮 ĐÈN LỒNG NHỎ PHÍA XA
-========================= */
-
-.space-lantern{
-    position:absolute;
-
-    font-size:32px;
-
-    z-index:3;
-
-    filter:
-        drop-shadow(0 0 8px #ff9b45)
-        drop-shadow(0 0 20px #ff6b38);
-
-    transform-style:preserve-3d;
-
-    animation:
-        spaceLanternFloat 6s ease-in-out infinite alternate;
-}
-
-.sl1{
-    left:18%;
-    top:27%;
-    transform:translateZ(-1300px) scale(.7);
-}
-
-.sl2{
-    right:16%;
-    top:31%;
-    transform:translateZ(-1700px) scale(.55);
-    animation-delay:-2s;
-}
-
-.sl3{
-    left:76%;
-    top:68%;
-    transform:translateZ(-1100px) scale(.45);
-    animation-delay:-4s;
-}
-
-@keyframes spaceLanternFloat{
-    from{
-        margin-top:8px;
-        rotate:-4deg;
-    }
-
-    to{
-        margin-top:-18px;
-        rotate:5deg;
-    }
-}
-
-
-/* =========================
-   ☄️ SAO BĂNG
-========================= */
-
-.shooting-star{
-    position:absolute;
-
-    width:90px;
-    height:2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.4),
-            #fff,
-            transparent
-        );
-
-    border-radius:50%;
-
-    box-shadow:
-        0 0 8px #fff,
-        0 0 18px #ffe99a;
-
-    opacity:.75;
-
-    z-index:2;
-
-    transform:
-        translateZ(-1500px)
-        rotate(-25deg);
-
-    animation:
-        shootingStar 5s linear infinite;
-}
-
-.ss1{
-    left:5%;
-    top:20%;
-}
-
-.ss2{
-    right:5%;
-    top:48%;
-    transform:
-        translateZ(-1900px)
-        rotate(-25deg)
-        scale(.7);
-
-    animation-delay:2.5s;
-}
-
-@keyframes shootingStar{
-    0%{
-        opacity:0;
-        transform:
-            translate3d(-80px,-30px,-1500px)
-            rotate(-25deg);
-    }
-
-    15%{
-        opacity:1;
-    }
-
-    45%{
-        opacity:.8;
-    }
-
-    100%{
-        opacity:0;
-        transform:
-            translate3d(280px,140px,-1500px)
-            rotate(-25deg);
-    }
-}
-
-
-/* =========================
-   🌸 CÁNH HOA BAY TRONG KHÔNG GIAN
-========================= */
-
-.space-petal{
-    position:absolute;
-
-    z-index:3;
-
-    font-size:28px;
-
-    filter:
-        drop-shadow(0 0 6px rgba(255,130,190,.8));
-
-    transform-style:preserve-3d;
-
-    animation:
-        spacePetal 8s ease-in-out infinite alternate;
-}
-
-.sp1{
-    left:14%;
-    top:57%;
-    transform:translateZ(-1100px) rotate(20deg);
-}
-
-.sp2{
-    right:14%;
-    top:19%;
-    transform:translateZ(-1500px) rotate(-20deg);
-    animation-delay:-3s;
-}
-
-.sp3{
-    left:68%;
-    top:78%;
-    transform:translateZ(-1900px) scale(.6);
-    animation-delay:-5s;
-}
-
-@keyframes spacePetal{
-    from{
-        translate:0 15px;
-        rotate:-15deg;
-    }
-
-    to{
-        translate:35px -25px;
-        rotate:25deg;
-    }
-}
-
-
-/* =========================
-   ✨ BỤI SAO XUNG QUANH MẶT TRĂNG
-========================= */
-
-.moon-dust{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    width:500px;
-    height:500px;
-
-    margin-left:-250px;
-    margin-top:-250px;
-
-    border-radius:50%;
-
-    z-index:2;
-
-    transform:
-        translateZ(-1000px);
-
-    pointer-events:none;
-
-    background:
-        radial-gradient(circle at 20% 30%, #fff 0 2px, transparent 3px),
-        radial-gradient(circle at 75% 22%, #fff7bd 0 2px, transparent 3px),
-        radial-gradient(circle at 85% 65%, #fff 0 2px, transparent 3px),
-        radial-gradient(circle at 25% 78%, #ffeeb0 0 2px, transparent 3px),
-        radial-gradient(circle at 55% 12%, #fff 0 1px, transparent 2px),
-        radial-gradient(circle at 43% 88%, #fff 0 2px, transparent 3px);
-
-    opacity:.8;
-
-    animation:
-        dustRotate 30s linear infinite;
-}
-
-@keyframes dustRotate{
-    to{
-        transform:
-            translateZ(-1000px)
-            rotateZ(360deg);
-    }
-}
-
-.ring1{
-    width:520px;
-    height:520px;
-    margin-left:-260px;
-    margin-top:-260px;
-    transform:translateZ(-1800px);
-    box-shadow:
-        0 0 40px rgba(255,220,100,.08),
-        inset 0 0 40px rgba(255,220,100,.04);
-    animation:ringPulse 7s ease-in-out infinite alternate;
-}
-
-.ring2{
-    width:850px;
-    height:850px;
-    margin-left:-425px;
-    margin-top:-425px;
-    transform:translateZ(-2500px);
-    opacity:.5;
-    animation:ringPulse 10s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes ringPulse{
-    from{opacity:.15;scale:.94}
-    to{opacity:.5;scale:1.05}
-}
-/* =========================
    CHỮ BAY - NHIỀU + ĐỔI MÀU
 ========================= */
 .float-text{
@@ -1251,7 +580,6 @@ textarea{resize:vertical;min-height:90px}
 /* Tối ưu hiệu năng mobile: giảm blur, shadow và 3D nặng. */
 @media(max-width:800px){
     #stars{opacity:.45}
-    .cloud{filter:none;opacity:.28}
     .moon-main{box-shadow:0 0 28px rgba(255,229,139,.45)}
     .photo{
         box-shadow:0 5px 14px rgba(0,0,0,.35);
@@ -1372,7 +700,7 @@ body{background:radial-gradient(ellipse at 18% 18%,rgba(255,255,255,.98),transpa
 #textLayer{overflow:visible;transform-style:preserve-3d;z-index:7;pointer-events:none}
 .float-text{position:absolute;left:0;top:0;white-space:nowrap;color:#f28ab8;font-family:'Dancing Script',cursive;font-weight:700;letter-spacing:.2px;-webkit-text-stroke:.35px rgba(255,255,255,.9);text-shadow:0 1px 0 #fff,0 3px 0 #ffd2e5,0 7px 16px rgba(197,87,141,.24),0 0 18px rgba(255,145,193,.68);filter:drop-shadow(0 0 8px rgba(255,130,190,.5));transform-style:preserve-3d;backface-visibility:hidden;animation-name:riseFull;animation-timing-function:linear;animation-fill-mode:forwards;will-change:transform,opacity;z-index:10;pointer-events:none}
 @keyframes riseFull{0%{transform:translate3d(var(--startX),110vh,calc(var(--depth) - 180px)) rotateY(-22deg) rotateZ(-12deg) scale(.45);opacity:0;color:#f7a0c7}8%{opacity:1;color:#f18bb9}25%{transform:translate3d(var(--x25),78vh,var(--depth)) rotateY(14deg) rotateZ(-5deg) scale(.75);opacity:1;color:#f7a0c7}45%{transform:translate3d(var(--x45),53vh,calc(var(--depth) + 100px)) rotateY(-18deg) rotateZ(4deg) scale(.95);opacity:1;color:#ec86b8}65%{transform:translate3d(var(--x65),30vh,var(--depth)) rotateY(18deg) rotateZ(-4deg) scale(1.02);opacity:.95;color:#d99acb}82%{transform:translate3d(var(--x82),8vh,calc(var(--depth) - 80px)) rotateY(-12deg) rotateZ(5deg) scale(1.05);opacity:.8;color:#f4a0c8}92%{transform:translate3d(var(--endX),-5vh,var(--depth)) rotateY(10deg) rotateZ(7deg) scale(1.08);opacity:.35}100%{transform:translate3d(var(--endX),-18vh,calc(var(--depth) + 120px)) rotateY(24deg) rotateZ(8deg) scale(1.1);opacity:0}}
-#stars{opacity:.25}.cloud,.star-group{opacity:.35;filter:hue-rotate(300deg) saturate(.4)}.bg-heart{color:#f6a3ca;text-shadow:0 0 14px #ffd0e5}
+#stars{opacity:.25}
 .sidebar{display:flex!important;flex-direction:column;gap:12px;background:rgba(255,249,252,.97)!important;color:#8b4568;border:1px solid #f8c6dc!important;border-radius:22px;box-shadow:0 0 35px rgba(255,139,190,.18)}
 .sidebar h2,.sidebar .title,.title{color:#d86f9f}.sidebar label,.sidebar p{color:#985878}.btn,button{border-color:#f7bfd8}.btn{background:linear-gradient(135deg,#ffe4ef,#f7bad5)!important;color:#85445f!important;box-shadow:0 5px 15px rgba(236,111,166,.14)}input,textarea{background:#fffafd!important;color:#84415f!important;border-color:#ffd0e3!important}.photo{border-color:#fff!important;box-shadow:0 8px 24px rgba(213,91,146,.2)}
 
@@ -1385,7 +713,7 @@ html, body { min-height:100%; overscroll-behavior:none; -webkit-tap-highlight-co
 @media (max-width:800px) {
   body { font-size:14px; }
   .world, .layer { transform-style:preserve-3d; }
-  .cloud, .star-group { filter:none !important; opacity:.2 !important; }
+  
   .moon-main { width:clamp(76px,22vw,112px); height:clamp(76px,22vw,112px); box-shadow:0 0 18px rgba(255,190,220,.35) !important; }
   .float-text {
     font-size:clamp(19px,5.2vw,25px) !important;
@@ -1409,7 +737,7 @@ html, body { min-height:100%; overscroll-behavior:none; -webkit-tap-highlight-co
   .btn, button { min-height:42px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cloud, .star-group, .kitty-bow, .moon-main { animation:none !important; }
+  .kitty-bow, .moon-main { animation:none !important; }
 }
 
 
@@ -1466,6 +794,90 @@ body{
  .nav button{width:42px;height:42px;min-height:42px}
 }
 
+
+/* ===== FIX: CHỮ CÓ CHIỀU SÂU 3D THẬT TRÊN ĐIỆN THOẠI ===== */
+#stage { perspective: 1000px !important; }
+#world { transform-style: preserve-3d !important; }
+#textLayer {
+  transform-style: preserve-3d !important;
+  perspective: 900px !important;
+  perspective-origin: 50% 50%;
+  overflow: visible !important;
+}
+.float-text {
+  transform-style: preserve-3d !important;
+  backface-visibility: hidden;
+}
+@media (max-width:800px) {
+  .float-text {
+    animation-name: riseMobileDepth !important;
+    text-shadow: 0 1px 0 #fff, 0 2px 0 #ffe0ed, 0 5px 12px rgba(107,32,67,.30), 0 0 10px rgba(255,160,205,.32) !important;
+    filter: drop-shadow(0 2px 4px rgba(143,39,88,.22)) !important;
+  }
+  @keyframes riseMobileDepth {
+    0% {
+      transform: translate3d(var(--startX), 100vh, calc(var(--depth) - 80px)) rotateY(-13deg) rotateZ(-6deg) scale(var(--scaleStart, .78));
+      opacity: 0;
+    }
+    8% { opacity: 1; }
+    30% {
+      transform: translate3d(var(--x25), 70vh, var(--depth)) rotateY(9deg) rotateZ(-3deg) scale(var(--depthScale, 1));
+      opacity: 1;
+    }
+    52% {
+      transform: translate3d(var(--x45), 47vh, calc(var(--depth) + 35px)) rotateY(-12deg) rotateZ(2deg) scale(var(--scaleMid, 1.04));
+      opacity: .98;
+    }
+    76% {
+      transform: translate3d(var(--x82), 18vh, var(--depth)) rotateY(10deg) rotateZ(-2deg) scale(var(--scaleRise, 1.08));
+      opacity: .82;
+    }
+    100% {
+      transform: translate3d(var(--endX), -12vh, calc(var(--depth) + 70px)) rotateY(16deg) rotateZ(3deg) scale(var(--scaleEnd, 1.12));
+      opacity: 0;
+    }
+  }
+}
+
+
+/* ===== BẢN HOÀN THIỆN: CHỮ BAY TỪ DƯỚI LÊN + 3D + MOBILE ===== */
+#stage { perspective: 1150px !important; touch-action: none !important; overscroll-behavior: none; }
+#world { transform-style: preserve-3d !important; transform-origin: 50% 50%; }
+#textLayer { overflow: visible !important; transform-style: preserve-3d !important; }
+.float-text {
+  transform-style: preserve-3d !important;
+  will-change: transform, opacity;
+  text-shadow: 0 1px 0 #fff, 0 3px 0 #ffe1ee, 0 7px 14px rgba(128,31,76,.3), 0 0 12px rgba(255,137,190,.35) !important;
+}
+@media (max-width: 800px) {
+  html, body { width:100%; height:100%; height:100dvh; overflow:hidden; }
+  #app, .stage, #stage, .world { width:100%; height:100%; min-height:0; }
+  #stage { perspective: 950px !important; }
+  .float-text {
+    font-size: clamp(20px, 5.5vw, 29px) !important;
+    letter-spacing: .1px !important;
+    -webkit-text-stroke: .25px rgba(255,255,255,.95) !important;
+    text-shadow: 0 1px 0 #fff, 0 3px 0 #ffe0ed, 0 6px 12px rgba(107,32,67,.32), 0 0 10px rgba(255,160,205,.38) !important;
+    animation-name: riseMobileDepth !important;
+  }
+  @keyframes riseMobileDepth {
+    0% { transform:translate3d(var(--startX), 112vh, calc(var(--depth) - 110px)) rotateY(-16deg) rotateZ(-5deg) scale(var(--scaleStart,.78)); opacity:0; }
+    10% { opacity:1; }
+    32% { transform:translate3d(var(--x25), 70vh, var(--depth)) rotateY(10deg) rotateZ(-2deg) scale(var(--depthScale,1)); opacity:1; }
+    55% { transform:translate3d(var(--x45), 45vh, calc(var(--depth) + 55px)) rotateY(-12deg) rotateZ(2deg) scale(var(--scaleMid,1.04)); opacity:.98; }
+    78% { transform:translate3d(var(--x82), 16vh, var(--depth)) rotateY(11deg) rotateZ(-2deg) scale(var(--scaleRise,1.08)); opacity:.82; }
+    100% { transform:translate3d(var(--endX), -15vh, calc(var(--depth) + 90px)) rotateY(17deg) rotateZ(3deg) scale(var(--scaleEnd,1.12)); opacity:0; }
+  }
+  .nav { top: max(10px, env(safe-area-inset-top)); right: max(10px, env(safe-area-inset-right)); gap:7px; }
+  .nav button { width:42px; height:42px; min-width:42px; min-height:42px; border-radius:15px; }
+  .sidebar { max-height: min(58dvh, 520px); overflow-y:auto; padding-bottom:calc(14px + env(safe-area-inset-bottom)); }
+  .letter { width:min(92vw, 560px); max-height:calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow-y:auto; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .nav { top:6px; right:8px; }
+  .nav button { width:38px; height:38px; min-height:38px; }
+  .sidebar { max-height:86dvh; }
+}
 </style>
 </head>
 
@@ -1483,24 +895,6 @@ body{
 
     <canvas id="stars"></canvas>
 
-
-    <!-- ☁️ Mây phía sau -->
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-    <div class="cloud cloud3"></div>
-
-    <!-- ✨ Các cụm sao -->
-    <div class="star-group sg1">✦</div>
-    <div class="star-group sg2">✧</div>
-    <div class="star-group sg3">✦</div>
-    <div class="star-group sg4">✧</div>
-    <div class="star-group sg5">✦</div>
-
-
-    <!-- 💕 Trái tim phát sáng phía xa -->
-    <div class="bg-heart bh1">♡</div>
-    <div class="bg-heart bh2">♡</div>
-    <div class="bg-heart bh3">♡</div>
 
     <!-- Nơ sinh nhật pastel -->
     <div class="kitty-bow bow-one">🎀</div>
@@ -1520,7 +914,6 @@ body{
             <button id="motionBtn" title="Bật xoay theo chuyển động điện thoại" aria-label="Bật xoay theo chuyển động điện thoại">🌀</button>
             <button id="settingsBtn" class="mobile-settings" title="Cài đặt">⚙️</button>
         </div>
-
 
 
     </div>
@@ -1567,7 +960,6 @@ body{
         </div>
 
 
-
         <p class="small">
             Chọn lời chúc, ảnh và nhạc để tạo không gian sinh nhật hồng pastel dành tặng người ấy nhé 💗
         </p>
@@ -1576,8 +968,6 @@ body{
 </div>
 
 <audio id="audio" loop></audio>
-
-
 
 
 <script>
@@ -1822,9 +1212,19 @@ function spawnText(){
        LÙI RA XA
     ========================= */
 
+    // Z âm = ở xa, Z dương = tiến gần máy ảnh.
+    // Cho điện thoại dải sâu rõ hơn thay vì chỉ 0–90px.
     const depth = isMobileDevice
-        ? Math.random()*90
+        ? -260 + Math.random()*500
         : 100 - Math.random()*900;
+    const depthScale = isMobileDevice
+        ? (0.72 + ((depth + 260) / 500) * 0.5)
+        : (0.72 + ((depth + 800) / 900) * 0.5);
+    t.style.setProperty("--depthScale", depthScale.toFixed(3));
+    t.style.setProperty("--scaleStart", (depthScale * 0.78).toFixed(3));
+    t.style.setProperty("--scaleMid", (depthScale * 1.04).toFixed(3));
+    t.style.setProperty("--scaleRise", (depthScale * 1.08).toFixed(3));
+    t.style.setProperty("--scaleEnd", (depthScale * 1.12).toFixed(3));
 
     /* =========================
        GÁN BIẾN CSS
@@ -2347,20 +1747,11 @@ stage.addEventListener("pointermove", e => {
     lastX = e.clientX;
     lastY = e.clientY;
 
-    /* Trái / phải */
-    rotY += dx * 0.35;
+    /* Lên / xuống: giới hạn nghiêng để không lộn ngược cả cảnh */
+    rotX = Math.max(-80, Math.min(80, rotX - dy * 0.30));
 
-    /* Lên / xuống */
-    rotX -= dy * 0.30;
-
-    /* Xoay trái/phải tự do */
-rotY %= 360;
-
-    rotY =
-        Math.max(
-            -MAX_ROT_Y,
-            Math.min(MAX_ROT_Y,rotY)
-        );
+    /* Xoay ngang liên tục, không khóa ở ±360° */
+    rotY = ((rotY + dx * 0.35) % 360 + 360) % 360;
 
     updateView();
 });
@@ -2499,39 +1890,65 @@ stage.addEventListener(
 
 
 /* ===== XOAY THEO CẢM BIẾN ĐIỆN THOẠI =====
-   Bấm nút 🌀 để cấp quyền trên iPhone/iPad nếu trình duyệt yêu cầu.
-   Có thể tắt/bật cảm biến bất cứ lúc nào.
+   Alpha được theo dõi theo từng bước góc ngắn nhất, nên qua mốc 0/360°
+   vẫn xoay liên tục, không giật và không bị khóa ở một góc nhỏ.
 */
 const motionBtn = document.getElementById("motionBtn");
 let motionEnabled = false;
+let motionLastAlpha = null;
+let motionYaw = 0;
 let motionBaseBeta = null;
 let motionBaseGamma = null;
 let motionSmoothX = 0;
 let motionSmoothY = 0;
 
+function angleDelta(next, previous){
+    return ((next - previous + 540) % 360) - 180;
+}
+
 function handleDeviceOrientation(event){
-    if(!motionEnabled || event.beta == null || event.gamma == null) return;
-    if(motionBaseBeta === null){
-        motionBaseBeta = event.beta;
-        motionBaseGamma = event.gamma;
+    if(!motionEnabled) return;
+
+    // Xoay ngang 360° bằng alpha, tính delta để xử lý đúng lúc góc qua 0°.
+    if(event.alpha != null){
+        if(motionLastAlpha === null){
+            motionLastAlpha = event.alpha;
+            motionYaw = rotY;
+        }else{
+            const delta = angleDelta(event.alpha, motionLastAlpha);
+            motionLastAlpha = event.alpha;
+            // Cùng chiều cảm nhận khi xoay máy; đổi dấu ở đây nếu thiết bị cụ thể báo ngược.
+            motionYaw = (motionYaw + delta + 360) % 360;
+            rotY = motionYaw;
+        }
     }
-    const targetX = Math.max(-28, Math.min(28, (event.beta - motionBaseBeta) * 0.75));
-    const targetY = Math.max(-38, Math.min(38, (event.gamma - motionBaseGamma) * 1.05));
-    motionSmoothX += (targetX - motionSmoothX) * 0.12;
-    motionSmoothY += (targetY - motionSmoothY) * 0.12;
-    rotX = motionSmoothX;
-    rotY = motionSmoothY;
+
+    // Nghiêng lên/xuống mượt, giữ hướng ổn định cả khi cầm máy ngang.
+    if(event.beta != null && event.gamma != null){
+        if(motionBaseBeta === null){
+            motionBaseBeta = event.beta;
+            motionBaseGamma = event.gamma;
+        }
+        const landscape = Math.abs((screen.orientation && screen.orientation.angle) || 0) % 180 === 90;
+        const pitchNow = landscape ? event.gamma : event.beta;
+        const pitchBase = landscape ? motionBaseGamma : motionBaseBeta;
+        const targetX = Math.max(-65, Math.min(65, (pitchNow - pitchBase) * 0.85));
+        motionSmoothX += (targetX - motionSmoothX) * 0.16;
+        rotX = motionSmoothX;
+    }
+    motionSmoothY = rotY;
     updateView();
 }
 
 async function togglePhoneMotion(){
     if(motionEnabled){
         motionEnabled = false;
+        motionLastAlpha = null;
         motionBaseBeta = null;
         motionBaseGamma = null;
         motionBtn.textContent = "🌀";
         motionBtn.title = "Bật xoay theo chuyển động điện thoại";
-        window.removeEventListener("deviceorientation", handleDeviceOrientation);
+        window.removeEventListener("deviceorientation", handleDeviceOrientation, true);
         return;
     }
     try{
@@ -2540,13 +1957,16 @@ async function togglePhoneMotion(){
             const permission = await DeviceOrientationEvent.requestPermission();
             if(permission !== "granted") throw new Error("permission");
         }
-        if(!("DeviceOrientationEvent" in window)){
+        if(!( "DeviceOrientationEvent" in window)){
             alert("Điện thoại hoặc trình duyệt này chưa hỗ trợ cảm biến xoay.");
             return;
         }
         motionEnabled = true;
+        motionLastAlpha = null;
         motionBaseBeta = null;
         motionBaseGamma = null;
+        motionSmoothX = rotX;
+        motionYaw = rotY;
         motionBtn.textContent = "📱";
         motionBtn.title = "Đang bật xoay theo điện thoại — bấm để tắt";
         window.addEventListener("deviceorientation", handleDeviceOrientation, true);
