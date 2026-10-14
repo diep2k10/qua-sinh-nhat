@@ -1264,10 +1264,11 @@ textarea{resize:vertical;min-height:90px}
 }
 
 @keyframes photoFloatMobile{
-    0%{transform:translate3d(var(--photoX),var(--edgeY),0) rotateZ(var(--rotate)) scale(1);opacity:0}
-    10%{opacity:.95}
-    50%{transform:translate3d(var(--photoMidX),50vh,0) rotateZ(var(--rotate)) scale(.78);opacity:.85}
-    100%{transform:translate3d(var(--photoEndX),-15vh,0) rotateZ(var(--rotate)) scale(.35);opacity:0}
+    0%{transform:translate3d(var(--photoX),var(--edgeY),0) rotateZ(var(--rotate)) scale(.82);opacity:0}
+    8%{opacity:.96}
+    48%{transform:translate3d(var(--photoMidX),48vh,0) rotateZ(var(--rotate)) scale(.92);opacity:.96}
+    82%{transform:translate3d(var(--photoEndX),15vh,0) rotateZ(var(--rotate)) scale(.82);opacity:.78}
+    100%{transform:translate3d(var(--photoEndX),-8vh,0) rotateZ(var(--rotate)) scale(.68);opacity:0}
 }
 
 @media(max-width:800px){
@@ -1279,7 +1280,7 @@ textarea{resize:vertical;min-height:90px}
     #settingsBtn{display:none !important}
 
     .moon-main{width:125px;height:125px;right:8%;top:7%}
-    .photo{width:92px;height:118px}
+    .photo{width:62px;height:80px}
     .float-text{font-size:22px}
     .nav{right:12px;top:12px}
 }
@@ -1387,7 +1388,7 @@ html, body { min-height:100%; overscroll-behavior:none; -webkit-tap-highlight-co
   .cloud, .star-group { filter:none !important; opacity:.2 !important; }
   .moon-main { width:clamp(76px,22vw,112px); height:clamp(76px,22vw,112px); box-shadow:0 0 18px rgba(255,190,220,.35) !important; }
   .float-text {
-    font-size:clamp(18px,4.8vw,24px) !important;
+    font-size:clamp(19px,5.2vw,25px) !important;
     letter-spacing:0 !important;
     -webkit-text-stroke:0 !important;
     text-shadow:0 1px 0 #fff, 0 3px 7px rgba(207,102,153,.2), 0 0 8px rgba(255,170,205,.4) !important;
@@ -1396,11 +1397,11 @@ html, body { min-height:100%; overscroll-behavior:none; -webkit-tap-highlight-co
     backface-visibility:hidden;
   }
   @keyframes riseMobile {
-    0% { transform:translate3d(var(--startX),108vh,calc(var(--depth)*.45)) rotateY(-12deg) rotateZ(-7deg) scale(.62); opacity:0; }
-    12% { opacity:1; }
-    50% { transform:translate3d(var(--x45),50vh,var(--depth)) rotateY(8deg) rotateZ(2deg) scale(.88); opacity:.95; }
-    82% { transform:translate3d(var(--x82),12vh,calc(var(--depth)*.5)) rotateY(-7deg) rotateZ(-2deg) scale(1); opacity:.72; }
-    100% { transform:translate3d(var(--endX),-18vh,0) rotateY(10deg) rotateZ(4deg) scale(1.04); opacity:0; }
+    0% { transform:translate3d(var(--startX),100vh,0) rotateY(-8deg) rotateZ(-6deg) scale(.82); opacity:0; }
+    8% { opacity:1; }
+    48% { transform:translate3d(var(--x45),49vh,20px) rotateY(6deg) rotateZ(2deg) scale(1); opacity:.98; }
+    82% { transform:translate3d(var(--x82),12vh,10px) rotateY(-5deg) rotateZ(-2deg) scale(1.02); opacity:.82; }
+    100% { transform:translate3d(var(--endX),-12vh,0) rotateY(6deg) rotateZ(3deg) scale(1.04); opacity:0; }
   }
   .photo { box-shadow:0 4px 10px rgba(180,85,130,.16) !important; filter:none !important; }
   .heart, .petal, .light { filter:none !important; text-shadow:none !important; }
@@ -1718,7 +1719,7 @@ $("#photoInput").onchange = e => {
 function spawnText(){
 
     if(!texts.length) return;
-    const maxLiveTexts = isMobileDevice ? 9 : 18;
+    const maxLiveTexts = isMobileDevice ? 16 : 18;
     if (textLayer.childElementCount >= maxLiveTexts) return;
 
     const t = document.createElement("div");
@@ -1733,8 +1734,9 @@ function spawnText(){
        TOÀN BỘ MÀN HÌNH
     ========================= */
 
-    const startX =
-        -5 + Math.random()*110;
+    const startX = isMobileDevice
+        ? 2 + Math.random()*66
+        : -5 + Math.random()*110;
 
     /* =========================
        ĐIỂM KẾT THÚC
@@ -1765,7 +1767,9 @@ function spawnText(){
        LÙI RA XA
     ========================= */
 
-    const depth = 100 - Math.random()*900;
+    const depth = isMobileDevice
+        ? Math.random()*90
+        : 100 - Math.random()*900;
 
     /* =========================
        GÁN BIẾN CSS
@@ -1811,7 +1815,7 @@ function spawnText(){
     ========================= */
 
     const duration = isMobileDevice
-        ? 13 + Math.random()*4
+        ? 16 + Math.random()*3
         : 16 + Math.random()*8;
 
     t.style.animationDuration =
@@ -1936,7 +1940,10 @@ const edgeSide = Math.floor(Math.random() * 4);
 
 let edgeX, edgeY;
 
-if(edgeSide === 0){
+if(isMobileDevice){
+    edgeX = 4 + Math.random()*72;
+    edgeY = 76 + Math.random()*22;
+}else if(edgeSide === 0){
     edgeX = -15 - Math.random()*20;
     edgeY = Math.random()*110;
 }else if(edgeSide === 1){
@@ -1952,11 +1959,11 @@ if(edgeSide === 0){
 
 p.style.setProperty("--photoX", edgeX + "vw");
 p.style.setProperty("--edgeY", edgeY + "vh");
-    p.style.width =
-        (120*scale)+"px";
-
-    p.style.height =
-        (150*scale)+"px";
+    const photoBaseW = isMobileDevice ? 64 : 120;
+    const photoBaseH = isMobileDevice ? 82 : 150;
+    const photoScale = isMobileDevice ? (0.78 + Math.random()*0.22) : scale;
+    p.style.width = (photoBaseW*photoScale)+"px";
+    p.style.height = (photoBaseH*photoScale)+"px";
 
     const duration =
     25 + Math.random()*10;
@@ -2028,10 +2035,10 @@ const isMobileDevice = window.matchMedia("(max-width: 800px)").matches ||
     /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
 /* NHIỀU CHỮ */
-const initialTextCount = isMobileDevice ? 4 : 12;
-const textIntervalMs = isMobileDevice ? 2100 : 850;
-const photoIntervalMs = isMobileDevice ? 5200 : 2200;
-const particleIntervalMs = isMobileDevice ? 1900 : 750;
+const initialTextCount = isMobileDevice ? 8 : 12;
+const textIntervalMs = isMobileDevice ? 950 : 850;
+const photoIntervalMs = isMobileDevice ? 4200 : 2200;
+const particleIntervalMs = isMobileDevice ? 1500 : 750;
 
 for(let i = 0; i < initialTextCount; i++){
     setTimeout(spawnText, i * (isMobileDevice ? 450 : 220));
