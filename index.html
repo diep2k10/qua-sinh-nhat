@@ -2,1941 +2,2450 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#ffb6d9">
-<title>Hello Kitty Birthday 💗 Một ngày thật đáng yêu</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Sinh nhật Hello Kitty pastel 🎀</title>
+
 <style>
-:root{
-  --pink:#ff9ed4;--pale:#ffe4f3;--purple:#392064;--gold:#ffe1a0;
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-  --safe-top:env(safe-area-inset-top,0px);
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pink:#ff5d9e;--blue:#75d7ff;--gold:#ffd85a;--night:#07091b}
+html,body{width:100%;height:100%;overflow:hidden}
+body{font-family:Quicksand,sans-serif;background:var(--night);color:#fff}
+button,input,textarea{font:inherit}
+
+/* =========================
+   APP CHÍNH
+========================= */
+#app{
+    height:100%;display:flex;
+    background:radial-gradient(circle at 70% 40%,#241447,#090516 70%);
+    overflow:hidden;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;min-height:100%;font-family:Quicksand,system-ui,sans-serif;color:#fff;overscroll-behavior:none}
-body{min-height:100svh;overflow:hidden;background:#0f0526}
-button,input,textarea{font:inherit}button{touch-action:manipulation;cursor:pointer}
-button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #ffe1a0;outline-offset:3px}
+.stage{position:relative;flex:1;min-width:0;overflow:hidden}
+#stars{position:absolute;inset:0;width:100%;height:100%}
 
-/* ===== BACKGROUND ===== */
-.sky{position:fixed;inset:0;overflow:hidden;z-index:-3;background:
-  radial-gradient(ellipse at 20% 15%,#5b3fa8 0,transparent 45%),
-  radial-gradient(ellipse at 80% 10%,#8b4a9c 0,transparent 40%),
-  radial-gradient(ellipse at 50% 100%,#2a0f4a 0,transparent 60%),
-  linear-gradient(180deg,#1a0b3d 0%,#2d1352 30%,#4a2270 55%,#6b3a8e 80%,#a063b0 100%)}
-.aurora{position:absolute;inset:-20% -10%;pointer-events:none;mix-blend-mode:screen;filter:blur(60px);opacity:.55}
-.aurora span{position:absolute;border-radius:50%;animation:auroraFloat 20s ease-in-out infinite alternate}
-.aurora .a1{width:60%;height:35%;top:5%;left:-10%;background:radial-gradient(ellipse,#5bffd4 0,transparent 70%)}
-.aurora .a2{width:55%;height:40%;top:15%;right:-15%;background:radial-gradient(ellipse,#ff6bd4 0,transparent 70%);animation-delay:-5s}
-.aurora .a3{width:70%;height:30%;top:40%;left:20%;background:radial-gradient(ellipse,#7b6bff 0,transparent 70%);animation-delay:-10s}
-@keyframes auroraFloat{0%{transform:translate(0,0) scale(1)}100%{transform:translate(8%,-6%) scale(1.15)}}
+.moon-main{
+    position:absolute;right:7%;top:6%;
+    width:min(22vw,220px);height:min(22vw,220px);
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 28%,#fff 0,#fff8d7 34%,#f6cf61 70%,#b47c18 100%);
+    box-shadow:0 0 50px #ffe58b,0 0 120px rgba(255,203,67,.35);
+    animation:moonFloat 4s ease-in-out infinite alternate;z-index:2;
+}
+.moon-main:after{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    background:
+      radial-gradient(circle at 42% 40%,rgba(160,110,0,.14) 0 8%,transparent 9%),
+      radial-gradient(circle at 67% 35%,rgba(160,110,0,.12) 0 10%,transparent 11%);
+}
+@keyframes moonFloat{to{transform:translateY(-9px) scale(1.03)}}
 
-.stars{position:absolute;inset:0;pointer-events:none}
-.stars i{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;box-shadow:0 0 8px #fff,0 0 16px #ffe1a0;animation:twinkle 3s ease-in-out infinite}
-.stars i.big{width:3px;height:3px;box-shadow:0 0 12px #fff,0 0 24px #ffb8e2}
-@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1.4)}}
+.layer{position:absolute;inset:0;pointer-events:none}
 
-.moon-wrap{position:absolute;top:8%;left:10%;width:clamp(80px,14vw,160px);aspect-ratio:1;animation:moonFloat 8s ease-in-out infinite alternate}
-@keyframes moonFloat{to{transform:translateY(-10px)}}
-.moon{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fffdf0,#ffe9b8 45%,#ffc9e0 75%,#d99ac4);
-  box-shadow:0 0 60px #ffe1a0,0 0 120px #ffb8e288,inset -20px -10px 40px #c4849e55}
-.moon:after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 70% 40%,#392064 0 46%,transparent 48%);transform:translateX(-15%)}
-.moon-halo{position:absolute;inset:-30%;border-radius:50%;background:radial-gradient(circle,#ffe1a055 0,transparent 65%);animation:haloPulse 4s ease-in-out infinite alternate}
-@keyframes haloPulse{to{transform:scale(1.15);opacity:.7}}
-.bunny{position:absolute;top:calc(8% + clamp(50px,9vw,105px));left:calc(10% + clamp(26px,4.5vw,55px));font-size:clamp(38px,6.5vw,72px);filter:drop-shadow(0 0 16px #ffb8e2);animation:bunnyHop 2.8s ease-in-out infinite alternate}
-@keyframes bunnyHop{0%{transform:translateY(0) rotate(-2deg)}100%{transform:translateY(-9px) rotate(4deg)}}
+/* =========================
+   KHÔNG GIAN SINH NHẬT PASTEL
+========================= */
 
-.cloud{position:absolute;border-radius:50%;background:radial-gradient(circle at 40% 35%,#ffd6ec,#ff9ad5c9 62%,#c77ae099);filter:blur(6px);animation:drift 20s ease-in-out infinite alternate}
-.cloud:before,.cloud:after{content:"";position:absolute;border-radius:50%;background:inherit}
-.cloud:before{width:60%;height:120%;top:-40%;left:8%}.cloud:after{width:48%;height:110%;top:-30%;right:10%}
-.c1{width:48vw;height:20vw;bottom:6%;left:-10%}
-.c2{width:40vw;height:18vw;bottom:14%;right:-8%;animation-duration:26s}
-.c3{width:32vw;height:14vw;bottom:28%;left:32%;opacity:.6;animation-duration:22s}
-@keyframes drift{to{transform:translate(4vw,-2vw)}}
-
-.lake{position:absolute;bottom:0;left:0;right:0;height:22%;
-  background:linear-gradient(180deg,#c77ae0 0%,#8b5fc4 25%,#5a3f9e 60%,#2d1a5e 100%);
-  border-top:1px solid #ffd0e866;overflow:hidden}
-.lake:before{content:"";position:absolute;inset:0;background:
-  repeating-linear-gradient(90deg,transparent 0 40px,#ffe1a015 40px 42px),
-  repeating-linear-gradient(90deg,transparent 0 60px,#ffb8e010 60px 63px)}
-.lake:after{content:"";position:absolute;left:22%;top:12%;width:56%;height:4px;background:#ffe0a0cc;filter:blur(4px);
-  box-shadow:0 20px 30px #ffb8e0aa,0 50px 35px #c77ae088,0 90px 40px #8b5fc466}
-
-/* Particles bay lơ lửng */
-.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.particles span{position:absolute;color:#ffe1a0;font-size:14px;opacity:.7;text-shadow:0 0 10px #ffb8e2;animation:particleFloat linear infinite}
-@keyframes particleFloat{
-  0%{transform:translateY(0) translateX(0) rotate(0);opacity:0}
-  10%{opacity:.9}
-  90%{opacity:.7}
-  100%{transform:translateY(-110vh) translateX(40px) rotate(360deg);opacity:0}
+/* MÂY */
+.cloud{
+    position:absolute;
+    width:180px;
+    height:55px;
+    border-radius:50%;
+    background:rgba(255,255,255,.10);
+    filter:blur(2px);
+    opacity:.45;
+    z-index:1;
+    pointer-events:none;
+    transform-style:preserve-3d;
 }
 
-/* ===== SCENE ===== */
-.scene{position:relative;height:100svh;min-height:520px;display:flex;justify-content:center;text-align:center;overflow:hidden}
-.main{position:relative;z-index:2;width:min(100%,940px);padding:clamp(80px,11vh,120px) 20px calc(140px + var(--safe-bottom));display:flex;align-items:center;flex-direction:column}
-
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font:500 10px 'Playfair Display',serif;letter-spacing:3px;text-transform:uppercase;color:#ffe4f5;
-  padding:6px 14px;border:1px solid #ffe4f555;border-radius:999px;background:#39206455;backdrop-filter:blur(6px);text-shadow:0 2px 8px #3d1f6bcc}
-.eyebrow:before,.eyebrow:after{content:"✦";color:#ffe1a0}
-
-h1{font:400 clamp(50px,8.5vw,102px)/.96 'Great Vibes','Dancing Script',cursive;margin:16px 0 0;color:#fff4fb;
-  text-shadow:0 0 20px #ff79d9,0 0 50px #ff9ce7cc,0 0 90px #ff6bc466,0 4px #7a2e60;
-  position:relative;letter-spacing:.5px}
-h1 span{display:block;margin-top:6px;background:linear-gradient(180deg,#fff4fb 30%,#ffc9e8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-
-.subtitle{font:italic clamp(13px,1.5vw,17px)/1.75 'Playfair Display',serif;max-width:540px;margin:18px 0 0;color:#f5e8ff;text-shadow:0 2px 10px #3d1f6bcc;white-space:pre-line}
-
-/* ===== GIFT BOX 3D ===== */
-.gift-stage{position:absolute;left:50%;bottom:calc(20% + var(--safe-bottom));transform:translateX(-50%);width:clamp(200px,28vw,320px);height:clamp(170px,24vw,270px);perspective:900px;perspective-origin:50% 100%}
-.gift-glow{position:absolute;left:50%;bottom:5%;transform:translateX(-50%);width:130%;height:130%;border-radius:50%;
-  background:radial-gradient(circle,#ffb8e0cc 0,transparent 65%);filter:blur(22px);animation:glowPulse 3s ease-in-out infinite alternate}
-@keyframes glowPulse{to{transform:translateX(-50%) scale(1.15);opacity:.85}}
-
-.gift{position:absolute;left:0;right:0;bottom:0;top:0;animation:giftFloat 4.5s ease-in-out infinite}
-@keyframes giftFloat{50%{transform:translateY(-12px)}}
-
-.gift-base{position:absolute;left:0;right:0;bottom:0;height:62%;border-radius:10px 10px 14px 14px;
-  background:linear-gradient(150deg,#fff0f8 0%,#ffd0e8 25%,#ff9ad5 60%,#c94d8e 100%);
-  box-shadow:inset 0 -22px 40px #a32a6699,inset 0 6px 0 #ffffffcc,inset 6px 0 20px #ffffff55,inset -6px 0 20px #c94d8e77,0 24px 45px #5a1a4077,0 8px 15px #8b2a5e66}
-.gift-base:before{content:"";position:absolute;left:44%;top:0;bottom:0;width:12%;
-  background:linear-gradient(90deg,#ffe0a0,#ffd88a 30%,#e6b85c 70%,#c99a3d);box-shadow:inset 0 0 8px #8a6a1f88,0 0 4px #ffe1a0aa}
-.gift-base:after{content:"";position:absolute;left:0;right:0;bottom:0;height:20%;
-  background:linear-gradient(180deg,transparent,#8b2a5e55);border-radius:0 0 14px 14px}
-
-.gift-lid{position:absolute;left:-6%;right:-6%;top:22%;height:16%;border-radius:9px;transform-origin:50% 100%;
-  background:linear-gradient(150deg,#fff 0%,#ffd0e8 45%,#ff9ad5 100%);
-  box-shadow:0 10px 18px #8b2a5e88,inset 0 -4px 10px #c94d8e55,inset 0 3px 0 #ffffff}
-.gift-lid:before{content:"";position:absolute;left:46%;top:0;bottom:0;width:8%;
-  background:linear-gradient(90deg,#ffe0a0,#ffd88a,#e6b85c)}
-.gift-lid:after{content:"";position:absolute;inset:0;border-radius:9px;
-  background:linear-gradient(180deg,#ffffffaa,transparent 40%)}
-
-.gift-bow{position:absolute;left:50%;top:0;transform:translate(-50%,-40%);width:76%;height:44%;z-index:3;transform-origin:50% 100%}
-.gift-bow:before,.gift-bow:after{content:"";position:absolute;top:0;width:52%;height:100%;border-radius:50% 50% 42% 42%;
-  background:radial-gradient(circle at 40% 35%,#fff0f8,#ffd0e8 40%,#ff9ad5 75%,#d9699e);
-  box-shadow:0 9px 16px #8b2a5e77,inset 0 -6px 10px #c94d8e66,inset 0 4px 0 #ffffff}
-.gift-bow:before{left:0;transform:rotate(-22deg)}.gift-bow:after{right:0;transform:rotate(22deg)}
-.gift-knot{position:absolute;left:50%;top:6%;transform:translate(-50%,-50%);width:26%;aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#ffd0e8,#ff9ad5 55%,#c94d8e);
-  box-shadow:0 7px 18px #8b2a5e99,inset 0 0 0 3px #ffffff55;z-index:5;
-  display:grid;place-items:center;font-size:clamp(22px,3.2vw,40px);color:#fff;text-shadow:0 2px 6px #7a2e60}
-.gift-spark{position:absolute;color:#ffe1a0;text-shadow:0 0 14px #ffb8e2;animation:sparkSpin 3s ease-in-out infinite alternate;font-size:18px}
-.gs1{left:-14%;top:18%}.gs2{right:-14%;top:26%;animation-delay:-.8s}.gs3{left:-9%;bottom:14%;animation-delay:-1.5s}.gs4{right:-9%;bottom:10%;animation-delay:-2.2s}
-@keyframes sparkSpin{0%{transform:scale(.7) rotate(0)}100%{transform:scale(1.3) rotate(180deg)}}
-
-/* ===== HOLD BUTTON ===== */
-.hold{position:absolute;bottom:calc(3% + var(--safe-bottom));left:50%;transform:translateX(-50%);z-index:8;
-  width:min(300px,84vw);border:1px solid #ffffffcc;border-radius:999px;padding:14px 22px;color:#fff;
-  background:linear-gradient(115deg,#ed70b7 0%,#a875e0 35%,#8b7bf0 65%,#ed70b7 100%);
-  background-size:220% 100%;box-shadow:0 14px 38px #070b2c99,0 0 40px #f878d8aa,inset 0 1px 0 #ffffff88;
-  font-weight:700;font-size:14.5px;user-select:none;-webkit-user-select:none;overflow:hidden;
-  transition:transform .15s ease,box-shadow .3s ease;animation:holdShine 3s linear infinite}
-@keyframes holdShine{0%{background-position:0% 50%}100%{background-position:200% 50%}}
-.hold:active{transform:translateX(-50%) scale(.97);box-shadow:0 8px 20px #070b2c99,0 0 25px #f878d8aa,inset 0 1px 0 #ffffff88}
-.hold:after{content:"";position:absolute;inset:0;border-radius:999px;background:radial-gradient(circle at 50% 50%,#ffffff33 0,transparent 60%);opacity:0;transition:opacity .3s}
-.hold:active:after{opacity:1}
-.hold small{display:block;font-size:10px;font-weight:500;margin-top:4px;opacity:.9}
-.progress{height:4px;width:180px;max-width:82%;background:#ffffff33;border-radius:99px;margin:10px auto 0;overflow:hidden;position:relative}
-.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#fff,#ffe1a0,#ff9ed4);border-radius:99px;transition:width .05s linear;box-shadow:0 0 10px #ffe1a0}
-
-/* ===== GEAR & PANEL ===== */
-.gear{position:fixed;right:14px;top:calc(12px + var(--safe-top));z-index:30;width:46px;height:46px;border:1px solid #ffffff66;border-radius:50%;
-  background:#5c42a8ef;color:#fff;font-size:20px;box-shadow:0 8px 25px #0006;backdrop-filter:blur(8px);transition:transform .2s}
-.gear:hover{transform:rotate(45deg) scale(1.05)}
-.panel{position:fixed;z-index:40;top:calc(68px + var(--safe-top));right:10px;width:min(360px,calc(100vw - 20px));max-height:calc(100svh - 82px - var(--safe-bottom));
-  overflow:auto;padding:18px;border:1px solid #ffffff55;border-radius:22px;
-  background:linear-gradient(155deg,#392064f7,#20113ff7);box-shadow:0 25px 80px #000b;backdrop-filter:blur(18px);display:none}
-.panel.open{display:block;animation:panelIn .25s ease-out}
-@keyframes panelIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-.panel h2{font:600 18px 'Playfair Display',serif;color:#ffd3ee;margin:0 0 12px}
-.panel h3{font-size:12px;letter-spacing:1px;color:#ffe1f5;margin:18px 0 8px;border-top:1px solid #ffffff22;padding-top:14px}
-.panel h3:first-of-type{border-top:0;padding-top:0}
-.panel label{display:block;font-size:12px;margin:10px 0 5px;color:#f4eaff}
-.panel input[type=text],.panel input[type=url],.panel input[type=file],.panel textarea{
-  width:100%;border:1px solid #ffffff40;border-radius:10px;background:#0d0a25;color:#fff;padding:11px;font-size:13px;transition:border-color .2s}
-.panel input:focus,.panel textarea:focus{border-color:#ffb8e2;outline:none}
-.panel input[type=file]{padding:8px}
-.panel textarea{min-height:90px;resize:vertical;line-height:1.6}
-.panel input[type=range]{width:100%;accent-color:#ffb8e2}
-.btn{border:1px solid #e5bfff88;border-radius:12px;background:linear-gradient(110deg,#a58be8,#7a76d0);color:#fff;padding:11px 13px;font-size:12px;font-weight:700;
-  box-shadow:0 5px 15px #080b3245;transition:transform .15s,box-shadow .2s;position:relative;overflow:hidden}
-.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px #080b3266}
-.btn:active{transform:translateY(0) scale(.98)}
-.btn.primary{background:linear-gradient(110deg,#f17fc3,#8b7bf0)}
-.btn.full{width:100%;margin-top:8px}
-.btnrow{display:flex;gap:8px;flex-wrap:wrap}.btnrow .btn{flex:1}
-.help{font-size:11px;color:#cfc6ff;line-height:1.5}
-.sb-status{display:flex;align-items:flex-start;gap:8px;margin:10px 0;padding:10px 12px;border:1px solid #d6b16b66;border-radius:11px;background:#fffaf0;color:#78505a;font-size:12px;line-height:1.5}
-.sb-status .status-dot{flex:0 0 9px;width:9px;height:9px;border-radius:50%;margin-top:4px;background:#b6a6a6;box-shadow:0 0 0 3px #b6a6a622}
-.sb-status[data-state="checking"] .status-dot{background:#d7a84b;box-shadow:0 0 0 3px #d7a84b22}
-.sb-status[data-state="success"]{border-color:#6aab83;background:#f0fff4;color:#245c3c}
-.sb-status[data-state="success"] .status-dot{background:#269b57;box-shadow:0 0 0 3px #269b5722}
-.sb-status[data-state="error"]{border-color:#d77979;background:#fff1f1;color:#8a3030}
-.sb-status[data-state="error"] .status-dot{background:#d83c3c;box-shadow:0 0 0 3px #d83c3c22}
-.preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:8px}
-.preview-item{position:relative;aspect-ratio:1;border-radius:9px;overflow:hidden;background:#120b2d;box-shadow:0 4px 10px #0005}
-.preview-item img{width:100%;height:100%;object-fit:cover}
-.preview-item button{position:absolute;right:3px;top:3px;border:0;border-radius:50%;width:23px;height:23px;background:#e84d88;color:#fff;font-weight:bold;
-  box-shadow:0 3px 8px #0007;transition:transform .15s}
-.preview-item button:hover{transform:scale(1.15)}
-.qr-wrap{background:#fff;border-radius:12px;padding:10px;display:flex;justify-content:center;min-height:20px;margin-top:10px}
-.qr-wrap img,.qr-wrap canvas{max-width:100%;height:auto!important}
-
-/* ===== PHOTO RAIN ===== */
-.orbit{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden}
-.orbit img{position:absolute;top:-160px;width:clamp(58px,7.5vw,92px);height:clamp(74px,9.5vw,120px);object-fit:cover;padding:5px 5px 20px;
-  background:linear-gradient(180deg,#fff,#fff8f8);border-radius:3px;box-shadow:0 10px 28px #160d38aa,0 0 22px #ffb8e066;
-  pointer-events:auto;animation:photoRain linear forwards;cursor:zoom-in;will-change:transform,opacity}
-@keyframes photoRain{
-  0%{transform:translate3d(0,-15vh,0) rotate(-12deg) scale(.7);opacity:0}
-  8%{opacity:1;transform:translate3d(0,0,0) rotate(-6deg) scale(1)}
-  88%{opacity:.9}
-  100%{transform:translate3d(var(--drift,30px),115svh,0) rotate(16deg) scale(.95);opacity:0}
+.cloud::before,
+.cloud::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    background:inherit;
 }
 
-/* ===== LETTER MODAL ===== */
-.modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:14px;
-  background:radial-gradient(ellipse at 50% 30%,#4c327caa,transparent 60%),#030414f2;
-  perspective:1800px;perspective-origin:50% 35%;overflow:hidden}
-.modal.show{display:flex}
-
-/* Phong bì */
-.envelope{position:absolute;width:min(560px,90vw);height:min(310px,46vh);border-radius:14px;
-  background:linear-gradient(150deg,#ffe8f3 0%,#ffd0e8 35%,#e9a0c7 70%,#d97ba8 100%);
-  box-shadow:0 40px 90px #000a,inset 0 0 0 1px #ffffff66,inset 0 -8px 20px #b85f8c55;
-  overflow:visible;transform:translateY(20px) scale(.9);opacity:0;
-  transition:opacity .35s,transform .55s cubic-bezier(.2,.8,.2,1);z-index:1;transform-style:preserve-3d}
-.envelope:before{content:"";position:absolute;left:0;right:0;top:0;height:62%;
-  background:linear-gradient(155deg,#fff1f8 0%,#ffd9ec 40%,#e9a0c7 100%);
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  transform-origin:top center;transform:rotateX(0deg);
-  transition:transform .85s cubic-bezier(.4,0,.2,1);
-  z-index:3;filter:drop-shadow(0 6px 4px #9b3e7066);backface-visibility:hidden}
-.envelope:after{content:"♥";position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);
-  font-size:44px;color:#b83b79;z-index:4;text-shadow:0 3px 8px #7a2e6099,inset 0 -2px 0 #ffffff55;
-  transition:opacity .3s,transform .45s}
-
-/* Cạnh dưới phong bì (đường chéo trang trí) */
-.envelope .edge{position:absolute;left:0;right:0;bottom:0;height:62%;border-radius:0 0 14px 14px;
-  background:linear-gradient(180deg,transparent,#c98bb0aa);
-  clip-path:polygon(0 100%,50% 0,100% 100%);z-index:2;pointer-events:none}
-
-.modal.show .envelope{opacity:1;transform:translateY(0) scale(1);animation:envelopeArrive .6s cubic-bezier(.2,.9,.3,1.1) both}
-@keyframes envelopeArrive{
-  0%{transform:translateY(50px) scale(.75) rotate(-4deg)}
-  65%{transform:translateY(-8px) scale(1.03) rotate(1.5deg)}
-  100%{transform:translateY(0) scale(1) rotate(0)}
+.cloud::before{
+    width:90px;
+    height:90px;
+    left:30px;
+    bottom:0;
 }
-.modal.show .envelope:before{transform:rotateX(180deg);transition-delay:.6s}
-.modal.show .envelope:after{opacity:0;transform:translate(-50%,-50%) scale(.3) rotate(60deg);transition-delay:.55s}
 
-/* Lá thư */
+.cloud::after{
+    width:115px;
+    height:75px;
+    right:20px;
+    bottom:0;
+}
+
+.cloud1{
+    left:-40px;
+    top:22%;
+    transform:translateZ(-1700px) scale(1.3);
+    animation:cloudMove1 18s ease-in-out infinite alternate;
+}
+
+.cloud2{
+    right:-60px;
+    top:42%;
+    transform:translateZ(-2100px) scale(.9);
+    animation:cloudMove2 22s ease-in-out infinite alternate;
+}
+
+.cloud3{
+    left:35%;
+    top:8%;
+    transform:translateZ(-2500px) scale(.7);
+    opacity:.25;
+    animation:cloudMove3 25s ease-in-out infinite alternate;
+}
+
+@keyframes cloudMove1{
+    from{margin-left:-30px}
+    to{margin-left:70px}
+}
+
+@keyframes cloudMove2{
+    from{margin-right:-20px}
+    to{margin-right:80px}
+}
+
+@keyframes cloudMove3{
+    from{transform:translateZ(-2500px) translateX(-40px) scale(.7)}
+    to{transform:translateZ(-2500px) translateX(60px) scale(.7)}
+}
+
+
+/* =========================
+   SAO LẤP LÁNH PHÍA XA
+========================= */
+
+.star-group{
+    position:absolute;
+    color:#fff7c7;
+    font-size:22px;
+    text-shadow:
+        0 0 8px #fff,
+        0 0 18px #ffe68a,
+        0 0 30px #fff0a0;
+    z-index:1;
+    pointer-events:none;
+    transform-style:preserve-3d;
+    animation:starTwinkle 2s ease-in-out infinite alternate;
+}
+
+.sg1{
+    left:12%;
+    top:18%;
+    transform:translateZ(-2200px) scale(.8);
+}
+
+.sg2{
+    left:25%;
+    top:52%;
+    transform:translateZ(-1800px) scale(.55);
+    animation-delay:.7s;
+}
+
+.sg3{
+    right:18%;
+    top:25%;
+    transform:translateZ(-2400px) scale(.7);
+    animation-delay:1.2s;
+}
+
+.sg4{
+    right:32%;
+    top:62%;
+    transform:translateZ(-1600px) scale(.5);
+    animation-delay:.4s;
+}
+
+.sg5{
+    left:52%;
+    top:14%;
+    transform:translateZ(-2800px) scale(.45);
+    animation-delay:1.5s;
+}
+
+@keyframes starTwinkle{
+    from{
+        opacity:.25;
+        scale:.7;
+    }
+    to{
+        opacity:1;
+        scale:1.15;
+    }
+}
+
+
+/* =========================
+   HOA TRÔI PHÍA SAU
+========================= */
+
+.moon-flower{
+    position:absolute;
+    z-index:2;
+    pointer-events:none;
+    filter:
+        drop-shadow(0 0 8px rgba(255,180,220,.7))
+        drop-shadow(0 0 18px rgba(255,120,200,.35));
+    transform-style:preserve-3d;
+    opacity:.65;
+}
+
+.mf1{
+    left:7%;
+    top:67%;
+    font-size:38px;
+    transform:translateZ(-1300px) rotate(-15deg);
+    animation:flowerFloat1 7s ease-in-out infinite alternate;
+}
+
+.mf2{
+    right:10%;
+    top:72%;
+    font-size:30px;
+    transform:translateZ(-1800px) rotate(20deg);
+    animation:flowerFloat2 9s ease-in-out infinite alternate;
+}
+
+.mf3{
+    right:25%;
+    top:35%;
+    font-size:25px;
+    transform:translateZ(-2200px);
+    animation:flowerFloat1 8s ease-in-out infinite alternate;
+}
+
+@keyframes flowerFloat1{
+    to{
+        transform:
+            translateZ(-1300px)
+            translateY(-25px)
+            rotate(15deg);
+    }
+}
+
+@keyframes flowerFloat2{
+    to{
+        transform:
+            translateZ(-1800px)
+            translateY(-35px)
+            rotate(-15deg);
+    }
+}
+
+
+/* =========================
+   TRÁI TIM PHÍA XA
+========================= */
+
+.bg-heart{
+    position:absolute;
+    color:#ff8fca;
+    font-family:Arial;
+    text-shadow:
+        0 0 8px #ff72b6,
+        0 0 22px #ff72b6;
+    z-index:1;
+    pointer-events:none;
+    opacity:.4;
+    transform-style:preserve-3d;
+    animation:bgHeartFloat 6s ease-in-out infinite alternate;
+}
+
+.bh1{
+    left:17%;
+    top:35%;
+    font-size:45px;
+    transform:translateZ(-1700px);
+}
+
+.bh2{
+    right:16%;
+    top:48%;
+    font-size:65px;
+    transform:translateZ(-2300px);
+    animation-delay:1.5s;
+}
+
+.bh3{
+    left:42%;
+    top:72%;
+    font-size:32px;
+    transform:translateZ(-1400px);
+    animation-delay:3s;
+}
+
+@keyframes bgHeartFloat{
+    from{
+        transform:
+            translateZ(-1800px)
+            translateY(15px)
+            rotate(-8deg);
+    }
+    to{
+        transform:
+            translateZ(-1800px)
+            translateY(-20px)
+            rotate(8deg);
+    }
+}
+
+
+/* =========================
+   VÒNG SÁNG MẶT TRĂNG
+========================= */
+
+.moon-ring{
+    position:absolute;
+    left:50%;
+    top:50%;
+    border:1px solid rgba(255,235,150,.12);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:0;
+    transform-style:preserve-3d;
+}
+/* =========================
+   🌙 MẶT TRĂNG TRONG KHÔNG GIAN - RÕ NÉT
+========================= */
+
+.space-moon{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:190px;
+    height:190px;
+
+    margin-left:-95px;
+    margin-top:-95px;
+
+    border-radius:50%;
+
+    /* mặt trăng rõ nét */
+    background:
+        radial-gradient(circle at 32% 28%,
+            #fffef0 0%,
+            #fff7c2 28%,
+            #ffe99a 55%,
+            #e8bd62 78%,
+            #b98238 100%
+        );
+
+    box-shadow:
+        0 0 25px rgba(255,238,155,.95),
+        0 0 60px rgba(255,220,100,.65),
+        0 0 110px rgba(255,210,80,.3);
+
+    z-index:4;
+    transform-style:preserve-3d;
+
+    transform:
+        translateZ(-900px)
+        rotateY(-12deg);
+
+    opacity:.98;
+}
+
+/* Các hố trên mặt trăng */
+.space-moon::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle at 25% 32%,
+            rgba(150,105,45,.28) 0 8px,
+            transparent 9px
+        ),
+        radial-gradient(circle at 62% 25%,
+            rgba(150,105,45,.22) 0 13px,
+            transparent 14px
+        ),
+        radial-gradient(circle at 72% 58%,
+            rgba(150,105,45,.24) 0 10px,
+            transparent 11px
+        ),
+        radial-gradient(circle at 38% 68%,
+            rgba(150,105,45,.2) 0 15px,
+            transparent 16px
+        ),
+        radial-gradient(circle at 52% 45%,
+            rgba(150,105,45,.2) 0 7px,
+            transparent 8px
+        );
+
+    opacity:.8;
+}
+
+/* Ánh sáng viền */
+.space-moon::after{
+    content:"";
+
+    position:absolute;
+    inset:-8px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(255,245,190,.55);
+
+    box-shadow:
+        0 0 18px rgba(255,235,150,.8),
+        inset 0 0 25px rgba(255,255,210,.25);
+
+    pointer-events:none;
+}
+
+
+/* =========================
+   🐇 THỎ CƯỠI MẶT TRĂNG
+========================= */
+
+.rabbit-moon{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    margin-left:-42px;
+    margin-top:-105px;
+
+    font-size:72px;
+
+    z-index:6;
+
+    transform:
+        translateZ(-760px)
+        rotate(-8deg);
+
+    filter:
+        drop-shadow(0 0 8px rgba(255,255,255,.9))
+        drop-shadow(0 0 18px rgba(255,220,130,.65));
+
+    transform-style:preserve-3d;
+
+    animation:
+        rabbitFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes rabbitFloat{
+    from{
+        transform:
+            translateZ(-760px)
+            translateY(4px)
+            rotate(-8deg);
+    }
+
+    to{
+        transform:
+            translateZ(-760px)
+            translateY(-7px)
+            rotate(6deg);
+    }
+}
+
+
+/* =========================
+   🏮 ĐÈN LỒNG NHỎ PHÍA XA
+========================= */
+
+.space-lantern{
+    position:absolute;
+
+    font-size:32px;
+
+    z-index:3;
+
+    filter:
+        drop-shadow(0 0 8px #ff9b45)
+        drop-shadow(0 0 20px #ff6b38);
+
+    transform-style:preserve-3d;
+
+    animation:
+        spaceLanternFloat 6s ease-in-out infinite alternate;
+}
+
+.sl1{
+    left:18%;
+    top:27%;
+    transform:translateZ(-1300px) scale(.7);
+}
+
+.sl2{
+    right:16%;
+    top:31%;
+    transform:translateZ(-1700px) scale(.55);
+    animation-delay:-2s;
+}
+
+.sl3{
+    left:76%;
+    top:68%;
+    transform:translateZ(-1100px) scale(.45);
+    animation-delay:-4s;
+}
+
+@keyframes spaceLanternFloat{
+    from{
+        margin-top:8px;
+        rotate:-4deg;
+    }
+
+    to{
+        margin-top:-18px;
+        rotate:5deg;
+    }
+}
+
+
+/* =========================
+   ☄️ SAO BĂNG
+========================= */
+
+.shooting-star{
+    position:absolute;
+
+    width:90px;
+    height:2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.4),
+            #fff,
+            transparent
+        );
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 8px #fff,
+        0 0 18px #ffe99a;
+
+    opacity:.75;
+
+    z-index:2;
+
+    transform:
+        translateZ(-1500px)
+        rotate(-25deg);
+
+    animation:
+        shootingStar 5s linear infinite;
+}
+
+.ss1{
+    left:5%;
+    top:20%;
+}
+
+.ss2{
+    right:5%;
+    top:48%;
+    transform:
+        translateZ(-1900px)
+        rotate(-25deg)
+        scale(.7);
+
+    animation-delay:2.5s;
+}
+
+@keyframes shootingStar{
+    0%{
+        opacity:0;
+        transform:
+            translate3d(-80px,-30px,-1500px)
+            rotate(-25deg);
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    45%{
+        opacity:.8;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate3d(280px,140px,-1500px)
+            rotate(-25deg);
+    }
+}
+
+
+/* =========================
+   🌸 CÁNH HOA BAY TRONG KHÔNG GIAN
+========================= */
+
+.space-petal{
+    position:absolute;
+
+    z-index:3;
+
+    font-size:28px;
+
+    filter:
+        drop-shadow(0 0 6px rgba(255,130,190,.8));
+
+    transform-style:preserve-3d;
+
+    animation:
+        spacePetal 8s ease-in-out infinite alternate;
+}
+
+.sp1{
+    left:14%;
+    top:57%;
+    transform:translateZ(-1100px) rotate(20deg);
+}
+
+.sp2{
+    right:14%;
+    top:19%;
+    transform:translateZ(-1500px) rotate(-20deg);
+    animation-delay:-3s;
+}
+
+.sp3{
+    left:68%;
+    top:78%;
+    transform:translateZ(-1900px) scale(.6);
+    animation-delay:-5s;
+}
+
+@keyframes spacePetal{
+    from{
+        translate:0 15px;
+        rotate:-15deg;
+    }
+
+    to{
+        translate:35px -25px;
+        rotate:25deg;
+    }
+}
+
+
+/* =========================
+   ✨ BỤI SAO XUNG QUANH MẶT TRĂNG
+========================= */
+
+.moon-dust{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:500px;
+    height:500px;
+
+    margin-left:-250px;
+    margin-top:-250px;
+
+    border-radius:50%;
+
+    z-index:2;
+
+    transform:
+        translateZ(-1000px);
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(circle at 20% 30%, #fff 0 2px, transparent 3px),
+        radial-gradient(circle at 75% 22%, #fff7bd 0 2px, transparent 3px),
+        radial-gradient(circle at 85% 65%, #fff 0 2px, transparent 3px),
+        radial-gradient(circle at 25% 78%, #ffeeb0 0 2px, transparent 3px),
+        radial-gradient(circle at 55% 12%, #fff 0 1px, transparent 2px),
+        radial-gradient(circle at 43% 88%, #fff 0 2px, transparent 3px);
+
+    opacity:.8;
+
+    animation:
+        dustRotate 30s linear infinite;
+}
+
+@keyframes dustRotate{
+    to{
+        transform:
+            translateZ(-1000px)
+            rotateZ(360deg);
+    }
+}
+
+.ring1{
+    width:520px;
+    height:520px;
+    margin-left:-260px;
+    margin-top:-260px;
+    transform:translateZ(-1800px);
+    box-shadow:
+        0 0 40px rgba(255,220,100,.08),
+        inset 0 0 40px rgba(255,220,100,.04);
+    animation:ringPulse 7s ease-in-out infinite alternate;
+}
+
+.ring2{
+    width:850px;
+    height:850px;
+    margin-left:-425px;
+    margin-top:-425px;
+    transform:translateZ(-2500px);
+    opacity:.5;
+    animation:ringPulse 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes ringPulse{
+    from{opacity:.15;scale:.94}
+    to{opacity:.5;scale:1.05}
+}
+/* =========================
+   CHỮ BAY - NHIỀU + ĐỔI MÀU
+========================= */
+.float-text{
+    position:absolute;white-space:nowrap;
+    font:700 clamp(20px,2.2vw,34px) 'Dancing Script',cursive;
+    animation:riseFull 12s cubic-bezier(.22,.61,.36,1) forwards;
+    filter:drop-shadow(0 0 7px currentColor) drop-shadow(0 0 14px currentColor);
+    animation-timing-function:cubic-bezier(.22,.61,.36,1);
+    z-index:10;pointer-events:none;will-change:transform,opacity,color;
+}
+@keyframes riseFull{
+
+    /* =========================
+       BẮT ĐẦU Ở GIỮA
+    ========================= */
+    0%{
+        transform:
+            translate3d(
+                var(--startX),
+                110vh,
+                var(--depth)
+            )
+            rotate(-12deg)
+            scale(.45);
+
+        opacity:0;
+        color:#ff5d9e;
+    }
+
+    /* Xuất hiện */
+    8%{
+        opacity:1;
+        color:#ff5d9e;
+    }
+
+    /* Bắt đầu tỏa nhẹ */
+    25%{
+        transform:
+            translate3d(
+                var(--x25),
+                78vh,
+                var(--depth)
+            )
+            rotate(-5deg)
+            scale(.75);
+
+        opacity:1;
+        color:#ff72b6;
+    }
+
+    /* Tỏa rộng hơn */
+    45%{
+        transform:
+            translate3d(
+                var(--x45),
+                53vh,
+                var(--depth)
+            )
+            rotate(4deg)
+            scale(.95);
+
+        opacity:1;
+        color:#e978ff;
+    }
+
+    /* Tỏa mạnh ra ngoài */
+    65%{
+        transform:
+            translate3d(
+                var(--x65),
+                30vh,
+                var(--depth)
+            )
+            rotate(-4deg)
+            scale(1.02);
+
+        opacity:.95;
+        color:#8f9dff;
+    }
+
+    /* Gần ra khỏi màn hình */
+    82%{
+        transform:
+            translate3d(
+                var(--x82),
+                8vh,
+                var(--depth)
+            )
+            rotate(5deg)
+            scale(1.05);
+
+        opacity:.8;
+        color:#72dfff;
+    }
+
+    /* Bắt đầu biến mất */
+    92%{
+        transform:
+            translate3d(
+                var(--endX),
+                -5vh,
+                var(--depth)
+            )
+            rotate(7deg)
+            scale(1.08);
+
+        opacity:.35;
+    }
+
+    /* Biến mất hoàn toàn */
+    100%{
+        transform:
+            translate3d(
+                var(--endX),
+                -18vh,
+                var(--depth)
+            )
+            rotate(8deg)
+            scale(1.1);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   ẢNH BAY FULL VIỀN
+========================= */
+.photo{
+    position:absolute;width:120px;height:150px;padding:5px;
+    background:#fff;border-radius:10px;
+    box-shadow:0 12px 30px #0009,0 0 20px rgba(255,255,255,.15);
+    transform-style:preserve-3d;
+    animation:photoFloat linear forwards;
+    z-index:8;pointer-events:none;will-change:transform,opacity;
+}
+.photo img{
+    width:100%;height:100%;object-fit:cover;border-radius:6px;display:block;
+}
+@keyframes photoFloat{
+    0%{
+        transform:
+            translate3d(var(--photoX), var(--edgeY), -150px)
+            rotateZ(var(--rotate))
+            rotateY(-18deg)
+            scale(1.15);
+        opacity:0;
+        filter:blur(0);
+    }
+
+    8%{
+        opacity:.98;
+    }
+
+    25%{
+        transform:
+            translate3d(var(--photoMidX), 72vh, -450px)
+            rotateZ(calc(var(--rotate) * .7))
+            rotateY(-12deg)
+            scale(1);
+        opacity:.98;
+    }
+
+    45%{
+        transform:
+            translate3d(
+                calc(var(--photoMidX) + 2vw),
+                52vh,
+                -850px
+            )
+            rotateZ(calc(var(--rotate) * .35))
+            rotateY(5deg)
+            scale(.82);
+        opacity:.9;
+    }
+
+    65%{
+        transform:
+            translate3d(
+                calc(var(--photoEndX) - 1vw),
+                35vh,
+                -1250px
+            )
+            rotateZ(calc(var(--rotate) * -.35))
+            rotateY(15deg)
+            scale(.58);
+        opacity:.65;
+    }
+
+    82%{
+        transform:
+            translate3d(
+                var(--photoEndX),
+                15vh,
+                -1700px
+            )
+            rotateZ(calc(var(--rotate) * -.6))
+            rotateY(25deg)
+            scale(.35);
+        opacity:.35;
+        filter:blur(2px);
+    }
+
+    100%{
+        transform:
+            translate3d(
+                var(--photoEndX),
+                -15vh,
+                -2200px
+            )
+            rotateZ(var(--rotate))
+            rotateY(35deg)
+            scale(.08);
+        opacity:0;
+        filter:blur(7px);
+    }
+}
+
+/* =========================
+   HẠT / TIM / CÁNH HOA
+========================= */
+.heart,.petal,.light{
+    position:absolute;pointer-events:none;animation:particle linear forwards;
+}
+.heart{font-size:22px}.petal{font-size:18px}
+.light{
+    width:5px;height:5px;border-radius:50%;background:#fff;
+    box-shadow:0 0 15px 5px #ffe79a;
+}
+@keyframes particle{
+    0%{transform:translateY(105vh) rotate(0) scale(.5);opacity:0}
+    15%{opacity:1}
+    100%{
+        transform:translateY(-100px) translateX(var(--drift))
+        rotate(300deg) scale(1.2);opacity:0;
+    }
+}
+
+.lantern{
+    position:absolute;width:32px;height:43px;
+    border-radius:9px 9px 13px 13px;
+    background:linear-gradient(#ffbd45,#e73732 65%,#9d1b32);
+    box-shadow:0 0 22px #ff682d99;z-index:3;
+    animation:lantern 5s ease-in-out infinite alternate;
+}
+.lantern:after{
+    content:"";position:absolute;bottom:-6px;left:50%;
+    width:9px;height:7px;transform:translateX(-50%);
+    background:#ffd95a;box-shadow:0 0 12px #ffd95a;
+}
+.l1{left:9%;top:12%}.l2{left:27%;top:23%;transform:scale(.75);animation-delay:-2s}
+.l3{right:28%;top:18%;transform:scale(.65);animation-delay:-1s}
+@keyframes lantern{to{transform:translateY(-18px) rotate(4deg)}}
+
+/* =========================
+   NAV + THƯ
+========================= */
+.nav{position:absolute;right:16px;top:16px;z-index:20;display:flex;gap:9px}
+.nav button{
+    width:44px;height:44px;border-radius:50%;
+    border:1px solid #ffffff44;background:#ffffff18;color:#fff;
+    backdrop-filter:blur(8px);cursor:pointer;
+}
+/* =========================
+   LÁ THƯ TRUNG THU
+========================= */
+
 .letter{
-  position:relative;z-index:2;width:min(580px,94vw);max-height:calc(100svh - 28px);overflow:auto;
-  padding:52px 38px 32px;border-radius:5px 5px 22px 22px;color:#43223b;
-  background:
-    radial-gradient(ellipse at 50% 0%,#fff 0,transparent 45%),
-    repeating-linear-gradient(0deg,transparent 0 31px,#d8a4bf20 32px),
-    linear-gradient(145deg,#fffef8 0%,#fff4f8 50%,#fbe5ef 100%);
-  border:1px solid #e7b9d0;
-  box-shadow:0 0 0 5px #fff9f3,0 0 0 7px #d9a6c4,0 30px 90px #000c;
-  opacity:0;transform:translateY(40px) scale(.75);
-  transition:transform .7s cubic-bezier(.2,.9,.3,1.1),opacity .5s;
-  pointer-events:none;will-change:transform,opacity;
-  scrollbar-width:thin;scrollbar-color:#d9a6c4 transparent}
-.letter::-webkit-scrollbar{width:6px}
-.letter::-webkit-scrollbar-thumb{background:#d9a6c4;border-radius:99px}
+    position:absolute;
+    z-index:30;
+    left:50%;
+    top:50%;
 
-.modal.show .letter{opacity:1;transform:translateY(0) scale(1);transition-delay:.9s;pointer-events:auto;
-  animation:letterRise .85s .7s cubic-bezier(.16,1,.3,1) both}
-@keyframes letterRise{
-  0%{transform:translateY(80px) scale(.7);opacity:0}
-  65%{transform:translateY(-10px) scale(1.03);opacity:1}
-  100%{transform:translateY(0) scale(1);opacity:1}
-}
-.modal.show .envelope{opacity:.42;transform:translateY(65px) scale(.82);transition-delay:1.15s}
+    width:min(88%,460px);
+    max-height:78vh;
+    overflow:auto;
 
-/* ==== GẤP THƯ — 3 LỚP (nửa trên gập xuống nửa dưới) ==== */
-.letter.folding{
-  animation:none !important;
-  transition:none !important;
-  pointer-events:none;
-  overflow:visible;
-}
-.letter.folding .letter-inner{
-  transform-origin:50% 50%;
-  animation:foldInner 1.2s cubic-bezier(.6,0,.4,1) forwards;
-}
-@keyframes foldInner{
-  0%{transform:scaleY(1)}
-  100%{transform:scaleY(.5)}
-}
-/* Nửa trên */
-.letter .top-half{
-  position:absolute;left:0;right:0;top:0;height:50%;
-  background:linear-gradient(145deg,#fffef8 0%,#fff4f8 55%,#fbe5ef 100%);
-  border-radius:5px 5px 0 0;
-  transform-origin:bottom center;
-  transition:transform 1.2s cubic-bezier(.6,0,.4,1),box-shadow 1.2s;
-  z-index:5;pointer-events:none;
-  box-shadow:none;
-  display:none;
-}
-.letter.folding .top-half{
-  display:block;
-  transform:rotateX(-180deg);
-  box-shadow:0 -8px 20px #00000055;
-  z-index:6;
-}
-/* Nếp gấp giữa */
-.letter .crease{
-  position:absolute;left:0;right:0;top:50%;height:2px;
-  background:linear-gradient(90deg,transparent,#8a5a7366 20%,#8a5a73aa 50%,#8a5a7366 80%,transparent);
-  transform:translateY(-1px) scaleX(0);
-  transform-origin:center;
-  transition:transform .8s ease .3s;
-  z-index:7;pointer-events:none;opacity:0;
-  box-shadow:0 0 6px #ffffff;
-}
-.letter.folding .crease{
-  opacity:1;
-  transform:translateY(-1px) scaleX(1);
+    transform:
+        translate(-50%,-50%)
+        scale(.7)
+        rotateX(-18deg)
+        rotateZ(-2deg);
+
+    opacity:0;
+    pointer-events:none;
+
+    /* giấy thư */
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.9),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #fffdf5,
+            #fff3dc
+        );
+
+    color:#714b42;
+
+    border:2px solid #f1b6c9;
+    border-radius:22px;
+
+    padding:42px 30px 32px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.55),
+        0 0 35px rgba(255,150,200,.28),
+        inset 0 0 25px rgba(255,190,210,.2);
+
+    transition:
+        .65s cubic-bezier(.2,.9,.2,1);
+
+    backdrop-filter:blur(10px);
 }
 
-/* Nửa dưới + nửa trên chập vào nhau → gấp lại */
-.letter.folding .letter-inner{
-  animation:foldInner 1.2s cubic-bezier(.6,0,.4,1) forwards;
-}
-@keyframes foldInner{
-  0%{transform:scaleY(1)}
-  100%{transform:scaleY(.5)}
-}
-.letter.folding .letter-inner .content-wrap{
-  animation:foldContent 1.2s cubic-bezier(.6,0,.4,1) forwards;
-}
-@keyframes foldContent{
-  0%{opacity:1}
-  60%{opacity:1}
-  100%{opacity:.05}
-}
-/* Sau khi gấp xong → bay vào phong bì */
-.letter.folded-enter{
-  animation:letterIntoEnvelope .8s cubic-bezier(.6,0,.4,1) forwards !important;
-  transition:none !important;
-}
-@keyframes letterIntoEnvelope{
-  0%{transform:translateY(0) scaleY(.5) scaleX(1);opacity:.9;border-radius:5px 5px 22px 22px}
-  60%{transform:translateY(35px) scaleY(.15) scaleX(.96);opacity:.85;border-radius:5px 5px 12px 12px}
-  100%{transform:translateY(70px) scaleY(.02) scaleX(.9);opacity:0;border-radius:5px 5px 3px 3px}
+/* viền trang trí */
+.letter::before{
+    content:"";
+    position:absolute;
+    inset:10px;
+
+    border:1px dashed #e7a9bb;
+    border-radius:15px;
+
+    pointer-events:none;
 }
 
-/* Phong bì đậy lại sau khi thư gấp xong */
-.modal.closing .envelope{opacity:.42;transform:translateY(65px) scale(.82);
-  transition:opacity .3s .2s,transform .4s .2s}
-.modal.closing .envelope:before{transform:rotateX(180deg);transition:transform .5s .3s}
-.modal.closing .envelope:after{opacity:0;transition-delay:0s}
-/* Khi thư đã gấp xong → phong bì về vị trí cũ + nắp đậy + con dấu hiện */
-.modal.closing.envelope-closing .envelope:before{transform:rotateX(0deg);transition:transform .55s .1s}
-.modal.closing.envelope-closing .envelope:after{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0);transition:opacity .3s .4s,transform .35s .4s}
-.modal.closing.envelope-closing .envelope{opacity:1;transform:translateY(0) scale(1);transition:opacity .35s .55s,transform .45s .55s}
+/* góc hoa */
+.letter::after{
+    content:"🌸";
+    position:absolute;
 
-/* Trang trí thư */
-.letter:before{content:"✧  ❦  ✧";position:absolute;top:16px;left:50%;transform:translateX(-50%);
-  font-size:22px;letter-spacing:10px;color:#b55b87;text-shadow:0 1px 0 #fff;z-index:8}
-.letter:after{content:"❀";position:absolute;right:24px;bottom:20px;font-size:26px;color:#d99ab8;opacity:.6;pointer-events:none;z-index:8}
-.letter h2{text-align:center;font:400 clamp(38px,8vw,56px)/1.1 'Great Vibes',cursive;color:#8f2a5e;margin:6px 0 14px}
-.divider{text-align:center;color:#bd6d94;margin:0 0 20px;letter-spacing:8px;font-size:14px}
-.letter p{font:italic 16px/2.05 'Playfair Display',Georgia,serif;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;color:#43243c;text-align:left;padding:4px 3px}
-.letter p.typing:after{content:"▏";color:#c0407e;animation:blink .7s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.signature{text-align:right;font:32px 'Great Vibes',cursive;color:#8f2a5e;margin:20px 4px 0}
-.close-letter{display:block;margin:14px auto 0}
+    right:14px;
+    top:8px;
 
-/* Nút X đóng cố định — chỉ mobile */
-.close-x:active{transform:scale(.9)}
-.modal.show ~ .close-x{display:grid;animation:fadeIn .35s 1s both}
-@keyframes fadeIn{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+    width:42px;
+    height:42px;
 
-/* ===== LIGHTBOX ===== */
-.lightbox{position:fixed;inset:0;z-index:80;background:#050314f5;display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(6px)}
-.lightbox.open{display:flex;animation:fadeIn .25s both}
-.lightbox img{max-width:94vw;max-height:82svh;object-fit:contain;background:#fff;padding:6px;border-radius:10px;box-shadow:0 30px 90px #000}
-.lightbox button{position:absolute;top:calc(12px + var(--safe-top));right:12px;width:44px;height:44px;border-radius:50%;border:1px solid #ffffff55;background:#392064e6;color:#fff;font-size:22px;backdrop-filter:blur(6px)}
-.lightbox .prev,.lightbox .next{top:50%;transform:translateY(-50%);right:auto;width:48px;height:48px;font-size:28px}
-.lightbox .prev{left:12px}.lightbox .next{right:12px}
-.counter{position:absolute;bottom:calc(16px + var(--safe-bottom));left:50%;transform:translateX(-50%);font-size:12px;background:#20113fee;padding:9px 17px;border-radius:22px;backdrop-filter:blur(6px);font-weight:600;letter-spacing:.5px}
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-/* ===== TOAST ===== */
-.toast{position:fixed;z-index:100;left:50%;bottom:calc(20px + var(--safe-bottom));transform:translateX(-50%);width:max-content;max-width:90vw;
-  background:linear-gradient(155deg,#fff,#ffeef8);color:#4a1f3a;padding:13px 20px;border-radius:14px;font-size:13px;
-  box-shadow:0 14px 40px #0008,inset 0 0 0 1px #ffffff;display:none;text-align:center;font-weight:600}
-.toast.show{display:block;animation:toastIn .3s cubic-bezier(.2,.9,.3,1.1)}
-@keyframes toastIn{from{opacity:0;transform:translate(-50%,20px) scale(.9)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+    font-size:40px;
 
-/* ===== MOBILE ===== */
-@media(max-width:600px){
-  .gear,.panel{display:none!important}
-  .main{padding:calc(90px + var(--safe-top)) 14px calc(140px + var(--safe-bottom))}
-  .eyebrow{font-size:9px;letter-spacing:2px;padding:5px 12px}
-  h1{font-size:clamp(48px,12.5vw,70px);max-width:92vw}
-  .subtitle{font-size:12.5px;max-width:84vw;margin-top:12px;line-height:1.65}
-  .gift-stage{width:min(58vw,240px);height:min(48vw,200px);bottom:calc(21% + var(--safe-bottom))}
-  .hold{bottom:calc(3.5% + var(--safe-bottom));font-size:13.5px;padding:14px 20px;width:min(310px,88vw)}
-  .hold small{font-size:9.5px}
-  .progress{width:160px}
-  .moon-wrap{top:5%;left:6%;width:76px}
-  .bunny{top:calc(5% + 50px);left:calc(6% + 26px);font-size:38px}
-  .cloud.c3{display:none}
-  .c1{width:70vw;height:32vw}.c2{width:62vw;height:28vw}
-  .orbit img{width:54px;height:70px;padding:4px 4px 16px}
-  .letter{padding:46px 22px 26px;max-height:calc(100svh - 24px);border-radius:5px 5px 18px 18px}
-  .letter p{font-size:15.2px;line-height:1.85}
-  .letter h2{font-size:clamp(34px,9vw,46px)}
-  .signature{font-size:27px;margin:16px 2px 0}
-  .envelope{width:min(94vw,500px);height:min(290px,43vh)}
-  .close-letter{padding:13px 22px;font-size:13.5px}
-  .letter.folding .top-half{display:block}
-}
-@media(max-height:650px){
-  .main{padding-top:calc(74px + var(--safe-top))}
-  .gift-stage{bottom:21%;width:160px;height:135px}
-  .hold{bottom:2%;padding:10px 16px}
-  .subtitle{margin-top:8px}
-  .moon-wrap{width:60px}
-  .letter{padding:44px 26px 24px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}
-}
+    filter:
+        drop-shadow(0 0 7px rgba(255,100,170,.5));
 
-/* ===== CELESTIAL LUXE UPGRADE ===== */
-:root{
-  --pink:#ffb5df;--pale:#fff0fa;--purple:#251044;--gold:#ffe8ae;
-  --glass:rgba(36,18,67,.62);
-}
-html{scroll-behavior:smooth}
-body{background:#10051f}
-.sky{z-index:-5;background:
-  radial-gradient(ellipse at 50% 110%,#ed83c4 0,transparent 37%),
-  radial-gradient(ellipse at 7% 38%,#7e54d8 0,transparent 42%),
-  radial-gradient(ellipse at 90% 20%,#c65ca9 0,transparent 36%),
-  linear-gradient(160deg,#09071d 0%,#1d1041 27%,#442064 58%,#8d4f9a 82%,#d77db5 100%)}
-.sky:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E");
-  mix-blend-mode:soft-light}
-.aurora{opacity:.75;filter:blur(52px)}
-.aurora .a1{background:radial-gradient(ellipse,#68ffe2 0,transparent 70%)}
-.aurora .a2{background:radial-gradient(ellipse,#ff75cf 0,transparent 70%)}
-.stars i{box-shadow:0 0 8px #fff,0 0 20px #ffe9bc,0 0 34px #ffb8e2}
-.moon-wrap{filter:drop-shadow(0 0 28px #ffe7b477)}
-.moon{background:radial-gradient(circle at 31% 27%,#fffef5 0,#fff0c8 35%,#ffcfdf 69%,#db9acb 100%);
-  box-shadow:0 0 45px #ffe9bccc,0 0 110px #ffb8e277,inset -18px -14px 32px #a85c9955}
-.bunny{filter:drop-shadow(0 0 14px #ffd4f3) drop-shadow(0 12px 10px #24104455)}
-.cloud{filter:blur(8px);opacity:.82}
-.lake{height:25%;background:linear-gradient(180deg,#e49bd8 0%,#a96bc8 24%,#6243a5 59%,#21113f 100%);
-  mask-image:linear-gradient(to bottom,black 0%,black 72%,transparent 100%)}
-.lake:before{background:repeating-linear-gradient(90deg,transparent 0 31px,#fff4ff16 31px 33px)}
-.lake:after{left:18%;width:64%;height:5px;background:#fff1cfe0;filter:blur(5px);
-  box-shadow:0 20px 35px #ffcfedbb,0 55px 45px #e8a8ff88,0 100px 55px #a4b9ff44}
-.main{padding-top:clamp(74px,10vh,112px)}
-.eyebrow{border-color:#ffe8f588;background:linear-gradient(120deg,#ffffff18,#8f5dba33);
-  box-shadow:0 8px 30px #12062444,inset 0 1px #ffffff55;letter-spacing:2.8px}
-h1{filter:drop-shadow(0 12px 26px #15052155);text-shadow:0 0 16px #ff8edc,0 0 44px #ff9ce788,0 0 90px #ff6bc455,0 4px #7a2e60}
-.subtitle{color:#fff2ff;text-shadow:0 3px 15px #1d0b39;max-width:560px}
-.gift-stage{filter:drop-shadow(0 26px 34px #13052177);transform-style:preserve-3d}
-.gift{transform-style:preserve-3d;will-change:transform}
-.gift-base{border-radius:13px 13px 18px 18px;box-shadow:inset 0 -22px 40px #a32a6699,inset 0 6px 0 #ffffffdd,inset 7px 0 22px #ffffff66,inset -8px 0 24px #c94d8e88,0 28px 55px #190b3277,0 0 35px #ff9ed455}
-.gift-lid{transition:transform .95s cubic-bezier(.2,.8,.2,1),filter .8s}
-.gift-bow{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
-.scene.opened .gift-lid{transform:translateY(-62px) rotate(-17deg) rotateX(38deg);filter:brightness(1.12)}
-.scene.opened .gift-bow{transform:translate(-50%,-95%) rotate(-12deg)}
-.scene.opened .gift{animation:giftReveal .9s ease both}
-@keyframes giftReveal{0%{transform:translateY(0) scale(1)}45%{transform:translateY(-20px) scale(1.08)}100%{transform:translateY(0) scale(1)}}
-.hold{border-color:#fff8ff;background:linear-gradient(110deg,#ff78bd 0%,#a477e8 45%,#766af4 70%,#f779ca 100%);
-  box-shadow:0 16px 42px #07051e99,0 0 36px #f878d899,inset 0 1px 0 #ffffffcc;backdrop-filter:blur(10px)}
-.hold:before{content:"";position:absolute;inset:1px;border-radius:inherit;border:1px solid #ffffff4d;pointer-events:none}
-.gear{border-color:#fff9;background:linear-gradient(145deg,#9166c8ee,#42216bee);box-shadow:0 10px 28px #0006,0 0 25px #d28aff44}
-.panel{border-color:#ffe6f377;background:linear-gradient(155deg,rgba(54,28,87,.97),rgba(22,12,48,.98));
-  box-shadow:0 28px 100px #000b,0 0 0 1px #ffffff0a,inset 0 1px #ffffff22}
-.panel h2{font-size:21px;text-shadow:0 0 18px #ff9ed455}
-.panel h3{color:#ffe4f5}
-.panel input[type=text],.panel input[type=url],.panel input[type=file],.panel textarea{background:#100a27;border-color:#ffffff35}
-.panel input:focus,.panel textarea:focus{box-shadow:0 0 0 3px #ffb8e222}
-.btn{border-color:#f8dfff99;background:linear-gradient(120deg,#9476d8,#6c65bd);box-shadow:0 7px 20px #080b3245,inset 0 1px #ffffff55}
-.btn.primary{background:linear-gradient(115deg,#f27dbc,#b07ae9 55%,#7e7bf4);box-shadow:0 8px 25px #e46dbb33,inset 0 1px #ffffff77}
-.preview-item{outline:1px solid #ffffff38;outline-offset:1px}
-.orbit img{border-radius:5px;box-shadow:0 14px 34px #10051f99,0 0 0 1px #fff8,0 0 24px #ffb8e044}
-.modal{background:radial-gradient(ellipse at 50% 18%,#8150a855,transparent 56%),rgba(5,2,18,.88);backdrop-filter:blur(16px)}
-.envelope{box-shadow:0 45px 110px #000b,0 0 0 1px #fff9,inset 0 0 0 1px #ffffff88,inset 0 -8px 20px #b85f8c55}
-.letter{background:
-  radial-gradient(ellipse at 50% 0%,#fff 0,transparent 48%),
-  radial-gradient(circle at 0% 100%,#f6d6e7 0,transparent 32%),
-  repeating-linear-gradient(0deg,transparent 0 31px,#c88eae16 32px),
-  linear-gradient(145deg,#fffefb 0%,#fff8fb 52%,#f9e7f0 100%);
-  border:1px solid #e6b8d0;box-shadow:0 0 0 4px #fffaf5,0 0 0 6px #d8a1c2,0 35px 100px #000c, inset 0 0 35px #fff;
-}
-.letter:before{color:#a74778;text-shadow:0 2px 8px #e9a6c766}
-.letter h2{color:#8b285c;text-shadow:0 2px 0 #fff,0 8px 22px #d88bb544}
-.letter p{font-size:clamp(15px,2vw,17px);line-height:2.05;color:#48253e}
-.divider{color:#c06b98;text-shadow:0 1px #fff}
-.signature{color:#9a3269;text-shadow:0 2px 0 #fff}
-.close-letter{box-shadow:0 8px 22px #b64d8c33}
-.close-x,.lightbox button{border-color:#ffffff77;background:linear-gradient(145deg,#67418feF,#2b174fee);box-shadow:0 10px 30px #0007,0 0 20px #d58cff33}
-.toast{border:1px solid #f4cce4;box-shadow:0 18px 55px #0008,0 0 25px #f9a8d333}
-@media(min-width:900px){
- .main{padding-top:clamp(76px,10vh,112px)}
- .gift-stage{bottom:calc(18% + var(--safe-bottom));width:clamp(250px,25vw,350px);height:clamp(210px,23vw,290px)}
- .hold{bottom:calc(4% + var(--safe-bottom))}
-}
-@media(max-width:600px){
- .main{padding-top:calc(82px + var(--safe-top))}
- .eyebrow{max-width:90vw;white-space:normal;justify-content:center;line-height:1.5}
- h1{line-height:1.02;text-shadow:0 0 15px #ff79d9,0 0 36px #ff9ce799,0 4px #7a2e60}
- .subtitle{max-width:88vw;color:#fff4ff}
- .gift-stage{bottom:calc(20% + var(--safe-bottom));width:min(62vw,250px);height:min(51vw,210px)}
- .hold{bottom:calc(3.2% + var(--safe-bottom));}
- .letter{padding:48px 23px 28px;max-height:calc(100svh - 24px);overflow-y:auto}
- .letter p{font-size:15px;line-height:1.9}
- .letter:after{right:13px;bottom:12px}
- .envelope{height:min(270px,40vh)}
-}
-@media(max-height:700px){
- .main{padding-top:calc(68px + var(--safe-top))}
- .gift-stage{bottom:20%}
- .hold{bottom:2%}
-}
-@media(prefers-reduced-motion:reduce){
- .sky *, .gift, .moon-wrap, .bunny, .cloud, .aurora span, .stars i, .particles span{animation:none!important}
+    pointer-events:none;
 }
 
 
-/* Subtle depth response on desktop */
-@media (hover:hover) and (pointer:fine){
- .moon-wrap{transition:transform .35s ease-out}
- .bunny{transition:transform .35s ease-out}
- .gift-stage{transition:filter .4s ease}
- .gift-stage:hover{filter:drop-shadow(0 32px 42px #13052188)}
+/* Khi mở */
+
+.letter.open{
+    opacity:1;
+    pointer-events:auto;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1)
+        rotateX(0)
+        rotateZ(0);
 }
 
 
+/* Tiêu đề */
 
-/* ===== ROYAL CHAMPAGNE · ROSE GARDEN UPGRADE ===== */
-:root{
-  --pink:#d9949d;--pale:#fff5e8;--purple:#56313b;--gold:#f5d58a;
-  --glass:rgba(73,42,48,.70);
-  --champagne:#f6dfac;--ivory:#fff8ed;--rose:#c77b86;--deep-rose:#713e4b;
-}
-body{background:#3e2530;color:#fff8ed}
-.sky{background:
-  radial-gradient(ellipse at 50% 110%,#e4b1a6 0,transparent 38%),
-  radial-gradient(ellipse at 9% 20%,#a86c77 0,transparent 38%),
-  radial-gradient(ellipse at 88% 28%,#d5a18b 0,transparent 36%),
-  radial-gradient(ellipse at 52% 58%,#8b5965 0,transparent 48%),
-  linear-gradient(160deg,#30202d 0%,#51313d 28%,#81515b 58%,#bd8585 82%,#e6b9a4 100%)}
-.sky:after{opacity:.12}
-.aurora{opacity:.5;mix-blend-mode:screen;filter:blur(68px)}
-.aurora .a1{background:radial-gradient(ellipse,#f9e5b2 0,transparent 70%)}
-.aurora .a2{background:radial-gradient(ellipse,#efb5ae 0,transparent 70%)}
-.aurora .a3{background:radial-gradient(ellipse,#d9b8a2 0,transparent 70%)}
-.stars i{background:#fff4d7;box-shadow:0 0 8px #fff8e8,0 0 18px #f5d58a,0 0 28px #f4d9c6}
-.stars i.big{box-shadow:0 0 12px #fff8e8,0 0 25px #f5d58a}
-.moon{background:radial-gradient(circle at 35% 30%,#fffdf1,#f8e8bd 45%,#e9c6a6 75%,#d9a2a0);box-shadow:0 0 50px #f5d58a,0 0 105px #f4d9c655,inset -20px -10px 40px #9e667355}
-.moon:after{background:radial-gradient(circle at 70% 40%,#5b3542 0 46%,transparent 48%)}
-.moon-halo{background:radial-gradient(circle,#f5d58a55 0,transparent 65%)}
-.bunny{filter:drop-shadow(0 0 12px #f6dfac);cursor:pointer;pointer-events:auto}
-.cloud{background:radial-gradient(circle at 40% 35%,#fff0d9,#e5b5aecc 62%,#c88a9699)}
-.lake{background:linear-gradient(180deg,#e3b39f 0%,#ba858c 25%,#865866 60%,#4a303f 100%);border-top:1px solid #f6dfac88}
-.lake:before{background:repeating-linear-gradient(90deg,transparent 0 40px,#fff0d915 40px 42px),repeating-linear-gradient(90deg,transparent 0 60px,#f5d58a15 60px 63px)}
-.lake:after{background:#fff0d9cc;box-shadow:0 20px 30px #f5d58a66,0 50px 35px #e3b39f88,0 90px 40px #d9a2a066}
-.particles span{color:#ffe9b7;text-shadow:0 0 10px #f5d58a,0 0 18px #d9949d}
-.eyebrow{color:#fff0cf;border-color:#f5d58a88;background:linear-gradient(120deg,#56313b99,#81515b88);box-shadow:0 8px 30px #2b152833,inset 0 0 0 1px #fff5dc22;text-shadow:0 2px 8px #321b27}
-.eyebrow:before,.eyebrow:after{color:#f5d58a}
-h1{color:#fff8e9;text-shadow:0 2px 0 #80515a,0 0 20px #f5d58a55,0 0 50px #d9949d66,0 5px 20px #2a1727}
-h1 span{background:linear-gradient(180deg,#fff8e9 15%,#f6dfac 58%,#e9b9ad 100%);-webkit-background-clip:text;background-clip:text}
-.subtitle{color:#fff0df;text-shadow:0 2px 10px #321b27}
-.gift-glow{background:radial-gradient(circle,#f5d58acc 0,#e4a5a766 38%,transparent 68%);filter:blur(24px)}
-.gift-base{background:linear-gradient(145deg,#fffdf4 0%,#f8e9cf 27%,#e9c6a7 67%,#b7777c 100%);box-shadow:inset 0 -22px 40px #9c5c6855,inset 0 6px 0 #ffffffdd,inset 6px 0 20px #ffffff99,inset -6px 0 20px #b7777c66,0 24px 45px #2a172766,0 8px 15px #6d3b4c55}
-.gift-base:before,.gift-lid:before{background:linear-gradient(90deg,#fff0c5,#f5d58a 30%,#d5a94f 70%,#a77b35);box-shadow:inset 0 0 8px #8a6a1f55,0 0 8px #f5d58a88}
-.gift-base:after{background:linear-gradient(180deg,transparent,#81515b44)}
-.gift-lid{background:linear-gradient(150deg,#fffdf5 0%,#f6e8d0 45%,#dfb6a6 100%);box-shadow:0 10px 18px #56313b66,inset 0 -4px 10px #b7777c44,inset 0 3px 0 #ffffff}
-.gift-bow:before,.gift-bow:after{background:radial-gradient(circle at 40% 35%,#fff1e7,#e8b0ad 40%,#bf737f 75%,#814b5a);box-shadow:0 9px 16px #56313b55,inset 0 -6px 10px #814b5a44,inset 0 4px 0 #ffffffaa}
-.gift-knot{background:radial-gradient(circle at 35% 30%,#fff0c8,#e9bd68 55%,#a97c3c);box-shadow:0 7px 18px #56313b66,inset 0 0 0 3px #ffffff88;color:#fffaf0;text-shadow:0 2px 6px #8a5c3b}
-.gift-spark{color:#fff0bf;text-shadow:0 0 14px #f5d58a}
-.hold{color:#fff8e9!important;background:linear-gradient(135deg,#9e626c,#70414e 52%,#4b303d)!important;border:1px solid #f5d58a!important;box-shadow:0 14px 35px #28162266,0 0 0 4px #f5d58a1b,inset 0 1px #fff7e8aa!important}
-.hold small{color:#f9e7c7!important}.progress{background:#fff8e944!important}.progress span{background:linear-gradient(90deg,#fff1c8,#f5d58a,#d9949d)!important;box-shadow:0 0 12px #f5d58a}
-.gear{background:linear-gradient(135deg,#fff5dc,#d9a2a0)!important;color:#68404a!important;border:1px solid #f5d58a!important;box-shadow:0 8px 28px #2a172755!important}
-.panel{background:linear-gradient(160deg,#fff9ee,#f5e4d7 50%,#f0d4ce)!important;color:#593944!important;border:1px solid #d8b36e!important;box-shadow:0 28px 90px #21131bcc,inset 0 0 0 5px #fff8ed!important}
-.panel h2,.panel h3{color:#7a4653!important;border-color:#d8b36e66!important}
-.panel label{color:#69444c!important}.panel .help{color:#87666a!important}
-.panel input,.panel textarea{background:#fffdf7!important;color:#543641!important;border-color:#dfc7b7!important}
-.btn{background:linear-gradient(135deg,#fff6e4,#ead1c4)!important;color:#70414e!important;border:1px solid #d6b16b!important;box-shadow:0 5px 14px #6b3d4c12!important}
-.btn.primary{background:linear-gradient(135deg,#b8757e,#7d4858)!important;color:#fff8e9!important;border-color:#f5d58a!important}
-.orbit img{background:linear-gradient(180deg,#fffdf5,#f5e6d2)!important;border:1px solid #f5d58a;box-shadow:0 12px 28px #2b172c88,0 0 20px #f5d58a33}
-.modal{background:radial-gradient(ellipse at 50% 20%,#a87878aa,transparent 58%),#21131beb}
-.envelope{background:linear-gradient(150deg,#fff9e9 0%,#f4dfc5 35%,#dfa9a3 70%,#b97580 100%);box-shadow:0 40px 90px #1d1119aa,0 0 0 1px #f5d58a,inset 0 0 0 1px #ffffff88,inset 0 -8px 20px #b9758055}
-.envelope:before{background:linear-gradient(155deg,#fffaf0 0%,#f4dfc5 40%,#d99da0 100%)}
-.envelope:after{content:"❦";font-family:'Cormorant Garamond',serif;font-size:56px;color:#9c5966;text-shadow:0 2px 8px #f5d58a88}
-.envelope .edge{background:linear-gradient(180deg,transparent,#9f626c66)}
-.letter{background:linear-gradient(115deg,#fffaf0 0%,#fff5e5 48%,#f9e9d8 100%)!important;border:1px solid #d8b36e!important;box-shadow:0 32px 90px #21131b99,0 0 0 5px #fff8ed22,inset 0 0 0 1px #ffffff!important}
-.letter:before{content:"✧  ❦  ✧";color:#b98a45!important;text-shadow:0 2px 8px #e8c98c77!important}
-.letter:after{content:"🌹"!important;filter:saturate(.72);opacity:.45!important}
-.letter h2{color:#854653!important;text-shadow:0 2px 0 #fff,0 8px 22px #d8a6a044!important}
-.letter .divider{color:#b98a45}
-.letter p{color:#573944!important}
-.signature{color:#a05e6a!important}
-.close-letter{background:linear-gradient(135deg,#b8757e,#7d4858)!important;color:#fff8e9!important;border-color:#d8b36e!important}
-.close-x,.lightbox button{background:#69414ceF!important;border-color:#f5d58a88!important;color:#fff8e9!important}
-.lightbox{background:#24151cf2!important}.lightbox img{background:#fff8ed;border:1px solid #f5d58a}
-.counter{background:#68404aee!important;color:#fff4df;border:1px solid #f5d58a66}
-.toast{background:linear-gradient(135deg,#fffaf0,#f2ddcc)!important;color:#633e49!important;border:1px solid #d8b36e!important}
-/* Những cánh hồng vàng bay nhẹ ở lớp nền */
-.sky .royal-petal{position:absolute;top:-24px;left:var(--x);font-size:var(--s);opacity:0;animation:royalPetalFall var(--d) linear var(--delay) infinite;filter:drop-shadow(0 2px 5px #5b354233)}
-@keyframes royalPetalFall{0%{transform:translate3d(0,-5vh,0) rotate(0deg);opacity:0}12%{opacity:.72}82%{opacity:.6}100%{transform:translate3d(var(--drift),110vh,0) rotate(320deg);opacity:0}}
-/* Ánh sáng nở rộng khi hộp quà mở */
-.scene.opened:after{content:"";position:fixed;z-index:8;left:50%;top:62%;width:8vmax;height:8vmax;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#fff9df 0,#f5d58a99 28%,#d9949d33 58%,transparent 72%);transform:translate(-50%,-50%) scale(.2);animation:royalBurst .95s ease-out both}
-@keyframes royalBurst{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}18%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(12)}}
-.moon-wrap{cursor:pointer;filter:drop-shadow(0 0 8px #f5d58a22)}
-.secret-moon-trigger{display:none;position:fixed;z-index:120;top:calc(12px + var(--safe-top));right:14px;width:46px;height:46px;aspect-ratio:1;border:1px solid #ffffff88;border-radius:50%;background:linear-gradient(135deg,#ffb5d9ee,#b45be8ee);color:#fff;font-size:24px;display:grid;place-items:center;text-shadow:0 0 10px #ff4fa5;box-shadow:0 8px 25px #0005,0 0 18px #ff70bd66;cursor:pointer;transition:transform .2s,filter .2s}
-.secret-moon-trigger:hover,.secret-moon-trigger:focus-visible{filter:brightness(1.12);transform:scale(1.08)}
-.middle-finger-pop{position:fixed;z-index:121;left:50%;top:50%;width:76px;height:76px;display:grid;place-items:center;background:transparent;border:0;box-shadow:none;font-size:48px;line-height:1;transform:translate(-50%,-50%) scale(.08);transform-origin:center;pointer-events:none;animation:fingerPop 2s cubic-bezier(.2,.65,.25,1) forwards}
-@keyframes fingerPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.08)}12%{opacity:1;transform:translate(-50%,-50%) scale(.45)}72%{opacity:1;transform:translate(-50%,-50%) scale(7)}100%{opacity:0;transform:translate(-50%,-50%) scale(12)}}
-@media(max-width:600px){.secret-moon-trigger{display:grid;top:calc(12px + var(--safe-top));right:12px;width:46px;height:46px;font-size:24px}}
-@media(max-width:600px){.letter{background:linear-gradient(115deg,#fffaf0,#fff3e3 55%,#f7e4d3)!important}.letter:after{right:14px;bottom:14px;font-size:21px}}
+.letter h2{
+    position:relative;
 
+    text-align:center;
 
+    color:#e56c9b;
 
-/* ===== ROSE-CHAMPAGNE THREE-TIER BIRTHDAY CAKE ===== */
-.cake-stage{position:absolute;left:50%;bottom:calc(18% + var(--safe-bottom));transform:translateX(-50%);width:min(88vw,390px);height:clamp(230px,36vw,330px);perspective:1000px;z-index:3;filter:drop-shadow(0 24px 30px #13052166)}
-.cake-glow{position:absolute;inset:15% -15% -5%;border-radius:50%;background:radial-gradient(ellipse,#ffcae9bb,#f8b6dc44 45%,transparent 72%);filter:blur(24px);animation:cakeGlow 3s ease-in-out infinite alternate}
-@keyframes cakeGlow{to{transform:scale(1.12);opacity:.7}}
-.cake-tier{position:absolute;left:50%;overflow:hidden;border-radius:12px 12px 19px 19px;background:linear-gradient(90deg,#b96c83 0%,#ffe8ed 12%,#fff8f0 42%,#f8cbd0 78%,#b96c83 100%);border:2px solid #ffe8c2;box-shadow:inset 0 -13px 18px #a9477544,inset 0 5px 8px #fff,inset 7px 0 15px #fff8,0 12px 22px #19082177;transform-origin:50% 100%;opacity:1}
-.tier-bottom{width:94%;height:34%;bottom:8%;z-index:3}.tier-middle{width:72%;height:29%;bottom:40%;z-index:4}.tier-top{width:49%;height:25%;bottom:67%;z-index:5;overflow:visible}
-.icing{position:absolute;top:0;left:-2%;width:104%;height:20px;border-radius:12px 12px 45% 45%;background:linear-gradient(180deg,#fffdf8,#ffd8e9);box-shadow:0 4px 8px #bd679055;z-index:3}
-.tier-photo{position:absolute;left:50%;top:25%;transform:translateX(-50%);width:34%;height:62%;border:3px solid #f5d58a;border-radius:8px;background:linear-gradient(135deg,#f8dce9,#fff5fa);background-size:cover;background-position:center;box-shadow:0 0 12px #ffe1a077,0 4px 9px #54213b66;z-index:2}
-.tier-middle .tier-photo{width:29%;height:60%}.tier-top .tier-photo{width:45%;height:44%;top:40%}
-.cake-decoration{position:absolute;bottom:4px;left:0;width:100%;text-align:center;color:#b75c88;font-size:clamp(12px,3vw,19px);text-shadow:0 1px #fff}
-.cake-age{position:absolute;top:42%;left:8%;color:#fff6d9;font:700 clamp(16px,4vw,24px) 'Playfair Display',serif;text-shadow:0 0 9px #d9a044,0 2px 4px #8c3c68;z-index:4}
-.candle-row{position:absolute;top:-33px;left:50%;transform:translateX(-50%);display:flex;justify-content:center;gap:7px;z-index:8}
-.candle{position:relative;width:7px;height:27px;border-radius:3px 3px 1px 1px;background:repeating-linear-gradient(135deg,#fff7de 0 4px,#ed86b5 4px 7px);box-shadow:0 0 6px #fff3cf77}
-.candle:before{content:"";position:absolute;width:10px;height:14px;left:-1.5px;top:-15px;border-radius:60% 40% 55% 45%;background:radial-gradient(ellipse at 50% 70%,#fffbd4 0 15%,#ffe38b 35%,#ff8c48 75%);filter:drop-shadow(0 0 7px #ffc45d);transform-origin:50% 90%;animation:candleFlicker .65s ease-in-out infinite alternate}
-@keyframes candleFlicker{from{transform:rotate(-7deg) scale(.9)}to{transform:rotate(7deg) scale(1.08)}}
-.cake-plate{position:absolute;bottom:2%;left:2%;width:96%;height:9%;border-radius:50%;background:linear-gradient(180deg,#fff5d8,#d6a55b 55%,#fff0cb);box-shadow:0 10px 20px #16082088,0 0 18px #ffe1a066;z-index:2}
-.cake-sparkles{position:absolute;inset:-12%;pointer-events:none}.cake-sparkles span{position:absolute;color:#ffe7aa;font-size:20px;text-shadow:0 0 15px #ffb8e2;animation:cakeSparkle 2.2s ease-in-out infinite alternate}
-.cake-sparkles span:nth-child(1){left:0;top:28%}.cake-sparkles span:nth-child(2){right:2%;top:17%}.cake-sparkles span:nth-child(3){left:10%;top:65%}.cake-sparkles span:nth-child(4){right:7%;top:60%}.cake-sparkles span:nth-child(5){left:45%;top:-4%}.cake-sparkles span:nth-child(6){right:20%;bottom:0}
-@keyframes cakeSparkle{from{opacity:.35;transform:scale(.7) rotate(0)}to{opacity:1;transform:scale(1.25) rotate(25deg)}}
-.cake-stage:not(.cake-ready) .cake-tier{opacity:0;transform:translate(-50%,-120vh)}
-.cake-stage.dropping .tier-top{animation:tierDrop .9s cubic-bezier(.18,.85,.28,1.2) both}
-.cake-stage.dropping .tier-middle{animation:tierDrop .9s .65s cubic-bezier(.18,.85,.28,1.2) both}
-.cake-stage.dropping .tier-bottom{animation:tierDrop .9s 1.3s cubic-bezier(.18,.85,.28,1.2) both}
-@keyframes tierDrop{0%{transform:translate(-50%,-120vh) rotate(-8deg);opacity:0}65%{transform:translate(-50%,10px) rotate(2deg);opacity:1}82%{transform:translate(-50%,-7px) rotate(-1deg)}100%{transform:translate(-50%,0) rotate(0);opacity:1}}
-.cake-stage.cake-ready .cake-tier{opacity:1;transform:translateX(-50%)}
-.cake-stage.cake-finale{animation:cakeToLetter .85s cubic-bezier(.5,0,.2,1) forwards}
-@keyframes cakeToLetter{0%{transform:translateX(-50%) scale(1);opacity:1;filter:brightness(1)}30%{transform:translateX(-50%) scale(1.12);filter:brightness(1.8);opacity:1}100%{transform:translate(-50%,-65vh) scale(.25) rotate(12deg);filter:brightness(2.5);opacity:0}}
-#openCakeButton{z-index:8}
-@media(max-width:600px){.cake-stage{width:82vw;height:245px;bottom:calc(20% + var(--safe-bottom))}.hold{width:min(310px,88vw)}}
-@media(max-height:700px){.cake-stage{height:200px;width:min(75vw,290px);bottom:19%}}
-@media(prefers-reduced-motion:reduce){.cake-stage *,.cake-stage{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    font:
+        700 34px
+        'Dancing Script',
+        cursive;
 
+    margin:
+        0 0 18px;
 
-/* ===== HELLO KITTY CUTE MOBILE EDITION ===== */
-:root{--pink:#ff9fcf;--pale:#fff1f8;--purple:#6b3c70;--gold:#ffe4a8;--safe-bottom:env(safe-area-inset-bottom,0px)}
-body{background:#ffe8f3;color:#7d4266}
-.sky{background:radial-gradient(ellipse at 50% 18%,#fff8fc 0%,transparent 32%),radial-gradient(ellipse at 15% 28%,#ffc9e4 0%,transparent 46%),radial-gradient(ellipse at 90% 52%,#e7d5ff 0%,transparent 42%),linear-gradient(180deg,#ffc7e2 0%,#ffe9f5 50%,#e9d9ff 100%)}
-.aurora .a1{background:radial-gradient(ellipse,#ffacd6 0,transparent 70%)}.aurora .a2{background:radial-gradient(ellipse,#d7b4ff 0,transparent 70%)}.aurora .a3{background:radial-gradient(ellipse,#fff 0,transparent 70%)}
-.stars i{background:#fff;box-shadow:0 0 8px #fff,0 0 15px #ff8bc4}.moon{background:radial-gradient(circle at 35% 30%,#fffdf9,#fff0ba 45%,#ffc7e2 75%,#e7a7d3);box-shadow:0 0 35px #fff0b9,0 0 75px #ffaed8aa}
-.moon:after{background:radial-gradient(circle at 70% 40%,#ffe4f2 0 46%,transparent 48%)}
-.bunny{filter:drop-shadow(0 5px 8px #d66aa455)}
-.cloud{background:radial-gradient(circle at 40% 35%,#fff,#ffe0f0 62%,#e5d1ff 100%);opacity:.9}
-.lake{height:20%;background:linear-gradient(180deg,#ffd3eb 0%,#f5b8df 40%,#c8a6f0 100%);border-top:2px solid #fff7fc88}
-.lake:before{background:repeating-linear-gradient(90deg,transparent 0 32px,#fff9 32px 34px)}
-.lake:after{background:#fff8f0;box-shadow:0 20px 30px #fff8,0 50px 35px #ffc2e5,0 90px 40px #d6b8ff}
-.eyebrow{color:#a54e80;border:1px solid #fff;background:#fff9;box-shadow:0 6px 22px #d96aa222;text-shadow:none;letter-spacing:1.5px}
-.eyebrow:before,.eyebrow:after{content:'🎀';font-size:12px}
-h1{color:#fff;background:linear-gradient(180deg,#ff7eb9,#c75e9e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 3px 0 #fff8,0 9px 25px #e46ba844;filter:none}
-h1 span{background:linear-gradient(180deg,#ff8dbf,#c65a9c);-webkit-background-clip:text;background-clip:text}
-.subtitle{color:#8f5278;text-shadow:0 1px 0 #fff;max-width:540px}
-.cake-stage{cursor:pointer;touch-action:manipulation;filter:drop-shadow(0 16px 18px #b34c8b33);-webkit-user-select:none;user-select:none;outline:none}
-.cake-glow{background:radial-gradient(ellipse,#ffb6dbcc,#fff0f844 48%,transparent 72%)}
-.cake-tier{background:linear-gradient(90deg,#f3a4cc 0%,#fff7fc 13%,#fff 42%,#ffe1ef 78%,#e889bb 100%);border:2px solid #fff4fa;box-shadow:inset 0 -10px 16px #d85b9a2b,inset 0 5px 8px #fff,0 9px 18px #b55a8a33}
-.icing{background:linear-gradient(180deg,#fff,#ffb9da);box-shadow:0 4px 8px #d46b9b44}
-.tier-photo{border-color:#fff;background-color:#ffe4f1;box-shadow:0 0 0 2px #ffb6d9,0 4px 9px #9e497333}
-.cake-decoration{color:#e56b9f;text-shadow:0 1px #fff}
-.cake-age{color:#b6427f;text-shadow:0 1px #fff,0 0 8px #fff;font-family:'Quicksand',sans-serif}
-.candle{background:repeating-linear-gradient(135deg,#fff 0 4px,#ff83b9 4px 7px);box-shadow:0 0 6px #fff}
-.candle:before{background:radial-gradient(ellipse at 50% 70%,#fff 0 15%,#ffeaa1 35%,#ff91b9 75%);filter:drop-shadow(0 0 7px #ff91b9)}
-.cake-plate{background:linear-gradient(180deg,#fff,#ffc4e0 55%,#fff2f8);box-shadow:0 8px 18px #a84a8133,0 0 15px #ffb7d977}
-.cake-sparkles span{color:#ff83bb;text-shadow:0 0 12px #fff}
-.kitty-floating{position:absolute;z-index:9;top:-6%;right:4%;font-size:clamp(24px,6vw,42px);filter:drop-shadow(0 5px 8px #d76c9b55);animation:kittyBob 2.2s ease-in-out infinite alternate;pointer-events:none}
-@keyframes kittyBob{to{transform:translateY(-8px) rotate(8deg)}}
-.cake-hint{position:absolute;z-index:7;left:50%;bottom:calc(5% + var(--safe-bottom));transform:translate(-50%,12px);width:max-content;max-width:90vw;text-align:center;padding:11px 17px;border-radius:999px;border:1px solid #fff;background:#fffaf1eF;color:#b34c83;font-size:clamp(11px,3.2vw,14px);font-weight:700;box-shadow:0 8px 25px #b95e8d2b;opacity:0;pointer-events:none;transition:opacity .45s,transform .45s}
-.cake-hint.visible{opacity:1;transform:translate(-50%,0)}
-.cake-stage.cake-ready{cursor:pointer;animation:cakeIdle 2.6s ease-in-out infinite alternate}
-@keyframes cakeIdle{to{filter:drop-shadow(0 20px 23px #ff9dce66);transform:translateX(-50%) translateY(-4px)}}
-.cake-stage.melting{pointer-events:none;animation:cakeDissolve .8s ease-in forwards!important}
-.cake-stage.melting .cake-tier{animation:tierMelt .75s ease-in forwards!important}
-@keyframes tierMelt{0%{opacity:1;filter:blur(0);transform:translate(-50%,0) scale(1)}45%{opacity:.8;filter:blur(2px);transform:translate(-50%,-12px) scale(1.04)}100%{opacity:0;filter:blur(10px);transform:translate(-50%,-30px) scale(.65) rotate(8deg)}}
-@keyframes cakeDissolve{to{opacity:0;filter:blur(12px);transform:translateX(-50%) scale(.7)}}
-.kitty-gather-layer{position:fixed;inset:0;z-index:80;pointer-events:none;overflow:hidden}
-.kitty-gather-bit{position:absolute;left:0;top:0;opacity:0;filter:drop-shadow(0 0 6px #fff);animation:kittyGather 1.12s cubic-bezier(.2,.8,.2,1) var(--delay) forwards}
-@keyframes kittyGather{0%{opacity:0;transform:translate(var(--x),var(--y)) rotate(-35deg) scale(.3)}18%{opacity:1}100%{opacity:0;transform:translate(calc(var(--x) + var(--tx)),calc(var(--y) + var(--ty))) rotate(360deg) scale(.08)}}
-/* Each cake layer lands in sequence: tier 3, tier 2, tier 1. */
-.cake-stage.dropping .tier-top{animation:tierDrop 1.05s cubic-bezier(.18,.85,.28,1.2) both}
-.cake-stage.dropping .tier-middle{animation:tierDrop 1.05s .78s cubic-bezier(.18,.85,.28,1.2) both}
-.cake-stage.dropping .tier-bottom{animation:tierDrop 1.05s 1.56s cubic-bezier(.18,.85,.28,1.2) both}
-.cake-stage.cake-ready .cake-tier{opacity:1;transform:translateX(-50%)}
-#openCakeButton{display:none!important}
-@media(max-width:600px){
- .scene{min-height:100svh}
- .main{width:100%;padding:calc(60px + var(--safe-top)) 12px calc(105px + var(--safe-bottom));}
- .eyebrow{font-size:9px;letter-spacing:1px;padding:7px 12px;max-width:90vw}
- h1{font-size:clamp(43px,12vw,66px);margin-top:14px;line-height:1.04}
- .subtitle{font-size:13px;line-height:1.6;margin-top:11px;max-width:88vw}
- .cake-stage{width:min(88vw,340px);height:235px;bottom:calc(17% + var(--safe-bottom))}
- .cake-hint{bottom:calc(4% + var(--safe-bottom));font-size:11px;padding:10px 13px}
- .tier-bottom{height:35%;bottom:8%}.tier-middle{height:29%;bottom:40%}.tier-top{height:25%;bottom:67%}
- .candle-row{top:-28px;gap:5px}.candle{width:6px;height:23px}
- .kitty-floating{right:1%;top:-4%}
- .letter{padding:44px 19px 26px;max-height:calc(100svh - 20px);overflow-y:auto}
- .letter p{font-size:14px;line-height:1.85}
- .secret-moon-trigger{background:#fff8;border-color:#fff;color:#b34c83;box-shadow:0 5px 16px #c45b9422}
-}
-@media(max-height:700px) and (max-width:600px){.main{padding-top:calc(46px + var(--safe-top))}.cake-stage{height:190px;bottom:17%}.cake-hint{bottom:2%}h1{font-size:clamp(38px,10vw,54px)}}
-
-
-/* ===== HELLO KITTY LETTER + MAGIC PARTICLE TRANSITIONS ===== */
-:root{--kitty-pink:#ff8fc4;--kitty-soft:#fff0f7;--kitty-lilac:#eadcff;--kitty-ink:#8d426d}
-.modal{background:radial-gradient(ellipse at 50% 18%,#fff5fbdd 0%,#f7c5e6aa 42%,#b990d777 100%)!important;backdrop-filter:blur(12px)}
-.envelope{background:linear-gradient(145deg,#fffaff 0%,#ffd9ec 48%,#ffb8d8 100%)!important;border:2px solid #fff!important;box-shadow:0 24px 65px #b64f8b44,0 0 0 5px #ffd5e9aa,inset 0 0 0 2px #fff9!important}
-.envelope:after{content:'🎀'!important;background:none!important;color:#e65b9e!important;font-size:42px!important;width:auto!important;height:auto!important;box-shadow:none!important;text-shadow:0 4px 10px #d45b9944}
-.letter{position:relative;background:radial-gradient(circle at 10% 12%,#fff 0 7%,transparent 8%),radial-gradient(circle at 90% 85%,#ffe0ef 0 10%,transparent 11%),linear-gradient(145deg,#fffefe 0%,#fff5fb 48%,#ffe5f1 100%)!important;border:2px solid #fff!important;border-radius:20px 20px 24px 24px!important;box-shadow:0 0 0 3px #ffc1df,0 0 0 7px #fff8,0 28px 70px #9f4c7c44,inset 0 0 30px #fff!important}
-.letter:before{content:'🎀  ♡  🎀'!important;top:12px!important;color:#ed6da9!important;font-size:20px!important;letter-spacing:7px!important;text-shadow:0 2px 0 #fff!important}
-.letter:after{content:'♡ 🎀'!important;right:16px!important;bottom:10px!important;color:#e56da7!important;font-size:22px!important;opacity:.7!important;filter:none!important}
-.letter h2{font-family:'Quicksand','Nunito',sans-serif!important;font-weight:800!important;color:#d34f91!important;text-shadow:0 2px 0 #fff,0 5px 15px #ffb4d7aa!important}
-.letter .divider{color:#e56da7!important;letter-spacing:5px!important}
-.letter p{font-family:'Quicksand','Nunito',sans-serif!important;font-style:normal!important;font-weight:500!important;color:#78415f!important;line-height:1.95!important}
-.letter .signature{font-family:'Quicksand','Nunito',sans-serif!important;color:#d34f91!important;font-weight:800!important}
-.close-letter{border:1px solid #fff!important;border-radius:999px!important;background:linear-gradient(135deg,#ff9bc9,#e66caf)!important;color:#fff!important;box-shadow:0 8px 20px #e76ba844!important}
-.close-x{background:linear-gradient(135deg,#ffabd2,#e879b0)!important;border:2px solid #fff!important;color:#fff!important;box-shadow:0 6px 18px #c6538a44!important}
-.kitty-particle-layer{position:fixed;inset:0;z-index:100;pointer-events:none;overflow:hidden}
-.kitty-particle{position:absolute;left:0;top:0;width:var(--size,4px);height:var(--size,4px);border-radius:50%;background:radial-gradient(circle,#fff 0 15%,#fff5fc 20%,#ff8ec8 68%,#d96aff 100%);box-shadow:0 0 5px #fff,0 0 12px #ff8bc9,0 0 20px #dca2ff;opacity:0;animation:kittyParticleTravel var(--duration,2s) cubic-bezier(.2,.75,.2,1) var(--delay,0s) forwards}
-.kitty-particle.heart{width:auto;height:auto;background:none;border-radius:0;box-shadow:none;font-size:var(--size,10px);filter:drop-shadow(0 0 5px #ff8acb)}
-@keyframes kittyParticleTravel{0%{opacity:0;transform:translate3d(var(--sx),var(--sy),0) scale(.2) rotate(0deg)}10%{opacity:1}72%{opacity:.9}100%{opacity:0;transform:translate3d(var(--ex),var(--ey),0) scale(.08) rotate(300deg)}}
-.cake-stage{transition:filter .4s ease;outline:none;overflow:visible}
-.cake-stage:before{content:'🎀 ♡';position:absolute;z-index:12;top:-18px;right:5%;font-size:clamp(27px,6vw,43px);line-height:1;filter:drop-shadow(0 4px 7px #d45b9944);animation:kittyBob 2.2s ease-in-out infinite alternate;pointer-events:none}
-.cake-stage:focus-visible{filter:drop-shadow(0 0 15px #ff8acb)}
-@media(max-width:600px){.modal{padding:10px!important}.letter{width:min(94vw,460px)!important;max-height:calc(100svh - 20px)!important;padding:48px 18px 26px!important;border-radius:18px!important}.letter h2{font-size:clamp(27px,8vw,38px)!important}.letter p{font-size:14.5px!important;line-height:1.85!important}.letter:before{font-size:18px!important}.close-letter{min-height:43px;padding:11px 18px!important}}
-@media(prefers-reduced-motion:reduce){.kitty-particle{animation-duration:.01ms!important}}
-
-
-/* ===== HEART CONFESSION TRANSITION · HELLO KITTY ===== */
-.heart-confession{position:fixed;inset:0;z-index:120;display:grid;place-items:center;overflow:hidden;
-  background:radial-gradient(circle at 50% 42%,#fffafd 0,#ffe0ef 38%,#ffc0dd 76%,#ffacd2 100%);
-  opacity:0;animation:heartSceneIn .45s ease forwards;isolation:isolate}
-.heart-confession canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
-.heart-confession:before{content:"";position:absolute;inset:14px;border:2px dashed #f58cbd;border-radius:30px;opacity:.8;z-index:1;pointer-events:none}
-.heart-confession:after{content:"🎀  ♡  🎀";position:absolute;top:7%;left:0;right:0;text-align:center;font-size:clamp(19px,4vw,30px);letter-spacing:5px;filter:drop-shadow(0 4px 8px #d75d9b55);z-index:2}
-.heart-confession .confession-text{position:relative;z-index:3;text-align:center;color:#d34f91;font:800 clamp(24px,6vw,54px)/1.35 'Quicksand',sans-serif;letter-spacing:2px;
-  padding:22px 28px;border:2px solid #fff;border-radius:28px;background:linear-gradient(145deg,#fffafdE8,#ffe5f2E8);box-shadow:0 0 0 7px #ffb5d855,0 18px 50px #c85b9840,inset 0 0 25px #fff;
-  text-shadow:0 2px #fff,0 0 22px #ff9ecb;transform:scale(.25);opacity:0;animation:confessionPop .8s .25s cubic-bezier(.18,.9,.3,1.25) forwards}
-.heart-confession .confession-text small{display:block;margin-top:5px;font-size:clamp(12px,3vw,18px);letter-spacing:1px;color:#c65a91}
-.heart-confession.growing .confession-text{animation:confessionGrow 2.5s cubic-bezier(.22,.61,.36,1) forwards}
-.heart-confession .kitty-corner{position:absolute;z-index:3;font-size:clamp(27px,6vw,54px);filter:drop-shadow(0 5px 8px #d45b9944);animation:kittyFloat 2s ease-in-out infinite alternate}
-.heart-confession .kitty-corner.one{left:8%;bottom:14%}.heart-confession .kitty-corner.two{right:8%;bottom:16%;animation-delay:-.8s}
-@keyframes heartSceneIn{to{opacity:1}}
-@keyframes confessionPop{to{opacity:1;transform:scale(1)}}
-@keyframes confessionGrow{0%{transform:scale(1);opacity:1}100%{transform:scale(2.7);opacity:0}}
-@keyframes kittyFloat{to{transform:translateY(-14px) rotate(8deg)}}
-@media(max-width:600px){.heart-confession:before{inset:9px;border-radius:22px}.heart-confession .confession-text{padding:18px 20px;max-width:86vw}.heart-confession:after{top:9%}}
-@media(prefers-reduced-motion:reduce){.heart-confession *{animation-duration:.01ms!important}}
-
-
-/* ===== FINAL POLISH · MOBILE-FIRST HELLO KITTY EXPERIENCE ===== */
-:root{--kitty-blush:#ffb5d8;--kitty-berry:#c94f91;--kitty-cream:#fff8fc}
-html{height:100%;height:100dvh;background:#ffe8f3}
-body{min-height:100%;min-height:100dvh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-.scene{height:100vh;height:100svh;height:100dvh;min-height:0;isolation:isolate}
-.sky{position:fixed;inset:0;z-index:-3;contain:paint}
-.main{min-height:100%;justify-content:flex-start}
-.cake-stage{will-change:transform;transform:translate3d(-50%,0,0)}
-.cake-tier{backface-visibility:hidden;will-change:transform,opacity}
-.cake-hint{z-index:15;letter-spacing:.1px;backdrop-filter:blur(10px);animation:hintBob 2.8s ease-in-out infinite}
-.cake-hint:not(.visible){animation:none}
-@keyframes hintBob{0%,100%{margin-bottom:0}50%{margin-bottom:4px}}
-.secret-moon-trigger{display:grid;place-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.modal{padding: max(10px,var(--safe-top)) 10px max(10px,var(--safe-bottom));overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-.letter{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;overflow-wrap:anywhere}
-.close-x{top:calc(10px + var(--safe-top));right:calc(10px + env(safe-area-inset-right,0px))}
-button,.cake-stage{-webkit-touch-callout:none}
-
-@media(max-width:600px){
-  html,body{width:100%;overflow:hidden}
-  .scene{height:100svh;height:100dvh;min-height:0}
-  .main{width:100%;min-height:100%;padding:calc(62px + var(--safe-top)) 15px calc(108px + var(--safe-bottom));justify-content:flex-start}
-  .eyebrow{font-size:clamp(8px,2.5vw,10px);padding:8px 12px;gap:6px;letter-spacing:.65px;max-width:calc(100vw - 104px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;box-shadow:0 7px 22px #d96aa222}
-  h1{font-size:clamp(42px,11.8vw,61px);line-height:.99;letter-spacing:0;margin-top:13px;max-width:94vw;text-wrap:balance;text-shadow:0 2px 0 #fff8,0 8px 24px #e46ba844}
-  h1 span{margin-top:4px}
-  .subtitle{font-size:clamp(12px,3.35vw,14px);line-height:1.55;margin-top:10px;max-width:min(86vw,360px);text-wrap:balance}
-  .moon-wrap{top:calc(12% + var(--safe-top));left:5%;width:clamp(55px,16vw,82px);opacity:.9}
-  .moon-halo{inset:-20%}
-  .bunny{top:calc(12% + var(--safe-top) + clamp(38px,11vw,62px));left:calc(5% + clamp(18px,5vw,30px));font-size:clamp(25px,8vw,39px);opacity:.88}
-  .cloud{filter:blur(8px);opacity:.68}
-  .c1{width:58vw;height:24vw;bottom:9%;left:-16%}
-  .c2{width:48vw;height:21vw;bottom:16%;right:-15%}
-  .c3{width:35vw;height:15vw;bottom:28%;left:38%;opacity:.38}
-  .lake{height:17%;opacity:.82}
-  .lake:before{opacity:.45}
-  .lake:after{top:14%;height:3px;box-shadow:0 16px 24px #fff8,0 38px 28px #ffc2e5,0 65px 30px #d6b8ff}
-  .cake-stage{width:min(84vw,330px);height:clamp(190px,53vw,238px);bottom:calc(16% + var(--safe-bottom));filter:drop-shadow(0 12px 14px #b34c8b2c)}
-  .cake-glow{inset:18% -8% -2%;filter:blur(17px);opacity:.9}
-  .tier-bottom{height:35%;bottom:8%}
-  .tier-middle{height:29%;bottom:40%}
-  .tier-top{height:25%;bottom:67%}
-  .cake-tier{border-width:1.5px;border-radius:10px 10px 15px 15px;box-shadow:inset 0 -8px 12px #d85b9a2b,inset 0 4px 6px #fff,0 7px 14px #b55a8a2b}
-  .icing{height:clamp(12px,4vw,17px)}
-  .tier-photo{border-width:2px;border-radius:6px}
-  .cake-decoration{font-size:clamp(10px,3.2vw,14px)}
-  .cake-age{font-size:clamp(14px,4vw,19px)}
-  .candle-row{top:-25px;gap:4px}
-  .candle{width:5px;height:20px}
-  .kitty-floating{font-size:clamp(23px,7vw,32px);top:-7%;right:1%}
-  .cake-sparkles span{font-size:clamp(13px,4vw,18px)}
-  .cake-hint{bottom:calc(2.3% + var(--safe-bottom));width:max-content;max-width:calc(100vw - 28px);padding:10px 13px;font-size:clamp(10px,3vw,12px);white-space:normal;line-height:1.35;border-radius:18px;box-shadow:0 7px 22px #b95e8d25}
-  /* On the recipient's phone, keep the screen as a clean viewing experience. */
-  .gear{display:none!important}
-  .panel{display:none!important}
-  .orbit img{width:clamp(48px,13vw,68px);height:clamp(62px,16vw,82px);padding:4px 4px 14px;box-shadow:0 8px 20px #9f4c7c25,0 0 0 1px #fff9}
-  .modal{align-items:center;padding:calc(9px + var(--safe-top)) 9px calc(9px + var(--safe-bottom));background:radial-gradient(ellipse at 50% 15%,#fff5fb 0%,#f7c5e6cc 45%,#b990d799 100%)!important;backdrop-filter:blur(14px)}
-  .envelope{width:min(88vw,390px);height:clamp(190px,54vw,255px);border-radius:18px}
-  .letter{width:min(94vw,460px)!important;max-height:calc(100svh - var(--safe-top) - var(--safe-bottom) - 18px)!important;padding:47px 19px 25px!important;border-radius:22px!important;box-shadow:0 0 0 2px #ffc1df,0 0 0 5px #fff9,0 18px 48px #9f4c7c30,inset 0 0 22px #fff!important;scrollbar-width:none}
-  .letter::-webkit-scrollbar{display:none}
-  .letter:before{top:11px!important;font-size:17px!important;letter-spacing:5px!important}
-  .letter:after{right:12px!important;bottom:8px!important;font-size:20px!important}
-  .letter h2{font-size:clamp(27px,8.5vw,36px)!important;line-height:1.15!important;margin:3px 0 10px!important;text-wrap:balance}
-  .letter .divider{margin:0 0 13px!important;letter-spacing:4px!important}
-  .letter p{font-size:clamp(13px,3.7vw,15px)!important;line-height:1.78!important;padding:2px 1px!important}
-  .letter .signature{font-size:27px!important;margin-top:15px!important}
-  .close-letter{min-height:44px;padding:11px 20px!important;margin-top:14px!important;font-size:13px}
-  .close-x{width:42px;height:42px;top:calc(9px + var(--safe-top));right:calc(9px + env(safe-area-inset-right,0px));font-size:20px}
-  .heart-confession:before{inset:8px;border-radius:20px;border-width:1.5px}
-  .heart-confession:after{top:calc(6% + var(--safe-top));font-size:clamp(17px,5vw,24px);letter-spacing:2px}
-  .heart-confession .confession-text{width:max-content;max-width:84vw;padding:17px 15px;border-radius:23px;font-size:clamp(22px,7vw,34px);letter-spacing:1px;box-shadow:0 0 0 5px #ffb4d944,0 14px 34px #c85b9830,inset 0 0 20px #fff}
-  .heart-confession .confession-text small{font-size:clamp(10px,3vw,13px);line-height:1.5}
-  .heart-confession .kitty-corner.one{left:7%;bottom:12%}
-  .heart-confession .kitty-corner.two{right:7%;bottom:13%}
-  .secret-moon-trigger{top:calc(12px + var(--safe-top));left:auto;right:calc(12px + env(safe-area-inset-right,0px));width:38px;height:38px;font-size:14px;opacity:.85;background:#fff9;border:1px solid #fff;box-shadow:0 5px 15px #c45b9420}
-}
-@media(max-width:380px){
-  .main{padding-top:calc(58px + var(--safe-top));padding-left:10px;padding-right:10px}
-  h1{font-size:clamp(39px,11.4vw,46px)}
-  .subtitle{max-width:90vw;font-size:12px}
-  .cake-stage{width:88vw;height:clamp(184px,52vw,210px);bottom:calc(16% + var(--safe-bottom))}
-  .cake-hint{font-size:10px;padding:9px 11px}
-  .letter{padding:45px 15px 22px!important}
-  .letter p{font-size:13px!important;line-height:1.72!important}
-}
-@media(max-height:720px) and (max-width:600px){
-  .main{padding-top:calc(48px + var(--safe-top));padding-bottom:calc(90px + var(--safe-bottom))}
-  h1{font-size:clamp(37px,9.5vw,51px);margin-top:9px}
-  .subtitle{margin-top:7px;font-size:12px;line-height:1.45}
-  .cake-stage{height:clamp(160px,39vh,205px);bottom:calc(15% + var(--safe-bottom))}
-  .cake-hint{bottom:calc(1.5% + var(--safe-bottom));padding:8px 11px}
-  .moon-wrap{top:calc(10% + var(--safe-top));width:58px}
-  .bunny{top:calc(10% + var(--safe-top) + 42px)}
-}
-@media(orientation:landscape) and (max-height:500px){
-  .main{padding-top:calc(16px + var(--safe-top));padding-bottom:calc(58px + var(--safe-bottom));}
-  .eyebrow{padding:5px 10px;font-size:8px}
-  h1{font-size:clamp(30px,7vh,43px);margin-top:5px}
-  .subtitle{font-size:11px;line-height:1.35;margin-top:4px}
-  .cake-stage{width:min(42vw,250px);height:48vh;bottom:calc(7% + var(--safe-bottom));left:72%}
-  .cake-hint{left:72%;bottom:calc(1% + var(--safe-bottom));max-width:48vw;padding:6px 10px;font-size:10px}
-  .moon-wrap{top:12%;left:8%;width:60px}
-  .bunny{top:calc(12% + 43px);left:calc(8% + 25px);font-size:28px}
-}
-@media(prefers-reduced-motion:reduce){
-  .cake-hint,.cake-stage.cake-ready,.moon-wrap,.bunny,.cloud,.stars i,.particles span{animation-duration:.01ms!important;animation-iteration-count:1!important}
+    text-shadow:
+        0 2px 8px rgba(229,108,155,.2);
 }
 
 
+/* thêm dòng trang trí */
 
-/* ===== MOBILE-FIRST PERFORMANCE + TIMING POLISH ===== */
-@media(max-width:600px){
-  html,body{width:100%;max-width:100%;overflow:hidden}
-  .scene{min-height:0;height:100dvh;height:100svh}
-  .main{width:100%;padding:calc(70px + var(--safe-top)) 12px calc(118px + var(--safe-bottom))}
-  .eyebrow{font-size:9px;letter-spacing:1.4px;max-width:90vw}
-  h1{font-size:clamp(40px,11vw,60px);max-width:94vw;margin-top:12px;overflow-wrap:anywhere}
-  .subtitle{font-size:12px;line-height:1.55;max-width:88vw;margin-top:10px}
-  .cake-stage{width:min(88vw,340px);height:clamp(205px,48vw,270px);bottom:calc(17% + var(--safe-bottom));filter:drop-shadow(0 12px 18px #13052144)}
-  .cake-glow{filter:blur(14px)}
-  .cake-hint{max-width:88vw;font-size:12px;padding:10px 15px}
-  .hold{width:min(88vw,330px);min-height:48px;padding:12px 16px;bottom:calc(2.5% + var(--safe-bottom));font-size:13px}
-  .hold small{font-size:10px}
-  .modal{padding:10px!important}
-  .letter{width:min(94vw,460px)!important;max-height:calc(100dvh - 20px)!important;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:46px 17px 24px!important}
-  .letter h2{font-size:clamp(27px,8vw,37px)!important}
-  .letter p{font-size:14px!important;line-height:1.8!important}
-  .close-letter,.close-x{min-height:44px}
-  .heart-confession .confession-text{max-width:88vw;padding:17px 18px;font-size:clamp(23px,6.5vw,38px);letter-spacing:1px}
-  .heart-confession canvas{contain:strict}
-  /* Giảm tải GPU trên điện thoại nhưng vẫn giữ nền lung linh. */
-  .aurora{filter:blur(34px);opacity:.38}
-  .cloud{filter:blur(5px);opacity:.55}
-  .lake:before{opacity:.5}
-  .sky:after{display:none}
-  .stars i{box-shadow:0 0 5px #fff8e8,0 0 9px #f5d58a}
-  .particles span{text-shadow:0 0 6px #f5d58a}
-}
-@media(max-height:650px) and (max-width:600px){
-  .main{padding-top:calc(48px + var(--safe-top))}
-  h1{font-size:clamp(34px,9vw,48px)}
-  .subtitle{margin-top:6px}
-  .cake-stage{height:175px;bottom:calc(16% + var(--safe-bottom))}
-  .hold{bottom:calc(1.5% + var(--safe-bottom));padding:9px 14px}
-}
-@media(prefers-reduced-motion:reduce){
-  .cake-stage,.cake-tier,.heart-confession .confession-text{animation-duration:.01ms!important;transition-duration:.01ms!important}
+.letter h2::after{
+    content:"♡  🌙  ♡";
+
+    display:block;
+
+    font:
+        18px
+        'Quicksand',
+        sans-serif;
+
+    color:#f2a2bc;
+
+    margin-top:3px;
+
+    letter-spacing:5px;
 }
 
 
-/* ===== DREAMY NEON HEART · ORNATE BUT MOBILE-LIGHT ===== */
-.heart-confession.neon-scene{
-  background:
-    radial-gradient(ellipse at 50% 43%,rgba(255,55,160,.23) 0%,transparent 34%),
-    radial-gradient(ellipse at 18% 24%,rgba(120,70,255,.20) 0%,transparent 32%),
-    radial-gradient(ellipse at 84% 76%,rgba(255,119,198,.16) 0%,transparent 34%),
-    radial-gradient(ellipse at center,#32102f 0%,#170d29 57%,#070711 100%);
-  isolation:isolate;
-}
-.heart-confession.neon-scene:before{
-  inset:12px;border:1px solid rgba(255,164,222,.62);border-radius:28px;opacity:.72;
-  box-shadow:inset 0 0 35px #ff4fa51a,0 0 24px #ff4fa52b;
-}
-.heart-confession.neon-scene:after{
-  content:"✦  ♡  ✧  LOVE  ✧  ♡  ✦";top:6.2%;color:#ffe0f4;
-  font-size:clamp(14px,3.2vw,23px);letter-spacing:clamp(2px,.8vw,7px);
-  text-shadow:0 0 8px #ff4fa5,0 0 22px #ff4fa5;animation:topGlimmer 3s ease-in-out infinite alternate;
-}
-.heart-confession.neon-scene .heart-aura{position:absolute;left:50%;top:47%;width:min(92vw,560px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;z-index:1;pointer-events:none;
-  background:radial-gradient(circle,rgba(255,65,166,.17),rgba(185,67,255,.08) 38%,transparent 68%);filter:blur(5px);animation:auraBreathe 3.2s ease-in-out infinite}
-.heart-confession.neon-scene .heart-orbit{position:absolute;left:50%;top:47%;width:min(83vw,460px);height:min(70vw,390px);border:1px solid rgba(255,160,224,.36);border-radius:50%;z-index:1;pointer-events:none;box-shadow:0 0 15px #ff60bb24,inset 0 0 15px #ff60bb14}
-.heart-confession.neon-scene .heart-orbit.orbit-one{transform:translate(-50%,-50%) rotate(-24deg);border-style:dashed;animation:orbitSpin 18s linear infinite}
-.heart-confession.neon-scene .heart-orbit.orbit-two{width:min(72vw,390px);height:min(84vw,440px);transform:translate(-50%,-50%) rotate(29deg);border-color:rgba(188,133,255,.3);animation:orbitSpinReverse 24s linear infinite}
-.heart-confession.neon-scene .heart-spark{position:absolute;z-index:3;color:#fff0fa;font-size:clamp(14px,3.2vw,24px);text-shadow:0 0 7px #fff,0 0 18px #ff4fa5;pointer-events:none;animation:sparkleFloat 2.4s ease-in-out infinite}
-.heart-confession.neon-scene .heart-spark.s1{left:16%;top:29%;animation-delay:-.5s}.heart-confession.neon-scene .heart-spark.s2{right:15%;top:35%;font-size:clamp(18px,4vw,30px);animation-delay:-1.3s}.heart-confession.neon-scene .heart-spark.s3{left:21%;bottom:26%;animation-delay:-1.8s}.heart-confession.neon-scene .heart-spark.s4{right:20%;bottom:25%;animation-delay:-.9s}.heart-confession.neon-scene .heart-spark.s5{left:50%;top:20%;font-size:13px;animation-delay:-1.1s}
-.heart-confession.neon-scene .neon-heart{
-  position:absolute;left:50%;top:46%;width:clamp(290px,76vw,445px);height:clamp(260px,68vw,400px);
-  transform:translate(-50%,-57%);z-index:2;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 200'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23fff0fb'/%3E%3Cstop offset='.35' stop-color='%23ff4db5'/%3E%3Cstop offset='.7' stop-color='%23d875ff'/%3E%3Cstop offset='1' stop-color='%23ff9ed9'/%3E%3C/linearGradient%3E%3Cfilter id='glow'%3E%3CfeGaussianBlur stdDeviation='1.6' result='b'/%3E%3CfeMerge%3E%3CfeMergeNode in='b'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cpath d='M110 181 C94 165 18 111 18 61 C18 20 70 4 110 48 C150 4 202 20 202 61 C202 111 126 165 110 181 Z' fill='%23ff4fa5' fill-opacity='.045' stroke='url(%23g)' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' filter='url(%23glow)'/%3E%3Cpath d='M110 158 C91 141 37 101 37 65 C37 39 70 29 110 66 C150 29 183 39 183 65 C183 101 129 141 110 158 Z' fill='none' stroke='%23ffb8e6' stroke-opacity='.72' stroke-width='1.15' stroke-dasharray='2 5'/%3E%3Cpath d='M110 91 l4 9 10 1 -7.5 6.5 2.2 10 -8.7 -5.2 -8.7 5.2 2.2 -10 -7.5 -6.5 10 -1 Z' fill='%23fff2fb' fill-opacity='.85'/%3E%3Cpath d='M75 91 q-8 -10 -15 -1 q-5 8 15 20 q20 -12 15 -20 q-7 -9 -15 1 M145 91 q-8 -10 -15 -1 q-5 8 15 20 q20 -12 15 -20 q-7 -9 -15 1' fill='none' stroke='%23ffd4ef' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
-  filter:drop-shadow(0 0 5px #ff4fa5) drop-shadow(0 0 17px #ff4fa5a6) drop-shadow(0 0 38px #bd5cff55);
-  animation:neonHeartbeat 2s ease-in-out infinite;pointer-events:none;
-}
-.heart-confession.neon-scene .confession-text{
-  position:relative;z-index:4;text-align:center;color:#fff8fd;border:0;background:transparent;box-shadow:none;
-  text-shadow:0 0 5px #fff,0 0 12px #ff4fa5,0 0 26px #ff4fa5,0 0 48px #c35cff;
-  padding:18px 12px;transform:scale(.9);animation:neonTextIn 1.1s cubic-bezier(.2,.8,.2,1) forwards;
-  letter-spacing:clamp(1px,.6vw,4px);font-weight:900;
-}
-.heart-confession.neon-scene .confession-text small{color:#ffe2f4;text-shadow:0 0 8px #ff4fa5,0 0 20px #c35cff;letter-spacing:1px}
-.heart-confession.neon-scene.growing .confession-text{animation:confessionGrow 2.5s cubic-bezier(.22,.61,.36,1) forwards}
-.heart-confession.neon-scene.growing .neon-heart{animation:neonHeartFade 2.5s ease-in forwards}
-.heart-confession.neon-scene.growing .heart-aura{animation:auraFade 2.5s ease-in forwards}
-.heart-confession.neon-scene .kitty-corner{filter:drop-shadow(0 0 10px #ff75c4);animation:kittyFloat 2.4s ease-in-out infinite alternate;z-index:4}
-@keyframes neonHeartbeat{0%,100%{transform:translate(-50%,-57%) scale(1);filter:drop-shadow(0 0 5px #ff4fa5) drop-shadow(0 0 17px #ff4fa5a6) drop-shadow(0 0 38px #bd5cff55)}50%{transform:translate(-50%,-57%) scale(1.055);filter:drop-shadow(0 0 9px #ff9bd6) drop-shadow(0 0 25px #ff4fa5) drop-shadow(0 0 48px #bd5cff88)}}
-@keyframes neonHeartFade{to{opacity:0;transform:translate(-50%,-57%) scale(1.18)}}
-@keyframes neonTextIn{from{opacity:0;transform:scale(.72) translateY(12px);filter:blur(8px)}to{opacity:1;transform:scale(1) translateY(0);filter:blur(0)}}
-@keyframes topGlimmer{from{opacity:.55;letter-spacing:3px}to{opacity:1;letter-spacing:clamp(3px,1vw,8px)}}
-@keyframes auraBreathe{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.92)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
-@keyframes auraFade{to{opacity:0;transform:translate(-50%,-50%) scale(1.4)}}
-@keyframes orbitSpin{to{transform:translate(-50%,-50%) rotate(336deg)}}
-@keyframes orbitSpinReverse{to{transform:translate(-50%,-50%) rotate(-331deg)}}
-@keyframes sparkleFloat{0%,100%{opacity:.42;transform:translateY(4px) scale(.75) rotate(0)}50%{opacity:1;transform:translateY(-9px) scale(1.18) rotate(18deg)}}
-@media(max-width:600px){
-  .heart-confession.neon-scene:before{inset:8px;border-radius:20px}
-  .heart-confession.neon-scene .neon-heart{width:min(88vw,350px);height:min(79vw,320px);top:45%}
-  .heart-confession.neon-scene .heart-orbit{width:88vw;height:74vw;top:46%}
-  .heart-confession.neon-scene .heart-orbit.orbit-two{width:76vw;height:88vw}
-  .heart-confession.neon-scene .confession-text{font-size:clamp(23px,7vw,39px);max-width:92vw}
-  .heart-confession.neon-scene:after{top:calc(6% + var(--safe-top,0px));letter-spacing:2px}
-}
-@media(prefers-reduced-motion:reduce){
-  .heart-confession.neon-scene .neon-heart,.heart-confession.neon-scene .heart-orbit,.heart-confession.neon-scene .heart-spark,.heart-confession.neon-scene .heart-aura,.heart-confession.neon-scene:after{animation:none!important}
+/* Nội dung */
+
+.letter-body{
+    position:relative;
+
+    font:
+        600 20px/1.75
+        'Dancing Script',
+        cursive;
+
+    white-space:pre-wrap;
+
+    min-height:100px;
+
+    color:#704a4a;
 }
 
-/* Thư gấp lại hóa thành trái tim thiên thần bay lên trời */
-.winged-heart-finale{position:fixed;z-index:10050;left:50%;top:70%;width:1px;height:1px;pointer-events:none;transform:translate(-50%,-50%);opacity:1;filter:drop-shadow(0 0 18px #ff6ebd);}
-.winged-heart-finale.fly-up{animation:wingedHeartAscend 4s cubic-bezier(.22,.62,.28,1) forwards;}
-.winged-heart-art{position:absolute;left:0;top:0;width:clamp(190px,56vw,300px);height:clamp(105px,30vw,155px);transform:translate(-50%,-50%);animation:angelHeartBeat .72s ease-in-out infinite alternate;}
-.pink-heart{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(54px,15vw,100px);line-height:1;text-shadow:0 0 12px #ff72c2,0 0 30px #ff3eaa,0 0 55px #ff9bd7;animation:pinkHeartShimmer 1.2s ease-in-out infinite alternate;}
-.angel-wing{position:absolute;top:50%;width:clamp(82px,24vw,126px);height:auto;overflow:visible;filter:drop-shadow(0 0 5px rgba(255,255,255,.95)) drop-shadow(0 0 12px rgba(255,181,226,.75));}
-.angel-wing svg{display:block;width:100%;height:auto;overflow:visible}
-.left-wing{left:0;transform:translateY(-50%) rotate(-8deg);transform-origin:90% 60%;animation:wingFlapLeft .48s ease-in-out infinite alternate;}
-.right-wing{right:0;transform:translateY(-50%) scaleX(-1) rotate(-8deg);transform-origin:10% 60%;animation:wingFlapRight .48s ease-in-out infinite alternate;}
-.winged-heart-caption{position:absolute;top:clamp(52px,14vw,92px);left:50%;transform:translateX(-50%);width:max-content;max-width:88vw;color:#fff1fa;font-size:clamp(12px,3.4vw,17px);font-weight:700;letter-spacing:.5px;text-shadow:0 0 8px #ff4fa5,0 0 20px #ff4fa5;text-align:center;animation:captionGlow .9s ease-in-out infinite alternate;}
-.winged-spark{position:absolute;color:#fff2fb;font-size:clamp(18px,5vw,28px);text-shadow:0 0 12px #ff72c2,0 0 25px #ff4fa5;animation:wingedSparkDrift 1.1s ease-in-out infinite alternate;}
-.spark-a{left:-58px;top:-45px}.spark-b{left:45px;top:-68px;animation-delay:-.5s}.spark-c{left:65px;top:24px;animation-delay:-.25s}
-@keyframes wingedHeartAscend{0%{opacity:0;transform:translate(-50%,-50%) scale(.28) rotate(-12deg)}12%{opacity:1;transform:translate(-50%,-50%) scale(1.08) rotate(5deg)}24%{transform:translate(-50%,-50%) scale(1) rotate(-3deg)}65%{opacity:1;transform:translate(calc(-50% + 14px),calc(-50% - 55vh)) scale(.78) rotate(7deg)}100%{opacity:0;transform:translate(calc(-50% - 10px),calc(-50% - 112vh)) scale(.22) rotate(-10deg);filter:drop-shadow(0 0 35px #ffd3ef) blur(2px)}}
-@keyframes angelHeartBeat{from{transform:translate(-50%,-50%) scale(.96)}to{transform:translate(-50%,-54%) scale(1.08)}}
-@keyframes pinkHeartShimmer{from{filter:saturate(1);transform:translate(-50%,-50%) scale(.97)}to{filter:saturate(1.35) brightness(1.16);transform:translate(-50%,-50%) scale(1.06)}}
-@keyframes wingFlapLeft{from{transform:translateY(-50%) rotate(-15deg) scaleY(.92)}to{transform:translateY(-50%) rotate(8deg) scaleY(1.06)}}
-@keyframes wingFlapRight{from{transform:translateY(-50%) scaleX(-1) rotate(-15deg) scaleY(.92)}to{transform:translateY(-50%) scaleX(-1) rotate(8deg) scaleY(1.06)}}
-@keyframes wingedSparkDrift{from{opacity:.35;transform:translateY(5px) scale(.7) rotate(-12deg)}to{opacity:1;transform:translateY(-9px) scale(1.18) rotate(15deg)}}
-@keyframes captionGlow{from{opacity:.65}to{opacity:1}}
-@media(prefers-reduced-motion:reduce){.winged-heart-finale,.winged-heart-art,.pink-heart,.angel-wing,.winged-spark,.winged-heart-caption{animation-duration:.01ms!important}}
 
-/* PC: giữ nút cài đặt và bảng chỉnh thông số; nút trái tim bí mật chỉ dành cho điện thoại. */
-@media (min-width:601px){.gear{display:block!important}.secret-moon-trigger{display:none!important}}
-@media (max-width:600px){.gear,.panel{display:none!important}.secret-moon-trigger{display:grid!important}}
+/* =========================
+   NÚT X ĐÓNG LÁ THƯ
+========================= */
 
+.close{
+    position:absolute;
 
-/* ===== HELLO KITTY PINK FINISH ===== */
-.heart-confession.neon-scene{
-  background:radial-gradient(ellipse at 50% 42%,#fffafd 0%,#ffe5f2 35%,#ffc5df 72%,#ffadd3 100%)!important;
-}
-.heart-confession.neon-scene:before{
-  border-color:#f58cbd!important;
-  box-shadow:inset 0 0 28px #ffb5d822,0 0 22px #f58cbd33!important;
-}
-.heart-confession.neon-scene:after{
-  content:"🎀  ♡  🎀"!important;
-  color:#d34f91!important;
-  text-shadow:0 2px 0 #fff,0 4px 12px #d45b9944!important;
-}
-.heart-confession.neon-scene .confession-text{
-  color:#d34f91!important;
-  background:linear-gradient(145deg,#fffafde8,#ffe5f2e8)!important;
-  border:2px solid #fff!important;
-  border-radius:25px!important;
-  box-shadow:0 0 0 6px #ffb5d855,0 16px 40px #c85b9833,inset 0 0 22px #fff!important;
-  text-shadow:0 2px 0 #fff,0 0 15px #ff9ecb!important;
-}
-.heart-confession.neon-scene .confession-text small{
-  color:#c65a91!important;text-shadow:0 1px 0 #fff!important;
-}
-.letter:before{content:'🎀  💗  🎀'!important;letter-spacing:5px!important}
-.cake-stage{overflow:visible!important}
-.cake-stage:before{
-  content:'🎀💗'!important;position:absolute;z-index:12;top:-18px;right:5%;
-  font-size:clamp(28px,6vw,44px);line-height:1;
-  filter:drop-shadow(0 4px 7px #d45b9944);
-  animation:kittyBob 2.2s ease-in-out infinite alternate;pointer-events:none;
+    right:14px;
+    top:8px;
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:0;
+    background:transparent;
+
+    color:#d85b88;
+
+    font:
+        700 19px/1
+        Arial,
+        sans-serif;
+
+    cursor:pointer;
+
+    z-index:51;
+
+    /* Đưa X vào đúng tâm bông hoa */
+    padding:0;
+
+    text-shadow:
+        0 1px 3px rgba(255,255,255,.9),
+        0 0 5px rgba(180,60,110,.35);
+
+    transition:
+        transform .25s ease,
+        color .25s ease;
 }
 
-</style>
+.close:hover{
+    transform:scale(1.18) rotate(90deg);
+    color:#c63f72;
+}
 
-<style id="real-hello-kitty-images">
-/* Use the actual Hello Kitty character artwork instead of a cat emoji. */
-.kitty-floating{font-size:0!important;width:clamp(54px,12vw,94px);height:clamp(54px,12vw,94px);top:-13%;right:1%;}
-.kitty-floating img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 8px #d76c9b55);}
-.letter-kitty-real{position:absolute;z-index:9;top:37px;left:50%;transform:translateX(-50%);width:clamp(58px,17vw,88px);height:auto;max-height:94px;object-fit:contain;filter:drop-shadow(0 3px 5px #d76c9b33);pointer-events:none;}
-.letter{padding-top:125px!important;}
-.real-kitty-corner{display:block;width:clamp(68px,18vw,130px);height:auto;max-height:155px;object-fit:contain;background:#fff8;border-radius:22px;padding:5px;}
-.heart-confession.neon-scene .kitty-corner.one{left:7%;bottom:12%;}
-.heart-confession.neon-scene .kitty-corner.two{right:7%;bottom:12%;animation-delay:-.8s;transform:scaleX(-1);}
-@media(max-width:600px){.letter{padding-top:125px!important;}.letter-kitty-real{top:35px;width:65px;}.kitty-floating{top:-12%;right:0;width:58px;height:58px;}.real-kitty-corner{width:clamp(56px,17vw,90px);max-height:110px;padding:3px;}}
-/* More pink Hello Kitty stickers around the birthday scene and inside the letter. */
-.kitty-decorations{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
-.kitty-deco{position:absolute;width:clamp(42px,7.5vw,76px);height:auto;object-fit:contain;filter:drop-shadow(0 5px 9px #d45b9955);opacity:.94;animation:kittyDecoFloat 3.4s ease-in-out infinite alternate}
-.kitty-deco.k1{left:2%;top:31%;transform:rotate(-10deg)}
-.kitty-deco.k2{right:2%;top:38%;animation-delay:-1.1s;transform:rotate(9deg)}
-.kitty-deco.k3{left:4%;bottom:15%;width:clamp(38px,6vw,62px);animation-delay:-1.8s}
-.kitty-deco.k4{right:4%;bottom:17%;width:clamp(38px,6vw,62px);animation-delay:-.6s;transform:scaleX(-1)}
-@keyframes kittyDecoFloat{to{translate:0 -9px;rotate:4deg}}
-.kitty-sticker-strip{width:min(150px,45%);height:78px;margin:12px auto 5px;border:2px solid #ffc1df;border-radius:17px;overflow:hidden;background:#ffeaf5;box-shadow:0 5px 16px #d45b9922}
-.kitty-sticker-strip img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.middle-finger-pop{width:min(82vw,390px);height:min(82vw,390px);max-height:72vh;max-width:72vh;display:block;overflow:hidden;border-radius:22px;box-shadow:0 12px 42px #c94f9166;animation:fingerPop 2s cubic-bezier(.2,.65,.25,1) forwards}
-.middle-finger-pop img{display:block;width:100%;height:100%;object-fit:contain;border-radius:22px}
-@media(max-width:600px){.kitty-deco{width:42px}.kitty-deco.k1{left:0;top:28%}.kitty-deco.k2{right:0;top:36%}.kitty-deco.k3{left:1%;bottom:14%;width:36px}.kitty-deco.k4{right:1%;bottom:16%;width:36px}.kitty-sticker-strip{height:66px;width:135px}}
-@media(prefers-reduced-motion:reduce){.kitty-deco{animation:none!important}}
-</style>
+.close:active{
+    transform:scale(.9);
+}
 
-<style id="birthday-scene-no-icons-and-finger-pop">
-/* Birthday landing screen: hide Hello Kitty character stickers only; keep other birthday decorations/icons. */
-.scene .kitty-decorations,.scene .kitty-floating{display:none!important} /* Keep Hello Kitty stickers in the “ANH YÊU EM” confession scene. */
-.secret-moon-trigger{font-size:24px!important;color:#fff!important;background:linear-gradient(135deg,#ffb5d9ee,#b45be8ee)!important}
-.secret-moon-trigger::before{content:'💗';display:block;font-size:25px;line-height:1;color:#ff4fa5;text-shadow:0 0 5px #ff8fc7,0 0 12px #ff4fa5,0 0 18px #ffb6dc;transform:translateY(-1px)}
-/* The playful middle-finger symbol grows smoothly and disappears within 2 seconds. */
-.middle-finger-pop{width:auto!important;height:auto!important;max-width:none!important;max-height:none!important;overflow:visible!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;font-size:clamp(48px,12vw,76px)!important;line-height:1!important;animation:fingerPop 2s cubic-bezier(.2,.65,.25,1) forwards!important}
-.middle-finger-pop img{display:none!important}
+/* Hover */
+.close:hover{
+    transform:rotate(90deg) scale(1.12);
 
-/* ===== Mobile cake proportions: balanced size and safe spacing ===== */
-@media screen and (max-width:600px){
-  .cake-stage{
-    width:min(88vw,350px) !important;
-    height:clamp(205px,58vw,255px) !important;
-    bottom:calc(19% + var(--safe-bottom)) !important;
-    perspective:850px;
-    filter:drop-shadow(0 13px 17px #b34c8b2b) !important;
+    background:#ffd0df;
+
+    box-shadow:
+        0 4px 18px rgba(220,90,140,.4),
+        0 0 20px rgba(255,130,180,.45);
+}
+
+/* Khi bấm */
+.close:active{
+    transform:scale(.9);
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar{
+    width:350px;background:#fff;color:#333;padding:18px;
+    overflow:auto;z-index:40;box-shadow:-8px 0 30px #0006;
+}
+.sidebar h2{font-size:20px;margin-bottom:15px}
+label.title{font-weight:700;font-size:13px;display:block;margin:14px 0 7px}
+textarea,input[type=text],input[type=url]{
+    width:100%;border:1px solid #ddd;border-radius:10px;
+    padding:10px;outline:none;
+}
+textarea{resize:vertical;min-height:90px}
+.btn{
+    border:0;border-radius:10px;padding:10px 12px;
+    background:#ffedf5;color:#ed3e78;font-weight:700;
+    cursor:pointer;margin-top:8px;
+}
+.row{display:flex;gap:7px;margin-bottom:7px}.row input{flex:1}
+.small{font-size:12px;color:#777}
+#previews{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+#previews img{width:54px;height:54px;object-fit:cover;border-radius:7px}
+.toggle{
+    display:flex;justify-content:space-between;align-items:center;
+    margin:12px 0;padding:9px 0;border-bottom:1px solid #eee;
+}
+.switch{width:44px;height:24px;position:relative}
+.switch input{display:none}
+.slider{
+    position:absolute;inset:0;background:#ccc;border-radius:20px;cursor:pointer;
+}
+.slider:before{
+    content:"";position:absolute;width:18px;height:18px;
+    left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s;
+}
+.switch input:checked+.slider{background:#ff5d9e}
+.switch input:checked+.slider:before{transform:translateX(20px)}
+
+/* Tối ưu hiệu năng mobile: giảm blur, shadow và 3D nặng. */
+@media(max-width:800px){
+    #stars{opacity:.45}
+    .cloud{filter:none;opacity:.28}
+    .moon-main{box-shadow:0 0 28px rgba(255,229,139,.45)}
+    .photo{
+        box-shadow:0 5px 14px rgba(0,0,0,.35);
+        transform-style:flat;
+        will-change:transform,opacity;
+        animation-name:photoFloatMobile;
+    }
+    .light{box-shadow:none}
+    .nav button{backdrop-filter:none}
+}
+
+@keyframes photoFloatMobile{
+    0%{transform:translate3d(var(--photoX),var(--edgeY),0) rotateZ(var(--rotate)) scale(1);opacity:0}
+    10%{opacity:.95}
+    50%{transform:translate3d(var(--photoMidX),50vh,0) rotateZ(var(--rotate)) scale(.78);opacity:.85}
+    100%{transform:translate3d(var(--photoEndX),-15vh,0) rotateZ(var(--rotate)) scale(.35);opacity:0}
+}
+
+@media(max-width:800px){
+    #app{display:block}
+    .stage{height:100%;width:100%}
+
+    /* Điện thoại chỉ dùng để XEM món quà. Không cho mở phần chỉnh sửa. */
+    .sidebar{display:none !important}
+    #settingsBtn{display:none !important}
+
+    .moon-main{width:125px;height:125px;right:8%;top:7%}
+    .photo{width:92px;height:118px}
+    .float-text{font-size:22px}
+    .nav{right:12px;top:12px}
+}
+@media(min-width:801px){.mobile-settings{display:none}}
+/* =========================
+   ĐIỀU KHIỂN GÓC NHÌN 3D
+========================= */
+
+#stage{
+    perspective:1200px;
+    overflow:hidden;
+    touch-action:none;
+    cursor:grab;
+}
+
+#stage.dragging{
+    cursor:grabbing;
+}
+
+.world{
+    position:absolute;
+    inset:0;
+
+    transform-style:preserve-3d;
+
+    transform:
+        translate3d(0,0,var(--zoom,0px))
+        rotateX(var(--rotX,0deg))
+        rotateY(var(--rotY,0deg));
+
+    will-change:transform;
+
+    /* Không gian sâu hơn */
+    perspective:1800px;
+}
+
+.world .layer,
+.world .moon-main,
+.world .lantern{
+    transform-style:preserve-3d;
+}
+
+/* Chữ bay chậm */
+.float-text{
+    animation-duration:22s;
+}
+
+/* Ảnh bay chậm */
+.photo{
+    animation-duration:28s !important;
+}
+
+/* =========================
+   LƯU MÓN QUÀ + QR
+========================= */
+.gift-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.gift-actions .btn{width:100%}
+.qr-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#02030bcc;backdrop-filter:blur(10px);opacity:0;visibility:hidden;pointer-events:none;transition:.25s}
+.qr-modal.open{opacity:1;visibility:visible;pointer-events:auto}
+.qr-card{width:min(92vw,390px);background:linear-gradient(145deg,#fff,#fff7fb);color:#222;border-radius:24px;padding:22px;text-align:center;box-shadow:0 20px 70px #0008}
+.qr-card h3{margin-bottom:8px;color:#d63378}
+.qr-card p{font-size:13px;line-height:1.5;color:#666;margin:8px 0 14px}
+#qrCode{display:flex;justify-content:center;align-items:center;background:#fff;padding:12px;border-radius:14px;min-height:230px}
+#qrCode img,#qrCode canvas{max-width:100%;height:auto!important}
+.qr-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.storage-box{margin-top:14px;padding:12px;border:1px dashed #ffc1d8;border-radius:14px;background:#fff8fb}
+.storage-box h3{margin:0 0 7px;font-size:14px;color:#d63378}
+.storage-box input{margin-top:6px}
+.storage-status{font-size:12px;color:#777;line-height:1.45;margin-top:7px}
+.storage-status.ok{color:#16834b}
+.storage-status.err{color:#c62828}
+.file-upload-row{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center;margin-top:7px}
+.file-upload-row .btn{margin-top:0}
+
+@media(max-width:520px){.gift-actions{grid-template-columns:1fr}.qr-card{padding:18px}}
+
+/* ===== HELLO KITTY BIRTHDAY • HỒNG PASTEL NHẠT ===== */
+/* Nơ Hello Kitty bay chậm trong nền */
+.kitty-bow{position:absolute;z-index:3;pointer-events:none;font-size:clamp(26px,4vw,48px);opacity:.7;filter:drop-shadow(0 5px 10px rgba(218,105,157,.22));animation:bowFloat 7s ease-in-out infinite alternate}
+.bow-one{left:9%;top:18%;transform:rotate(-15deg)}
+.bow-two{right:15%;top:42%;font-size:clamp(20px,3vw,36px);animation-delay:-2.5s}
+.bow-three{left:25%;bottom:13%;font-size:clamp(18px,2.5vw,30px);animation-delay:-4s}
+@keyframes bowFloat{from{translate:0 0;rotate:-12deg}to{translate:12px -18px;rotate:12deg}}
+
+:root{--pink:#f4a6c8;--blue:#fbd9e8;--gold:#ffeaf2;--night:#fff3f8}
+html,body{background:#fff1f7;color:#8b4568}
+body{background:radial-gradient(ellipse at 18% 18%,rgba(255,255,255,.98),transparent 38%),radial-gradient(ellipse at 82% 25%,rgba(255,214,233,.7),transparent 38%),linear-gradient(145deg,#fffafd 0%,#ffedf5 48%,#fbdbea 100%);color:#8b4568}
+#app{background:transparent}.stage,.world{background:transparent!important}.stage{perspective:1400px}.world{perspective:1800px;transform-style:preserve-3d}.layer{transform-style:preserve-3d!important;perspective:1800px}
+#textLayer{overflow:visible;transform-style:preserve-3d;z-index:7;pointer-events:none}
+.float-text{position:absolute;left:0;top:0;white-space:nowrap;color:#f28ab8;font-family:'Dancing Script',cursive;font-weight:700;letter-spacing:.2px;-webkit-text-stroke:.35px rgba(255,255,255,.9);text-shadow:0 1px 0 #fff,0 3px 0 #ffd2e5,0 7px 16px rgba(197,87,141,.24),0 0 18px rgba(255,145,193,.68);filter:drop-shadow(0 0 8px rgba(255,130,190,.5));transform-style:preserve-3d;backface-visibility:hidden;animation-name:riseFull;animation-timing-function:linear;animation-fill-mode:forwards;will-change:transform,opacity;z-index:10;pointer-events:none}
+@keyframes riseFull{0%{transform:translate3d(var(--startX),110vh,calc(var(--depth) - 180px)) rotateY(-22deg) rotateZ(-12deg) scale(.45);opacity:0;color:#f7a0c7}8%{opacity:1;color:#f18bb9}25%{transform:translate3d(var(--x25),78vh,var(--depth)) rotateY(14deg) rotateZ(-5deg) scale(.75);opacity:1;color:#f7a0c7}45%{transform:translate3d(var(--x45),53vh,calc(var(--depth) + 100px)) rotateY(-18deg) rotateZ(4deg) scale(.95);opacity:1;color:#ec86b8}65%{transform:translate3d(var(--x65),30vh,var(--depth)) rotateY(18deg) rotateZ(-4deg) scale(1.02);opacity:.95;color:#d99acb}82%{transform:translate3d(var(--x82),8vh,calc(var(--depth) - 80px)) rotateY(-12deg) rotateZ(5deg) scale(1.05);opacity:.8;color:#f4a0c8}92%{transform:translate3d(var(--endX),-5vh,var(--depth)) rotateY(10deg) rotateZ(7deg) scale(1.08);opacity:.35}100%{transform:translate3d(var(--endX),-18vh,calc(var(--depth) + 120px)) rotateY(24deg) rotateZ(8deg) scale(1.1);opacity:0}}
+#stars{opacity:.25}.cloud,.star-group{opacity:.35;filter:hue-rotate(300deg) saturate(.4)}.bg-heart{color:#f6a3ca;text-shadow:0 0 14px #ffd0e5}
+.sidebar{display:flex!important;flex-direction:column;gap:12px;background:rgba(255,249,252,.97)!important;color:#8b4568;border:1px solid #f8c6dc!important;border-radius:22px;box-shadow:0 0 35px rgba(255,139,190,.18)}
+.sidebar h2,.sidebar .title,.title{color:#d86f9f}.sidebar label,.sidebar p{color:#985878}.btn,button{border-color:#f7bfd8}.btn{background:linear-gradient(135deg,#ffe4ef,#f7bad5)!important;color:#85445f!important;box-shadow:0 5px 15px rgba(236,111,166,.14)}input,textarea{background:#fffafd!important;color:#84415f!important;border-color:#ffd0e3!important}.photo{border-color:#fff!important;box-shadow:0 8px 24px rgba(213,91,146,.2)}
+
+
+/* ===== TỐI ƯU ĐIỆN THOẠI: nhẹ, mượt, dễ nhìn ===== */
+html, body { min-height:100%; overscroll-behavior:none; -webkit-tap-highlight-color:transparent; }
+#app, .stage, #stage, .world { width:100%; height:100%; min-height:0; }
+#stage { touch-action:pan-y; }
+#stars { pointer-events:none; }
+@media (max-width:800px) {
+  body { font-size:14px; }
+  .world, .layer { transform-style:preserve-3d; }
+  .cloud, .star-group { filter:none !important; opacity:.2 !important; }
+  .moon-main { width:clamp(76px,22vw,112px); height:clamp(76px,22vw,112px); box-shadow:0 0 18px rgba(255,190,220,.35) !important; }
+  .float-text {
+    font-size:clamp(18px,4.8vw,24px) !important;
+    letter-spacing:0 !important;
+    -webkit-text-stroke:0 !important;
+    text-shadow:0 1px 0 #fff, 0 3px 7px rgba(207,102,153,.2), 0 0 8px rgba(255,170,205,.4) !important;
+    filter:none !important;
+    animation-name:riseMobile !important;
+    backface-visibility:hidden;
   }
-  .cake-glow{inset:18% -8% -3%;filter:blur(17px)}
-  .icing{height:clamp(11px,4vw,17px)}
-  .candle-row{top:clamp(-25px,-7vw,-16px);gap:clamp(4px,1.5vw,7px)}
-  .candle{width:clamp(5px,1.8vw,7px);height:clamp(19px,6vw,25px)}
-  .candle:before{width:clamp(8px,2.7vw,10px);height:clamp(10px,4vw,14px);top:clamp(-13px,-4vw,-10px)}
-  .cake-decoration{font-size:clamp(10px,3vw,15px)}
-  .cake-age{font-size:clamp(14px,4vw,20px)}
-  .cake-plate{height:8%;box-shadow:0 6px 12px #a84a8133,0 0 11px #ffb7d955}
-  .cake-sparkles span{font-size:clamp(13px,4vw,18px)}
+  @keyframes riseMobile {
+    0% { transform:translate3d(var(--startX),108vh,calc(var(--depth)*.45)) rotateY(-12deg) rotateZ(-7deg) scale(.62); opacity:0; }
+    12% { opacity:1; }
+    50% { transform:translate3d(var(--x45),50vh,var(--depth)) rotateY(8deg) rotateZ(2deg) scale(.88); opacity:.95; }
+    82% { transform:translate3d(var(--x82),12vh,calc(var(--depth)*.5)) rotateY(-7deg) rotateZ(-2deg) scale(1); opacity:.72; }
+    100% { transform:translate3d(var(--endX),-18vh,0) rotateY(10deg) rotateZ(4deg) scale(1.04); opacity:0; }
+  }
+  .photo { box-shadow:0 4px 10px rgba(180,85,130,.16) !important; filter:none !important; }
+  .heart, .petal, .light { filter:none !important; text-shadow:none !important; }
+  .kitty-bow { filter:none !important; opacity:.48; }
+  .btn, button { min-height:42px; }
 }
-@media screen and (max-width:380px){
-  .cake-stage{width:90vw !important;height:205px !important;bottom:calc(18% + var(--safe-bottom)) !important}
-  .cake-decoration{font-size:10px}
-  .cake-age{font-size:14px}
+@media (prefers-reduced-motion: reduce) {
+  .cloud, .star-group, .kitty-bow, .moon-main { animation:none !important; }
 }
-@media screen and (max-width:600px) and (max-height:700px){
-  .cake-stage{width:min(80vw,300px) !important;height:clamp(165px,34vh,205px) !important;bottom:calc(17% + var(--safe-bottom)) !important}
-  .candle-row{top:-16px}
-  .candle{height:18px}
-}
-</style>
 
+</style>
 </head>
+
 <body>
 
-<!-- BACKGROUND -->
-<div class="sky" aria-hidden="true">
-  <div class="aurora"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
-  <div class="stars" id="stars"></div>
-  <div class="moon-wrap"><div class="moon-halo"></div><div class="moon"></div></div>
-  <div class="bunny">🐇</div>
-  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
-  <div class="lake"></div>
-  <div class="particles" id="particles"></div>
+<!-- =========================
+     APP
+========================= -->
+<div id="app">
+
+    <div class="stage" id="stage">
+
+    <!-- KHÔNG GIAN 3D -->
+    <div class="world" id="world">
+
+    <canvas id="stars"></canvas>
+
+
+    <!-- ☁️ Mây phía sau -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <!-- ✨ Các cụm sao -->
+    <div class="star-group sg1">✦</div>
+    <div class="star-group sg2">✧</div>
+    <div class="star-group sg3">✦</div>
+    <div class="star-group sg4">✧</div>
+    <div class="star-group sg5">✦</div>
+
+
+    <!-- 💕 Trái tim phát sáng phía xa -->
+    <div class="bg-heart bh1">♡</div>
+    <div class="bg-heart bh2">♡</div>
+    <div class="bg-heart bh3">♡</div>
+
+    <!-- Nơ sinh nhật pastel -->
+    <div class="kitty-bow bow-one">🎀</div>
+    <div class="kitty-bow bow-two">🎀</div>
+    <div class="kitty-bow bow-three">🎀</div>
+
+    <!-- Nội dung bay -->
+    <div class="layer" id="textLayer"></div>
+    <div class="layer" id="photoLayer"></div>
+    <div class="layer" id="particleLayer"></div>
+
 </div>
 
-<!-- Easter egg: nút bí mật nằm gần mặt trăng -->
-<button class="secret-moon-trigger" id="secretMoonTrigger" aria-label="Mở biểu tượng bí mật" title="Nhấn thử nhé"></button>
 
-<!-- PHOTO RAIN -->
-<div class="orbit" id="orbit"></div>
+    <div class="nav">
+            <button id="musicBtn" title="Nhạc">🔊</button>
+            <button id="settingsBtn" class="mobile-settings" title="Cài đặt">⚙️</button>
+        </div>
 
-<!-- MAIN -->
-<main class="scene">
-  <div class="kitty-decorations" aria-hidden="true">
-    <img class="kitty-deco k1" src="https://corporate.sanrio.co.jp/en/business-info/images/img_hello-kitty.png" alt="">
-    <img class="kitty-deco k2" src="https://public-files.gumroad.com/gj09nml8ratkn0d1q51uuil9yp20" alt="">
-    <img class="kitty-deco k3" src="https://corporate.sanrio.co.jp/en/business-info/images/img_hello-kitty.png" alt="">
-    <img class="kitty-deco k4" src="https://img07.shop-pro.jp/PA01418/427/product/190057311_o1.jpg?cmsp_timestamp=20260109133000" alt="">
-  </div>
-  <div class="main">
-    <div class="eyebrow">Một món quà nhỏ dành riêng cho em</div>
-    <h1 id="headline">Chúc mừng sinh nhật<span>Em yêu</span></h1>
-    <p class="subtitle" id="subtitle">Một năm mới, thêm nhiều niềm vui,<br>Thêm nhiều yêu thương và luôn là chính mình nhé!</p>
 
-    <div class="cake-stage" id="cakeStage" role="button" tabindex="0" aria-label="Chạm vào bánh sinh nhật để mở thư">
-      <div class="cake-glow"></div>
-      <div class="kitty-floating" aria-hidden="true"><img src="https://corporate.sanrio.co.jp/en/business-info/images/img_hello-kitty.png" alt="Hello Kitty"></div>
-      <div class="cake-sparkles" aria-hidden="true">
-        <span>✦</span><span>✧</span><span>✨</span><span>✦</span><span>💫</span><span>✧</span>
-      </div>
-      <div class="cake-tier tier-top" data-tier="2">
-        <div class="tier-photo"></div><div class="icing"></div>
-        <div class="candle-row" id="candleRow"></div>
-        <div class="cake-age" id="cakeAgeDisplay">17</div>
-      </div>
-      <div class="cake-tier tier-middle" data-tier="1">
-        <div class="tier-photo"></div><div class="icing"></div>
-        <div class="cake-decoration">♡ 🎀 ♡</div>
-      </div>
-      <div class="cake-tier tier-bottom" data-tier="0">
-        <div class="tier-photo"></div><div class="icing"></div>
-        <div class="cake-decoration">🌸 ♡ 🌸</div>
-      </div>
-      <div class="cake-plate"></div>
+
     </div>
-  </div>
 
-  <div class="cake-hint" id="cakeHint" aria-live="polite"><span class="hint-bow" aria-hidden="true">🎀</span><span>Chạm nhẹ vào bánh để khám phá món quà</span><span class="hint-bow" aria-hidden="true">🎀</span></div>
-</main>
 
-<!-- SETTINGS -->
-<button class="gear" id="gear" aria-label="Mở bảng cài đặt">⚙</button>
-<aside class="panel" id="panel" aria-label="Bảng tạo quà (máy tính)">
-  <h2>🎀 Tạo món quà sinh nhật</h2>
-  <p class="help">Bảng chỉnh sửa chỉ hiện trên máy tính. Sau khi lưu lên Supabase, mở link quà trên điện thoại để xem như người nhận.</p>
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
 
-  <h3>🔌 KẾT NỐI SUPABASE</h3>
-  <label for="sbUrl">Project URL</label><input id="sbUrl" type="url" placeholder="https://xxxx.supabase.co">
-  <label for="sbKey">Publishable / anon key</label><input id="sbKey" type="text" autocomplete="off" placeholder="sb_publishable_... hoặc anon key">
-  <button class="btn primary full" id="connectSupabase">🔌 Kiểm tra kết nối Supabase</button>
-  <div class="sb-status" id="sbStatus" data-state="idle" role="status" aria-live="polite"><span class="status-dot"></span><span id="sbStatusText">Chưa kiểm tra kết nối. Nhập Project URL và Publishable/anon key rồi bấm nút phía trên.</span></div>
-  <button class="btn full" id="saveConfig">Lưu cấu hình trên máy này</button>
-  <p class="help">Chỉ dùng publishable/anon key, tuyệt đối không đặt service_role key trong HTML.</p>
+        <h2>🎀 Quà sinh nhật Hello Kitty</h2>
 
-  <h3>🎂 BÁNH SINH NHẬT</h3>
-  <label for="cakeAge">Tuổi trên bánh (1–120)</label>
-  <input id="cakeAge" type="number" min="1" max="120" value="17">
-  <p class="help">Ba ảnh đầu tiên trong mục Ảnh kỷ niệm sẽ lần lượt xuất hiện trên ba tầng bánh. Số nến hiển thị tối đa 5 ngọn để bánh cân đối.</p>
+        <label class="title">✨ Lời chúc bay</label>
+        <div id="textInputs"></div>
+        <button class="btn" id="addText">＋ Thêm câu</button>
 
-  <h3>💌 NỘI DUNG THƯ</h3>
-  <label for="titleInput">Tiêu đề</label><input id="titleInput" type="text" value="Chúc mừng sinh nhật Em yêu ♥">
-  <label for="subtitleInput">Lời chúc bên ngoài</label><textarea id="subtitleInput">Một năm mới, thêm nhiều niềm vui,
-Thêm nhiều yêu thương và luôn là chính mình nhé!</textarea>
-  <label for="recipient">Tên gọi trong thư</label><input id="recipient" type="text" value="em yêu">
-  <label for="letterInput">Nội dung thư</label><textarea id="letterInput">Gửi em yêu 💗
+        <label class="title">🖼️ Ảnh kỷ niệm</label>
+        <input id="photoInput" type="file" accept="image/*" multiple>
+        <div id="previews"></div>
 
-Chúc mừng sinh nhật cô gái đặc biệt của anh! Chúc em luôn vui vẻ, bình yên, gặp thật nhiều điều may mắn và luôn tự tin theo đuổi những điều mình thích.
+        
 
-Cảm ơn em vì đã xuất hiện và làm những ngày bình thường trở nên đáng nhớ hơn. Mong rằng chúng mình sẽ có thêm thật nhiều kỷ niệm đẹp.
+        <label class="title">🎵 Nhạc nền</label>
+        <input id="musicUrl" type="url" value="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" placeholder="URL file MP3">
+        <button class="btn" id="loadMusic">Đổi nhạc từ URL</button>
+        
 
-Chúc mọi điều dịu dàng nhất sẽ đến với em. Yêu em nhiều! 💖</textarea>
+        
 
-  <h3>📸 ẢNH KỶ NIỆM</h3>
-  <label for="photoInput">Chọn ảnh (sẽ tải lên Supabase)</label><input id="photoInput" type="file" accept="image/*" multiple>
-  <div class="preview-grid" id="previewGrid"></div>
+        
 
-  <h3>🎵 NHẠC NỀN</h3>
-  <label for="musicInput">Chọn tệp nhạc (tùy chọn)</label><input id="musicInput" type="file" accept="audio/*">
-  <label for="musicUrlInput">Hoặc dán URL nhạc trực tiếp</label>
-  <input id="musicUrlInput" type="url" inputmode="url" placeholder="https://.../nhac.mp3">
-  <p class="help">Dùng link HTTPS mở trực tiếp file âm thanh (MP3, OGG, WAV...). Link trang YouTube/Spotify thường không phát trực tiếp được.</p>
-  <div class="btnrow"><button class="btn" id="useMusicUrl">Dùng URL nhạc</button><button class="btn" id="playMusic">▶ Phát nhạc</button><button class="btn" id="stopMusic">Ⅱ Tạm dừng</button></div>
-  <label for="volume">Âm lượng</label><input id="volume" type="range" min="0" max="1" step=".01" value=".65">
+        <div class="toggle">
+            <span>🖼️ Bật ảnh bay</span>
+            <label class="switch">
+                <input id="photoToggle" type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
 
-  <button class="btn primary full" id="saveGift">☁ Lưu quà lên Supabase và tạo link</button>
-  <p class="help" id="giftLinkHelp">Đăng file HTML lên GitHub Pages trước, dán link trang GitHub Pages vào ô bên dưới.</p>
-  <label for="githubBaseUrl">Link trang GitHub Pages (HTTPS)</label><input id="githubBaseUrl" type="url" placeholder="https://tenban.github.io/ten-repo/">
-  <input id="giftLink" type="url" readonly placeholder="Link quà riêng sẽ hiện ở đây">
-  <div class="btnrow"><button class="btn" id="makeLink">🔗 Tạo link</button><button class="btn" id="copyGiftLink">Sao chép link</button></div>
-  <button class="btn primary full" id="makeQR">▦ Tạo mã QR từ link</button>
-  <div class="qr-wrap" id="qrWrap" aria-label="Mã QR quà sinh nhật"></div>
-  <button class="btn full" id="downloadQR" disabled>⬇ Tải mã QR PNG</button>
+        <div class="toggle">
+            <span>💖 Bật hiệu ứng tim</span>
+            <label class="switch">
+                <input id="particleToggle" type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
 
-  <h3>🧰 THIẾT LẬP SUPABASE</h3>
-  <p class="help">Trong Supabase → SQL Editor, chạy file supabase_setup_qua_sinh_nhat.sql kèm theo. Tạo Storage bucket công khai tên <b>gift-assets</b> và bật policy upload/read theo hướng dẫn.</p>
-  <button class="btn full" id="reset">Khôi phục nội dung mẫu</button>
-  <button class="btn full" id="closePanel">Đóng bảng</button>
-</aside>
 
-<audio id="audio" loop preload="auto" playsinline></audio>
 
-<!-- LETTER MODAL -->
-<section class="modal" id="letterModal" role="dialog" aria-modal="true" aria-label="Lá thư sinh nhật">
-  <div class="envelope" aria-hidden="true"><div class="edge"></div></div>
-  <article class="letter" id="letterPaper"><img class="letter-kitty-real" src="https://corporate.sanrio.co.jp/en/business-info/images/img_hello-kitty.png" alt="Hello Kitty">
-    <div class="top-half" id="topHalf"></div>
-    <div class="crease"></div>
-    <div class="letter-inner" id="letterInner">
-      <div class="content-wrap" id="contentWrap">
-        <h2 id="letterHeading">Gửi em yêu 💗</h2>
-        <div class="divider">♡ ♡ ♡</div>
-        <p id="letterText"></p>
-        <div class="divider" style="margin-top:20px">🌷 💗 🌙</div>
-        <div class="kitty-sticker-strip" aria-label="Bộ hình Hello Kitty màu hồng"><img src="https://public-files.gumroad.com/gj09nml8ratkn0d1q51uuil9yp20" alt="Nhiều hình Hello Kitty màu hồng"></div>
-        <div class="signature">— Thương em thật nhiều —</div>
-        <button class="btn primary close-letter" id="closeLetter">Gấp thư lại ✨</button>
-      </div>
-    </div>
-  </article>
-</section>
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button id="lightboxClose" aria-label="Đóng ảnh">×</button>
-  <button class="prev" id="prevPhoto" aria-label="Ảnh trước">‹</button>
-  <img id="lightboxImg" alt="Ảnh kỷ niệm phóng to">
-  <button class="next" id="nextPhoto" aria-label="Ảnh tiếp">›</button>
-  <div class="counter" id="counter"></div>
+        <p class="small">
+            Chọn lời chúc, ảnh và nhạc để tạo không gian sinh nhật hồng pastel dành tặng người ấy nhé 💗
+        </p>
+
+    </aside>
 </div>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<audio id="audio" loop></audio>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+
 <script>
-(()=> {
-'use strict';
-const $=id=>document.getElementById(id);
-let qrInstance=null;
+/* =========================
+   BIẾN
+========================= */
 
-// ⚠️ BẮT BUỘC: điền Project URL và publishable/anon key thật của bạn tại đây.
-// Cấu hình lưu trong localStorage chỉ dùng trên máy tạo quà; người nhận mở link
-// bằng thiết bị khác cần hai giá trị này được điền sẵn trong file HTML.
-// Chỉ dùng publishable/anon key; TUYỆT ĐỐI KHÔNG dùng service_role/secret key.
-const SUPABASE_URL='https://mzqbwsxyuvnyfcowtfaj.supabase.co';
-const SUPABASE_ANON_KEY='sb_publishable_1-yqMWwHzLHxalkAXAmZ-w_DNz1Z0Dx';
+const $ = s => document.querySelector(s);
 
-const defaults={
-  title:'Chúc mừng sinh nhật Em yêu ♥',
-  subtitle:'Một năm mới, thêm nhiều niềm vui,\nThêm nhiều yêu thương và luôn là chính mình nhé!',
-  recipient:'em yêu',
-  letter:'Gửi em yêu 💗\n\nChúc mừng sinh nhật cô gái đặc biệt của anh! Chúc em luôn vui vẻ, bình yên, gặp thật nhiều điều may mắn và luôn tự tin theo đuổi những điều mình thích.\n\nCảm ơn em vì đã xuất hiện và làm những ngày bình thường trở nên đáng nhớ hơn. Mong rằng chúng mình sẽ có thêm thật nhiều kỷ niệm đẹp.\n\nChúc mọi điều dịu dàng nhất sẽ đến với em. Yêu em nhiều! 💖'
-};
+const textLayer = $("#textLayer");
+const photoLayer = $("#photoLayer");
+const particleLayer = $("#particleLayer");
 
-let photos=[],musicFile=null,musicObjectURL='',typeTimer=null,holdTimer=null,holdStart=0,
-    closing=false,photoIndex=0,toastTimer=null,supabaseClient=null,loadedGift=null,photoRainTimer=null;
 
-const modal=$('letterModal'),panel=$('panel'),audio=$('audio');
-const isMobile=()=>matchMedia('(max-width:600px)').matches||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+let texts = [
+    "Chúc mừng sinh nhật em 🎂💗",
+    "Iu em nhiều lắm",
+    "Em là cô gái đáng yêu nhất 🎀",
+    "Chúc em luôn hạnh phúc 💕",
+    "Chúc em luôn rạng rỡ ✨",
+    "Thương em nhiều lắm",
+    "Happy Birthday, my love 🎀"
+];
 
-function toast(msg){
-  const el=$('toast');el.textContent=msg;el.classList.add('show');
-  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3000);
-}
+let photos = [];
 
-function config(){
-  let saved={};try{saved=JSON.parse(localStorage.getItem('giftSupabaseConfig')||'{}')}catch{}
-  return {
-    url:(($('sbUrl')?.value||'').trim()||saved.url||SUPABASE_URL).replace(/\/$/,''),
-    key:($('sbKey')?.value||'').trim()||saved.key||SUPABASE_ANON_KEY
-  };
-}
-function setSupabaseStatus(state,message){
-  const box=$('sbStatus'),label=$('sbStatusText');
-  if(box)box.dataset.state=state;
-  if(label)label.textContent=message;
-}
-function connect(){
-  const c=config();
-  if(!c.url||!c.key||c.url.includes('PASTE_YOUR_')||c.key.includes('PASTE_YOUR_')||
-     !/^https:\/\/[\w.-]+\.supabase\.co$/i.test(c.url)||!window.supabase){
-    setSupabaseStatus('error','Kết nối thất bại: hãy kiểm tra Project URL, key và thư viện Supabase.');
-    toast('Nhập đúng Project URL và Publishable/anon key của Supabase.');return null;
-  }
-  try{
-    supabaseClient=window.supabase.createClient(c.url,c.key);
-    return supabaseClient;
-  }catch(err){
-    setSupabaseStatus('error','Không khởi tạo được Supabase: '+(err.message||'hãy kiểm tra URL và key.'));
-    return null;
-  }
-}
-async function checkSupabaseConnection(){
-  setSupabaseStatus('checking','Đang kiểm tra URL, key và quyền truy cập bảng birthday_gifts…');
-  const client=connect();
-  if(!client)return false;
-  const c=config();
-  try{
-    const {error}=await client.from('birthday_gifts').select('id').limit(1);
-    if(error)throw error;
-    localStorage.setItem('giftSupabaseConfig',JSON.stringify(c));
-    setSupabaseStatus('success','Kết nối thành công! Supabase truy cập được bảng birthday_gifts. Cấu hình đã lưu trên trình duyệt này.');
-    toast('Kết nối Supabase thành công 💗');
-    return true;
-  }catch(err){
-    console.error('Supabase connection check:',err);
-    let detail=err.message||'Không thể truy cập bảng birthday_gifts.';
-    if(/failed to fetch|networkerror/i.test(detail))detail='Không thể kết nối mạng tới Supabase. Kiểm tra Project URL, Internet và thử lại.';
-    else if(/relation .* does not exist|could not find the table/i.test(detail))detail='Chưa có bảng birthday_gifts. Hãy chạy SQL thiết lập trong Supabase → SQL Editor.';
-    else if(/permission denied|row-level security|violates row-level security|not allowed/i.test(detail))detail='Supabase đã phản hồi nhưng quyền truy cập bảng chưa đúng. Kiểm tra RLS và policy cho birthday_gifts.';
-    setSupabaseStatus('error','Kết nối chưa thành công: '+detail);
-    toast('Kết nối chưa thành công. Xem thông báo màu đỏ.');
-    return false;
-  }
-}
+let audioOn = false;
+let typeTimer = null;
 
-function applyText(){
-  const title=$('titleInput').value.trim()||defaults.title;
-  const idx=title.toLowerCase().lastIndexOf('em yêu');
-  $('headline').replaceChildren();
-  if(idx>0){
-    $('headline').append(document.createTextNode(title.slice(0,idx).trim()+' '));
-    const span=document.createElement('span');span.textContent=title.slice(idx);$('headline').append(span);
-  }else{
-    const span=document.createElement('span');span.textContent=title;$('headline').append(span);
-  }
-  $('subtitle').textContent=$('subtitleInput').value;
-  $('letterHeading').textContent='Gửi '+($('recipient').value.trim()||'em yêu')+' 💗';
-  document.title=title;
-}
 
-function updateCakeAge(){
-  const input=$('cakeAge');
-  const age=Math.max(1,Math.min(120,Number.parseInt(input?.value,10)||17));
-  $('cakeAgeDisplay').textContent=String(age);
-  const row=$('candleRow');row.replaceChildren();
-  for(let i=0;i<Math.min(age,5);i++){
-    const candle=document.createElement('span');candle.className='candle';row.append(candle);
-  }
-}
-$('cakeAge')?.addEventListener('input',updateCakeAge);
+/* =========================
+   ẢNH MẶC ĐỊNH
+========================= */
 
-function typeLetter(text){
-  clearInterval(typeTimer);
-  const el=$('letterText');
-  el.textContent='';el.classList.add('typing');
-  let i=0;
-  const tick=()=>{
-    i=Math.min(i+2,text.length);
-    el.textContent=text.slice(0,i);
-    if(i>=text.length){clearInterval(typeTimer);typeTimer=null;el.classList.remove('typing');}
-  };
-  typeTimer=setInterval(tick,35);
-}
+const samplePhotos = [
+    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500",
+    "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500"
+];
 
-function openLetter(){
-  if(closing)return;
-  applyText();
-  // Reset trạng thái gấp
-  const letter=$('letterPaper');
-  letter.classList.remove('folding','folded-enter');
-  $('letterText').textContent='';
-  clearInterval(typeTimer);
-  modal.classList.remove('closing','envelope-closing');
-  modal.classList.add('show');
-  document.querySelector('.scene')?.classList.add('opened');
-  // Đợi 3 giây sau khi lá thư xuất hiện rồi mới bắt đầu chạy chữ.
-  setTimeout(()=>{
-    if(modal.classList.contains('show'))
-      typeLetter(loadedGift?.letter||$('letterInput').value||'Gửi em những lời yêu thương nhất 💗');
-  },3000);
-  if(audio.src)audio.play().catch(()=>{});
-}
+photos = [...samplePhotos];
 
-/* ==== GẤP THƯ: 3 GIAI ĐOẠN ==== */
-function closeLetter(){
-  if(!modal.classList.contains('show')||closing)return;
-  closing=true;
-  clearInterval(typeTimer);typeTimer=null;
-  $('letterText').classList.remove('typing');
-  const letter=$('letterPaper');
-  const cake=$('cakeStage');
-  const topHalf=$('topHalf');
-  letter.classList.add('folding');
-  // Gấp lá thư như cũ trước khi biến thành những hạt sáng.
-  setTimeout(()=>{
-    letter.classList.remove('folding');
-    letter.classList.add('folded-enter');
-    modal.classList.add('closing');
-  },1250);
-  setTimeout(()=>modal.classList.add('envelope-closing'),2050);
-  setTimeout(()=>{
-    const foldedLetterRect=letter.getBoundingClientRect();
-    modal.classList.remove('show','closing','envelope-closing');
-    letter.classList.remove('folding','folded-enter');
-    document.querySelector('.scene')?.classList.remove('opened');
-    document.body.style.overflow='';
-    // Lá thư gấp lại biến thành trái tim hồng có cánh, bay lên trời rồi tan vào ánh sáng.
-    cake.style.visibility='hidden';
-    cake.classList.remove('melting','cake-finale','dropping','cake-ready');
-    $('cakeHint').classList.remove('visible');
-    launchWingedHeart(foldedLetterRect);
-    setTimeout(()=>{ closing=false; },7600);
-  },4350);
-}
 
-// Hello Kitty: bánh tự rơi theo thứ tự tầng 3 → 2 → 1 khi trang mở.
-// Khi bánh đã đứng yên, chạm trực tiếp vào bánh để tan thành hạt và tụ lại mở thư.
-function burst(){
-  const emojis=['💗','✨','🌸','💕','🎀','💗','⭐','💖'];
-  for(let i=0;i<34;i++){
-    const el=document.createElement('span');
-    el.textContent=emojis[Math.random()*emojis.length|0];
-    el.style.cssText=`position:fixed;z-index:55;left:${20+Math.random()*60}vw;top:${35+Math.random()*45}vh;pointer-events:none;font-size:${15+Math.random()*24}px;opacity:0;animation:burstUp ${1.5+Math.random()*1.2}s ease-out forwards;animation-delay:${Math.random()*.25}s`;
-    document.body.append(el);setTimeout(()=>el.remove(),3200);
-  }
-}
-const _style=document.createElement('style');
-_style.textContent='@keyframes burstUp{0%{transform:translateY(0) scale(.4) rotate(0);opacity:0}15%{opacity:1;transform:translateY(-25px) scale(1.15) rotate(8deg)}100%{transform:translateY(-200px) scale(.8) rotate(45deg);opacity:0}}';
-document.head.append(_style);
+/* =========================
+   CHỮ BAY
+========================= */
 
-let cakeSequenceRunning=false, cakeHasLanded=false;
-function startCakeDrop(){
-  const cake=$('cakeStage');
-  cake.classList.remove('dropping','cake-finale','cake-ready','melting');
-  cakeHasLanded=false;
-  // Bắt đầu nhạc cùng lúc bánh rơi. Nếu trình duyệt chặn tự phát,
-  // lần chạm đầu tiên của người nhận sẽ thử phát lại.
-  if(audio.src && audio.paused){
-    audio.play().catch(()=>{
-      document.addEventListener('pointerdown',()=>{
-        if(audio.src && audio.paused) audio.play().catch(()=>{});
-      },{once:true,passive:true});
+function renderTextInputs(){
+
+    $("#textInputs").innerHTML = "";
+
+    texts.forEach((t,i)=>{
+
+        const d = document.createElement("div");
+
+        d.className = "row";
+
+        d.innerHTML = `
+            <input type="text" value="${escapeHtml(t)}">
+            <button class="btn">×</button>
+        `;
+
+        d.querySelector("input").oninput =
+            e => texts[i] = e.target.value;
+
+        d.querySelector("button").onclick = ()=>{
+
+            texts.splice(i,1);
+
+            renderTextInputs();
+        };
+
+        $("#textInputs").appendChild(d);
     });
-  }
-  void cake.offsetWidth;
-  cake.classList.add('dropping');
-  // Rơi đúng thứ tự tầng 3 (trên) → tầng 2 (giữa) → tầng 1 (dưới).
-  setTimeout(()=>{
-    cake.classList.remove('dropping');
-    cake.classList.add('cake-ready');
-    cakeHasLanded=true;
-    $('cakeHint').classList.add('visible');
-  },2850);
-}
-function flyParticlesBetween(fromEl,toEl,duration=2200,mode='to-letter'){
-  const layer=document.createElement('div');
-  layer.className='kitty-particle-layer';
-  document.body.append(layer);
-  const a=(typeof Element!=='undefined' && fromEl instanceof Element)?fromEl.getBoundingClientRect():fromEl;
-  let b=(typeof Element!=='undefined' && toEl instanceof Element)?toEl.getBoundingClientRect():toEl;
-  // Khi modal còn ẩn, dùng vùng thư dự kiến ở giữa màn hình làm đích của hạt.
-  if(toEl && toEl.id==='letterPaper' && (!b.width || !b.height)){
-    const w=Math.min(460,Math.max(280,window.innerWidth-20));
-    b={left:(window.innerWidth-w)/2,top:10,width:w,height:Math.max(260,window.innerHeight-20)};
-  }
-  const symbols=['♡','✦','🎀','✧','♡','✦'];
-  const total=isMobile()?(duration>3000?86:58):(duration>3000?130:86);
-  for(let i=0;i<total;i++){
-    const bit=document.createElement('span');
-    const heart=i%7===0 && duration<3000;
-    bit.className='kitty-particle'+(heart?' heart':'');
-    if(heart){bit.textContent=symbols[i%symbols.length];bit.style.setProperty('--size',(8+Math.random()*7)+'px')}
-    else bit.textContent='';
-    const startX=a.left+Math.random()*Math.max(1,a.width);
-    const startY=a.top+Math.random()*Math.max(1,a.height);
-    const endX=b.left+b.width*(.18+Math.random()*.64);
-    const endY=b.top+b.height*(.18+Math.random()*.64);
-    bit.style.setProperty('--sx',startX+'px');
-    bit.style.setProperty('--sy',startY+'px');
-    bit.style.setProperty('--ex',endX+'px');
-    bit.style.setProperty('--ey',endY+'px');
-    bit.style.setProperty('--size',(2+Math.random()*4.5)+'px');
-    bit.style.setProperty('--duration',(duration/1000)+'s');
-    bit.style.setProperty('--delay',(Math.random()*(duration>3000?.5:.22))+'s');
-    layer.append(bit);
-  }
-  setTimeout(()=>layer.remove(),duration+800);
-}
-function showLoveHeartThenLetter(){
-  // Phiên bản nhẹ: trái tim viền neon bằng CSS, không dùng canvas hay hàng nghìn hạt.
-  const scene=document.createElement('div');
-  scene.className='heart-confession neon-scene';
-  scene.innerHTML='<div class="heart-aura" aria-hidden="true"></div><div class="heart-orbit orbit-one" aria-hidden="true"></div><div class="heart-orbit orbit-two" aria-hidden="true"></div><div class="neon-heart" aria-hidden="true"></div><span class="heart-spark s1">✧</span><span class="heart-spark s2">✦</span><span class="heart-spark s3">♡</span><span class="heart-spark s4">✧</span><span class="heart-spark s5">✦</span><div class="confession-text">ANH YÊU EM<small>♡ món quà nhỏ dành riêng cho em ♡</small></div><img class="kitty-corner one real-kitty-corner" src="https://corporate.sanrio.co.jp/en/business-info/images/img_hello-kitty.png" alt="Hello Kitty"><img class="kitty-corner two real-kitty-corner" src="https://corporate.sanrio.co.jp/en/business-info/images/img_hello-kitty.png" alt="Hello Kitty">';
-  document.body.append(scene);
-
-  // Giữ cảnh trái tim đủ 7 giây; gần cuối trái tim và dòng chữ dần bay sáng.
-  setTimeout(()=>scene.classList.add('growing'),4500);
-  setTimeout(()=>{
-    scene.remove();
-    openLetter();
-    cakeSequenceRunning=false;
-  },7000);
 }
 
-function launchWingedHeart(rect){
-  const finale=document.createElement('div');
-  finale.className='winged-heart-finale';
-  const x=rect && rect.width ? rect.left+rect.width/2 : innerWidth/2;
-  const y=rect && rect.height ? rect.top+rect.height/2 : innerHeight*.68;
-  finale.style.left=x+'px';
-  finale.style.top=y+'px';
-  finale.innerHTML='<span class="winged-spark spark-a">✦</span><span class="winged-spark spark-b">♡</span><span class="winged-spark spark-c">✧</span><div class="winged-heart-art"><span class="angel-wing left-wing" aria-hidden="true"><svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="whiteFeather" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fffaff"/><stop offset="1" stop-color="#ffdff2"/></linearGradient></defs><path d="M111 78C91 76 73 67 59 54 43 40 32 20 7 7c5 18 2 29 12 43 17 24 43 34 76 35Z" fill="url(#whiteFeather)" stroke="#fff" stroke-width="2"/><path d="M99 74C76 65 57 46 38 24M84 78C63 66 48 52 29 34M70 81C51 72 38 61 22 47M57 82C42 77 32 68 23 59" fill="none" stroke="#f4cfe4" stroke-width="2.3" stroke-linecap="round"/><path d="M10 10C25 17 39 31 48 43c-10-3-20-12-28-23M18 28c13 8 23 19 31 30-12-5-22-15-31-30M29 46c11 6 19 15 26 23-10-3-20-11-26-23" fill="#fff" opacity=".95"/></svg></span><span class="angel-wing right-wing" aria-hidden="true"><svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="whiteFeather2" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#fffaff"/><stop offset="1" stop-color="#ffdff2"/></linearGradient></defs><path d="M111 78C91 76 73 67 59 54 43 40 32 20 7 7c5 18 2 29 12 43 17 24 43 34 76 35Z" fill="url(#whiteFeather2)" stroke="#fff" stroke-width="2"/><path d="M99 74C76 65 57 46 38 24M84 78C63 66 48 52 29 34M70 81C51 72 38 61 22 47M57 82C42 77 32 68 23 59" fill="none" stroke="#f4cfe4" stroke-width="2.3" stroke-linecap="round"/><path d="M10 10C25 17 39 31 48 43c-10-3-20-12-28-23M18 28c13 8 23 19 31 30-12-5-22-15-31-30M29 46c11 6 19 15 26 23-10-3-20-11-26-23" fill="#fff" opacity=".95"/></svg></span><span class="pink-heart">💗</span></div><div class="winged-heart-caption">Gửi em tất cả yêu thương ✨</div>';
-  document.body.append(finale);
-  // Sau khi thư gấp xong, chờ 1,5 giây mới hóa thành trái tim.
-  // Trái tim hiện hoàn chỉnh, đứng yên thêm 1,5 giây rồi bay lên trong 4 giây.
-  // Bánh sinh nhật rơi trở lại 2 giây sau khi trái tim bay xong.
-  setTimeout(()=>finale.classList.add('fly-up'),1500);
-  finale.addEventListener('animationend',e=>{if(e.target===finale)finale.remove()},{once:true});
-  setTimeout(()=>finale.remove(),5600);
-  setTimeout(()=>{
-    const cake=$('cakeStage');
-    cake.style.visibility='visible';
-    startCakeDrop();
-  },7500);
+
+function escapeHtml(s){
+
+    return s.replace(
+        /[&<>"']/g,
+        m => ({
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#39;"
+        }[m])
+    );
 }
-function openCakeFromTap(){
-  if(!cakeHasLanded||cakeSequenceRunning||closing||modal.classList.contains('show'))return;
-  cakeSequenceRunning=true;
-  const cake=$('cakeStage');
-  $('cakeHint').classList.remove('visible');
-  cake.classList.remove('cake-ready');
-  cake.classList.add('melting');
-  if(navigator.vibrate)navigator.vibrate([12,25,12]);
-  // Bánh tan thành ánh sáng, hiện trái tim "ANH YÊU EM", rồi mới mở thư.
-  flyParticlesBetween(cake,{left:innerWidth*.15,top:innerHeight*.2,width:innerWidth*.7,height:innerHeight*.6},850,'to-letter');
-  setTimeout(()=>{
-    cake.style.visibility='hidden';
-    cake.classList.remove('melting');
-    showLoveHeartThenLetter();
-  },550);
-}
-$('cakeStage').addEventListener('click',openCakeFromTap);
-$('cakeStage').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCakeFromTap()}});
 
-$('closeLetter').onclick=closeLetter;
-modal.addEventListener('click',e=>{if(e.target===modal)closeLetter()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLetter();closeLightbox();panel.classList.remove('open')}});
 
-// Swipe down để gấp thư
-let touchStartY=0;
-const letterEl=$('letterPaper');
-letterEl.addEventListener('touchstart',e=>{touchStartY=e.changedTouches[0].clientY},{passive:true});
-letterEl.addEventListener('touchend',e=>{
-  const dy=e.changedTouches[0].clientY-touchStartY;
-  if(dy>110 && letterEl.scrollTop<=0)closeLetter();
-},{passive:true});
+$("#addText").onclick = ()=>{
 
-$('gear').onclick=()=>{if(isMobile())return;panel.classList.toggle('open')};
-$('closePanel').onclick=()=>panel.classList.remove('open');
+    texts.push("Lời chúc mới 💕");
 
-$('connectSupabase').onclick=checkSupabaseConnection;
-$('saveConfig').onclick=async()=>{
-  const c=config();
-  if(!c.url||!c.key){setSupabaseStatus('error','Hãy nhập Project URL và Publishable/anon key trước.');toast('Hãy điền Project URL và key trước.');return}
-  localStorage.setItem('giftSupabaseConfig',JSON.stringify(c));
-  await checkSupabaseConnection();
+    renderTextInputs();
 };
 
-// ==== PHOTO RAIN ====
-function renderPhotos(){
-  if(photoRainTimer){clearTimeout(photoRainTimer);photoRainTimer=null}
-  $('orbit').replaceChildren();$('previewGrid').replaceChildren();
 
-  document.querySelectorAll('.cake-tier').forEach(tier=>{
-    const index=Number(tier.dataset.tier);
-    const photo=photos[index];
-    const image=tier.querySelector('.tier-photo');
-    if(photo&&photo.url){image.style.backgroundImage=`url("${photo.url.replace(/["\\]/g,'\\$&')}")`;image.style.display='block';}
-    else{image.style.backgroundImage='';image.style.display='none';}
-  });
+/* =========================
+   PREVIEW ẢNH + NÚT XÓA
+========================= */
 
-  photos.forEach((p,i)=>{
-    const card=document.createElement('div');card.className='preview-item';
-    const im=document.createElement('img');im.src=p.url;im.alt='Ảnh '+(i+1);
-    const del=document.createElement('button');del.type='button';del.textContent='×';
-    del.setAttribute('aria-label','Xóa ảnh '+(i+1));
-    del.onclick=()=>{if(p.owned)URL.revokeObjectURL(p.url);photos.splice(i,1);renderPhotos()};
-    card.append(im,del);$('previewGrid').append(card);
-  });
+function renderPreviews(){
 
-  if(photos.length){
-    let idx=0;
-    const spawn=()=>{
-      if(!photos.length)return;
-      const p=photos[idx%photos.length];idx++;
-      const im=document.createElement('img');
-      im.src=p.url;im.alt='Ảnh kỷ niệm';
-      im.style.left=(4+Math.random()*84)+'vw';
-      im.style.setProperty('--drift',(Math.random()*140-70)+'px');
-      im.style.animationDuration=(10+Math.random()*8)+'s';
-      im.style.animationDelay=(Math.random()*.6)+'s';
-      im.onclick=()=>openLightbox(photos.indexOf(p));
-      $('orbit').append(im);
-      const duration=parseFloat(im.style.animationDuration)*1000+1200;
-      setTimeout(()=>im.remove(),duration);
-      if(photos.length)photoRainTimer=setTimeout(spawn,2200+Math.random()*1500);
-    };
-    spawn();
-  }
-}
+    $("#previews").innerHTML = "";
 
-$('photoInput').addEventListener('change',e=>{
-  const files=[...e.target.files].filter(f=>f.type.startsWith('image/'));
-  files.forEach(f=>photos.push({file:f,url:URL.createObjectURL(f),owned:true,path:null}));
-  e.target.value='';renderPhotos();
-  if(files.length)toast('Đã thêm '+files.length+' ảnh. Nhấn "Lưu quà" để tải lên Supabase.');
-});
-$('musicInput').addEventListener('change',e=>{
-  const f=e.target.files[0];if(!f)return;
-  if(!f.type.startsWith('audio/')){toast('Tệp đã chọn không phải âm thanh.');return;}
-  if(musicObjectURL)URL.revokeObjectURL(musicObjectURL);
-  musicFile=f;$('musicUrlInput').value='';musicObjectURL=URL.createObjectURL(f);audio.src=musicObjectURL;
-  audio.play().catch(()=>toast('Đã chọn nhạc. Chạm Phát nhạc để nghe.'));
-  e.target.value='';toast('Đã chọn nhạc nền. Nhấn Lưu quà để tải lên Supabase.');
-});
-function applyMusicUrl(){
-  const value=$('musicUrlInput').value.trim();
-  if(!value){toast('Hãy dán URL nhạc trước.');return;}
-  try{
-    const u=new URL(value);
-    if(u.protocol!=='https:'&&u.protocol!=='http:')throw new Error('scheme');
-    if(musicObjectURL){URL.revokeObjectURL(musicObjectURL);musicObjectURL='';}
-    musicFile=null;audio.src=u.href;audio.load();
-    audio.play().then(()=>toast('Đang phát nhạc từ URL. Nhấn Lưu quà để lưu URL vào Supabase.'))
-      .catch(()=>toast('Đã gắn URL. Nếu không phát được, hãy dùng link MP3/OGG/WAV trực tiếp và kiểm tra quyền truy cập.'));
-  }catch(e){toast('URL không hợp lệ. Hãy dán link bắt đầu bằng https://');}
-}
-$('useMusicUrl').onclick=applyMusicUrl;
-$('musicUrlInput').addEventListener('change',applyMusicUrl);
-$('playMusic').onclick=()=>{if(!audio.src){$('musicInput').click();return}audio.play().catch(()=>toast('Không phát được nhạc. Hãy kiểm tra URL có trỏ trực tiếp tới file âm thanh không.'))};
-$('stopMusic').onclick=()=>audio.pause();
-$('volume').oninput=e=>audio.volume=Number(e.target.value);audio.volume=.65;
+    photos.forEach((src, i)=>{
 
-function openLightbox(i){
-  if(!photos.length||i<0)return;
-  photoIndex=(i+photos.length)%photos.length;
-  $('lightboxImg').src=photos[photoIndex].url;
-  $('counter').textContent=(photoIndex+1)+' / '+photos.length;
-  $('lightbox').classList.add('open');
-}
-function closeLightbox(){$('lightbox').classList.remove('open');$('lightboxImg').src=''}
-function movePhoto(d){if(!photos.length)return;openLightbox((photoIndex+d+photos.length)%photos.length)}
-$('lightboxClose').onclick=closeLightbox;
-$('prevPhoto').onclick=()=>movePhoto(-1);
-$('nextPhoto').onclick=()=>movePhoto(1);
-$('lightbox').addEventListener('click',e=>{if(e.target===$('lightbox'))closeLightbox()});
-let lTouchX=0;
-$('lightbox').addEventListener('touchstart',e=>{lTouchX=e.changedTouches[0].clientX},{passive:true});
-$('lightbox').addEventListener('touchend',e=>{
-  const dx=e.changedTouches[0].clientX-lTouchX;
-  if(Math.abs(dx)>55)movePhoto(dx>0?-1:1);
-},{passive:true});
+        const box = document.createElement("div");
 
-// Upload & save
-async function uploadAsset(client,file,path){
-  const {error}=await client.storage.from('gift-assets').upload(path,file,{upsert:true,contentType:file.type||'application/octet-stream'});
-  if(error)throw error;
-  const {data}=client.storage.from('gift-assets').getPublicUrl(path);
-  return data.publicUrl;
-}
+        box.style.position = "relative";
+        box.style.width = "54px";
+        box.style.height = "54px";
 
-async function saveGift(){
-  const client=connect();if(!client)return;
-  const btn=$('saveGift');btn.disabled=true;btn.textContent='Đang tải quà lên…';
-  try{
-    const id=loadedGift?.id||crypto.randomUUID();
-    const prefix='gifts/'+id;const uploaded=[];
-    for(let i=0;i<photos.length;i++){
-      const p=photos[i];
-      if(p.file){
-        const path=prefix+'/photo-'+(i+1)+'-'+p.file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-        const oldObjectUrl=p.owned && p.url && p.url.startsWith('blob:') ? p.url : '';
-        p.remoteUrl=await uploadAsset(client,p.file,path);
-        p.path=path;
-        // Use the permanent Supabase URL after upload, not the temporary blob URL.
-        p.url=p.remoteUrl;
-        p.owned=false;
-        p.file=null;
-        if(oldObjectUrl)URL.revokeObjectURL(oldObjectUrl);
-      }
-      const permanentUrl=p.remoteUrl||p.url;
-      if(!permanentUrl || permanentUrl.startsWith('blob:') || permanentUrl.startsWith('file:')){
-        throw new Error('Ảnh '+(i+1)+' chưa có URL lưu trên Supabase. Hãy chọn lại ảnh rồi lưu lại.');
-      }
-      uploaded.push({url:permanentUrl,path:p.path||null});
-    }
-    // Nếu người dùng nhập URL thì lưu URL đó; nếu không, upload tệp nhạc đã chọn.
-    let musicUrl=$('musicUrlInput').value.trim()||loadedGift?.musicUrl||'';
-    if(musicUrl){
-      const u=new URL(musicUrl);
-      if(u.protocol!=='https:'&&u.protocol!=='http:')throw new Error('URL nhạc phải bắt đầu bằng https:// hoặc http://');
-    }else if(musicFile){
-      const path=prefix+'/background-'+musicFile.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-      musicUrl=await uploadAsset(client,musicFile,path);
-    }
-    const payload={
-      title:$('titleInput').value,subtitle:$('subtitleInput').value,
-      recipient:$('recipient').value,letter:$('letterInput').value,
-      age:Math.max(1,Math.min(120,Number.parseInt($('cakeAge').value,10)||17)),
-      photos:uploaded,musicUrl,updatedAt:new Date().toISOString()
-    };
-    const {error}=await client.from('birthday_gifts').upsert({id,payload},{onConflict:'id'});
-    if(error)throw error;
-    loadedGift={id,...payload};
-    const base=($('githubBaseUrl').value||'').trim();
-    if(base){
-      const url=new URL(base);url.searchParams.set('gift',id);
-      $('giftLink').value=url.href;generateQR(url.href);
-      $('giftLinkHelp').textContent='Đã lưu quà và tạo link GitHub Pages riêng. Bạn có thể tải mã QR PNG ở dưới.';
-    }else{
-      $('giftLink').value='';
-      $('giftLinkHelp').textContent='Đã lưu lên Supabase. Dán link GitHub Pages ở ô trên rồi bấm "Tạo mã QR".';
-    }
-    toast('Đã lưu món quà lên Supabase 💗');
-  }catch(err){
-    console.error(err);
-    toast('Lưu chưa thành công: '+(err.message||'kiểm tra SQL, bucket và policy Supabase.'));
-  }finally{
-    btn.disabled=false;btn.textContent='☁ Lưu quà lên Supabase và tạo link';
-  }
-}
+        const im = new Image();
 
-function generateQR(link){
-  if(!link){toast('Hãy dán link GitHub Pages và lưu quà trước.');return}
-  if(!/^https:\/\//i.test(link)){toast('Link cần bắt đầu bằng https://');return}
-  if(!window.QRCode){toast('Chưa tải được thư viện QR.');return}
-  const wrap=$('qrWrap');wrap.replaceChildren();
-  qrInstance=new QRCode(wrap,{text:link,width:220,height:220,colorDark:'#24123f',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
-  $('downloadQR').disabled=false;toast('Đã tạo mã QR. Bạn có thể tải ảnh PNG.');
-}
+        im.src = src;
 
-function createGiftLink(){
-  const base=($('githubBaseUrl').value||'').trim();
-  const id=loadedGift?.id||new URLSearchParams(location.search).get('gift');
-  if(!base){toast('Hãy dán link GitHub Pages trước nhé.');return ''}
-  if(!id){toast('Hãy bấm “Lưu quà lên Supabase và tạo link” trước để lưu quà và tạo ID riêng.');return ''}
-  try{
-    const url=new URL(base);
-    if(url.protocol!=='https:')throw new Error('Link phải bắt đầu bằng https://');
-    url.searchParams.set('gift',id);
-    $('giftLink').value=url.href;
-    $('giftLinkHelp').textContent='Đã tạo link riêng. Hãy sao chép link hoặc bấm “Tạo mã QR từ link”.';
-    return url.href;
-  }catch(err){toast(err.message||'Link GitHub Pages chưa đúng.');return ''}
-}
-$('makeLink').onclick=()=>{
-  const link=createGiftLink();
-  if(link)toast('Đã tạo link quà riêng 💗');
-};
-$('makeQR').onclick=()=>{
-  const link=($('giftLink').value||'').trim()||createGiftLink();
-  if(link)generateQR(link);
-};
+        im.style.width = "54px";
+        im.style.height = "54px";
+        im.style.objectFit = "cover";
+        im.style.borderRadius = "7px";
+        im.style.display = "block";
 
-$('downloadQR').onclick=()=>{
-  const wrap=$('qrWrap');const canvas=wrap.querySelector('canvas');const img=wrap.querySelector('img');
-  const src=canvas?canvas.toDataURL('image/png'):img?.src;
-  if(!src){toast('Hãy tạo mã QR trước.');return}
-  const a=document.createElement('a');a.href=src;a.download='ma-qr-qua-sinh-nhat.png';a.click();
-};
+        /* NÚT XÓA */
+        const del = document.createElement("button");
 
-$('saveGift').onclick=saveGift;
-$('copyGiftLink').onclick=async()=>{
-  const val=$('giftLink').value;
-  if(!val){toast('Hãy lưu quà, nhập link GitHub Pages rồi tạo link riêng.');return}
-  try{await navigator.clipboard.writeText(val);toast('Đã sao chép link quà 💗')}
-  catch{$('giftLink').focus();$('giftLink').select();toast('Đã chọn link; hãy sao chép thủ công.')}
-};
+        del.textContent = "×";
 
-// Load gift
-async function loadGift(){
-  const id=new URLSearchParams(location.search).get('gift');
-  if(!id)return;
-  const c=config();
-  if(!c.url||!c.key){
-    $('giftLinkHelp').textContent='Món quà này cần cấu hình Supabase trong mã HTML trước khi mở link.';
-    return;
-  }
-  const client=connect();if(!client)return;
-  try{
-    const {data,error}=await client.from('birthday_gifts').select('id,payload').eq('id',id).maybeSingle();
-    if(error)throw error;
-    if(!data){toast('Không tìm thấy món quà.');return}
-    loadedGift={id:data.id,...data.payload};
-    const g=loadedGift;
-    $('titleInput').value=g.title||defaults.title;
-    $('subtitleInput').value=g.subtitle||defaults.subtitle;
-    $('recipient').value=g.recipient||defaults.recipient;
-    $('letterInput').value=g.letter||defaults.letter;
-    $('cakeAge').value=g.age||17;updateCakeAge();
-    photos=(g.photos||[]).filter(x=>x&&typeof x.url==='string'&&/^https:\/\//i.test(x.url)).map(x=>({url:x.url,remoteUrl:x.url,path:x.path||null,owned:false,file:null}));
-    if((g.photos||[]).length && !photos.length){
-      toast('Quà đã tải được nhưng ảnh lưu trong dữ liệu không có URL công khai. Hãy chọn ảnh và lưu lại.');
-    }
-    if(g.musicUrl){
-      $('musicUrlInput').value=g.musicUrl;
-      audio.src=g.musicUrl;
-    }else{
-      $('musicUrlInput').value='';
-    }
-    applyText();renderPhotos();
-    // Report broken public image URLs instead of silently showing an empty scene.
-    document.querySelectorAll('#previewGrid img').forEach((img)=>{
-      img.addEventListener('error',()=>{
-        toast('Không tải được ảnh từ Supabase. Kiểm tra bucket gift-assets đã đặt Public và đã chạy SQL policy.');
-      },{once:true});
+        del.style.position = "absolute";
+        del.style.right = "-6px";
+        del.style.top = "-6px";
+
+        del.style.width = "20px";
+        del.style.height = "20px";
+
+        del.style.padding = "0";
+        del.style.margin = "0";
+
+        del.style.border = "2px solid white";
+        del.style.borderRadius = "50%";
+
+        del.style.background = "#ff4f81";
+        del.style.color = "white";
+
+        del.style.font = "bold 14px Arial";
+        del.style.lineHeight = "16px";
+
+        del.style.cursor = "pointer";
+        del.style.zIndex = "10";
+
+        del.title = "Xóa ảnh";
+
+        /* BẤM X → XÓA ẢNH */
+        del.onclick = () => {
+
+            photos.splice(i, 1);
+
+            renderPreviews();
+        };
+
+        box.appendChild(im);
+        box.appendChild(del);
+
+        $("#previews").appendChild(box);
     });
-    const base=($('githubBaseUrl').value||'').trim();
-    if(base){
-      const share=new URL(base);share.searchParams.set('gift',id);
-      $('giftLink').value=share.href;generateQR(share.href);
-    }
-    if(isMobile())panel.classList.remove('open');
-  }catch(err){
-    console.error(err);toast('Không tải được món quà: kiểm tra policy Supabase.');
-  }
 }
 
-$('reset').onclick=()=>{
-  if(!confirm('Khôi phục lời chúc mẫu?'))return;
-  $('titleInput').value=defaults.title;$('subtitleInput').value=defaults.subtitle;
-  $('recipient').value=defaults.recipient;$('letterInput').value=defaults.letter;
-  $('cakeAge').value=17;updateCakeAge();
-  applyText();toast('Đã khôi phục lời chúc mẫu');
+
+/* =========================
+   CHỌN ẢNH
+========================= */
+
+/* =========================
+   CHỌN ẢNH - LƯU CỤC BỘ
+========================= */
+$("#photoInput").onchange = e => {
+    const files = [...e.target.files];
+    files.forEach(file => {
+        if(!file.type.startsWith("image/")) return;
+        const reader = new FileReader();
+        reader.onload = () => { photos.push(reader.result); renderPreviews(); };
+        reader.readAsDataURL(file);
+    });
+    e.target.value = "";
 };
 
-// Parallax nhẹ theo con trỏ trên máy tính
-  if(matchMedia('(hover:hover) and (pointer:fine)').matches){
-    document.addEventListener('pointermove',e=>{
-      const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);
-      const moon=document.querySelector('.moon-wrap');
-      const bunny=document.querySelector('.bunny');
-      if(moon)moon.style.translate=`${x*12}px ${y*9}px`;
-      if(bunny)bunny.style.translate=`${x*18}px ${y*12}px`;
-    },{passive:true});
-  }
+/* =========================
+   SPAWN CHỮ
+   NHIỀU HƠN + FULL MÀN HÌNH
+========================= */
 
-  // Nút trái tim ở góc trên bên phải: nhấn để hiện biểu tượng ngón giữa.
-  let fingerPopup=null;
-  function revealSecret(){
-    if(fingerPopup){fingerPopup.remove();fingerPopup=null;return;}
-    fingerPopup=document.createElement('div');
-    fingerPopup.className='middle-finger-pop';
-    fingerPopup.setAttribute('role','img');
-    fingerPopup.setAttribute('aria-label','Biểu tượng ngón giữa phóng to');
-    fingerPopup.textContent='🖕';
-    document.body.appendChild(fingerPopup);
-    setTimeout(()=>{if(fingerPopup){fingerPopup.remove();fingerPopup=null;}},2000);
-  }
-  $('secretMoonTrigger')?.addEventListener('click',revealSecret);
+function spawnText(){
 
-  // Init
-  (function init(){
-  // Sao
-  const box=$('stars');
-  const count=innerWidth<600?40:70;
-  for(let i=0;i<count;i++){
-    const s=document.createElement('i');
-    s.style.left=Math.random()*100+'%';
-    s.style.top=Math.random()*68+'%';
-    s.style.animationDelay=(-Math.random()*3)+'s';
-    if(Math.random()>.85)s.classList.add('big');
-    box.append(s);
-  }
-  // Particles bay
-  const pc=$('particles');
-  const icons=['✨','💫','⭐','🌟','💗','🌸'];
-  const pcount=innerWidth<600?10:20;
-  for(let i=0;i<pcount;i++){
-    const p=document.createElement('span');
-    p.textContent=icons[Math.random()*icons.length|0];
-    p.style.left=Math.random()*100+'%';
-    p.style.bottom=(-10-Math.random()*30)+'%';
-    p.style.fontSize=(10+Math.random()*10)+'px';
-    p.style.animationDuration=(14+Math.random()*12)+'s';
-    p.style.animationDelay=(-Math.random()*20)+'s';
-    pc.append(p);
-  }
-  // Cánh hoa hồng champagne rơi chậm, không cản thao tác.
-  for(let i=0;i<(innerWidth<600?7:13);i++){
-    const petal=document.createElement('span');
-    petal.className='royal-petal';
-    petal.textContent=['✿','❀','🌸'][i%3];
-    petal.style.setProperty('--x',(Math.random()*100)+'vw');
-    petal.style.setProperty('--s',(9+Math.random()*10)+'px');
-    petal.style.setProperty('--d',(17+Math.random()*19)+'s');
-    petal.style.setProperty('--delay',(-Math.random()*28)+'s');
-    petal.style.setProperty('--drift',(-70+Math.random()*140)+'px');
-    document.querySelector('.sky')?.append(petal);
-  }
-  try{
-    const c=JSON.parse(localStorage.getItem('giftSupabaseConfig')||'null');
-    if(c){$('sbUrl').value=c.url||'';$('sbKey').value=c.key||'';setSupabaseStatus('idle','Đã tìm thấy cấu hình đã lưu trên máy này. Bấm “Kiểm tra kết nối Supabase” để xác minh.')}
-  }catch{}
-  applyText();updateCakeAge();
-  // Tải quà (bao gồm URL nhạc) trước, rồi mới bắt đầu cảnh bánh rơi.
-  // Đợi nhạc có thể phát một chút để giảm độ trễ khi bắt đầu.
-  (async()=>{
-    await loadGift();
-    if(audio.src){
-      audio.preload='auto';
-      audio.load();
-      if(audio.readyState<3){
-        await new Promise(resolve=>{
-          let done=false;
-          const finish=()=>{if(done)return;done=true;clearTimeout(timer);audio.removeEventListener('canplay',finish);audio.removeEventListener('canplaythrough',finish);resolve()};
-          const timer=setTimeout(finish,4500);
-          audio.addEventListener('canplay',finish,{once:true});
-          audio.addEventListener('canplaythrough',finish,{once:true});
+    if(!texts.length) return;
+    const maxLiveTexts = isMobileDevice ? 9 : 18;
+    if (textLayer.childElementCount >= maxLiveTexts) return;
+
+    const t = document.createElement("div");
+
+    t.className = "float-text";
+
+    t.textContent =
+        texts[Math.floor(Math.random()*texts.length)];
+
+    /* =========================
+       VỊ TRÍ XUẤT HIỆN
+       TOÀN BỘ MÀN HÌNH
+    ========================= */
+
+    const startX =
+        -5 + Math.random()*110;
+
+    /* =========================
+       ĐIỂM KẾT THÚC
+       Vẫn bay lên nhưng X thay đổi nhẹ
+    ========================= */
+
+    const endX =
+        startX + (Math.random()*30 - 15);
+
+    /* =========================
+       CÁC ĐIỂM TRUNG GIAN
+    ========================= */
+
+    const x25 =
+        startX + (endX-startX)*0.25;
+
+    const x45 =
+        startX + (endX-startX)*0.45;
+
+    const x65 =
+        startX + (endX-startX)*0.65;
+
+    const x82 =
+        startX + (endX-startX)*0.82;
+
+    /* =========================
+       ĐỘ SÂU 3D
+       LÙI RA XA
+    ========================= */
+
+    const depth = 100 - Math.random()*900;
+
+    /* =========================
+       GÁN BIẾN CSS
+    ========================= */
+
+    t.style.setProperty(
+        "--startX",
+        startX + "vw"
+    );
+
+    t.style.setProperty(
+        "--x25",
+        x25 + "vw"
+    );
+
+    t.style.setProperty(
+        "--x45",
+        x45 + "vw"
+    );
+
+    t.style.setProperty(
+        "--x65",
+        x65 + "vw"
+    );
+
+    t.style.setProperty(
+        "--x82",
+        x82 + "vw"
+    );
+
+    t.style.setProperty(
+        "--endX",
+        endX + "vw"
+    );
+
+    t.style.setProperty(
+        "--depth",
+        depth + "px"
+    );
+
+    /* =========================
+       THỜI GIAN BAY
+    ========================= */
+
+    const duration = isMobileDevice
+        ? 13 + Math.random()*4
+        : 16 + Math.random()*8;
+
+    t.style.animationDuration =
+        duration + "s";
+
+    /* =========================
+       THÊM VÀO MÀN HÌNH
+    ========================= */
+
+    textLayer.appendChild(t);
+
+    /* =========================
+       TỰ XÓA
+    ========================= */
+
+    setTimeout(
+        ()=>{
+            t.remove();
+        },
+        (duration + 1)*1000
+    );
+}
+
+    
+/* =========================
+   SPAWN ẢNH
+   FULL VIỀN
+========================= */
+
+function spawnPhoto(){
+
+    if(
+        !$("#photoToggle").checked ||
+        !photos.length
+    ) return;
+
+    const p = document.createElement("div");
+
+    p.className = "photo";
+
+    const img = document.createElement("img");
+
+    img.src =
+        photos[
+            Math.floor(
+                Math.random()*photos.length
+            )
+        ];
+
+    img.alt = "";
+
+    p.appendChild(img);
+
+
+    let startX;
+    let endX;
+    let midX;
+
+    const side = Math.random();
+
+    if(side < .25){
+
+        startX = -15;
+        midX = Math.random()*35-10;
+        endX = Math.random()*50;
+
+    }else if(side < .5){
+
+        startX = 85 + Math.random()*20;
+        midX = 50 + Math.random()*40;
+        endX = 50 + Math.random()*50;
+
+    }else{
+
+        startX = Math.random()*100;
+        midX = Math.random()*100;
+        endX = Math.random()*100;
+    }
+
+    if(side >= .75){
+
+        startX = Math.random()<.5 ? -10 : 95;
+        midX = Math.random()*100;
+        endX = Math.random()<.5 ? -10 : 95;
+    }
+
+
+    p.style.left = "0";
+
+    p.style.setProperty(
+        "--photoX",
+        startX+"vw"
+    );
+
+    p.style.setProperty(
+        "--photoMidX",
+        midX+"vw"
+    );
+
+    p.style.setProperty(
+        "--photoEndX",
+        endX+"vw"
+    );
+/* Độ sâu của ảnh */
+const photoDepth =
+    Math.random()*2400 - 1400;
+
+p.style.setProperty(
+    "--photoDepth",
+    photoDepth + "px"
+);
+
+    p.style.setProperty(
+        "--rotate",
+        (Math.random()*30-15)+"deg"
+    );
+
+
+    const scale = .75 + Math.random()*.5;
+// Đưa ảnh xuất phát từ nhiều phía của rìa màn hình
+const edgeSide = Math.floor(Math.random() * 4);
+
+let edgeX, edgeY;
+
+if(edgeSide === 0){
+    edgeX = -15 - Math.random()*20;
+    edgeY = Math.random()*110;
+}else if(edgeSide === 1){
+    edgeX = 105 + Math.random()*20;
+    edgeY = Math.random()*110;
+}else if(edgeSide === 2){
+    edgeX = Math.random()*110;
+    edgeY = -15 - Math.random()*20;
+}else{
+    edgeX = Math.random()*110;
+    edgeY = 105 + Math.random()*20;
+}
+
+p.style.setProperty("--photoX", edgeX + "vw");
+p.style.setProperty("--edgeY", edgeY + "vh");
+    p.style.width =
+        (120*scale)+"px";
+
+    p.style.height =
+        (150*scale)+"px";
+
+    const duration =
+    25 + Math.random()*10;
+
+p.style.animationDuration =
+    duration + "s";
+
+photoLayer.appendChild(p);
+
+setTimeout(
+    ()=>p.remove(),
+    (duration + 3) * 1000
+);
+}
+
+
+/* =========================
+   PARTICLE
+========================= */
+
+function spawnParticle(){
+
+    if(!$("#particleToggle").checked) return;
+    const maxParticles = isMobileDevice ? 12 : 28;
+    if (particleLayer.childElementCount >= maxParticles) return;
+
+    const e = document.createElement("div");
+    const r = Math.random();
+
+    e.className =
+        r < .45
+        ? "heart"
+        : r < .72
+        ? "petal"
+        : "light";
+
+    e.textContent =
+        e.className === "heart"
+        ? (Math.random()<.5 ? "💗" : "❤️")
+        : e.className === "petal"
+        ? "🎀"
+        : "";
+
+    e.style.left =
+        Math.random()*100+"%";
+
+    e.style.setProperty(
+        "--drift",
+        (Math.random()*180-90)+"px"
+    );
+
+    e.style.animationDuration =
+        (5+Math.random()*6)+"s";
+
+    particleLayer.appendChild(e);
+
+    setTimeout(
+        ()=>e.remove(),
+        12000
+    );
+}
+
+
+/* =========================
+   HIỆU NĂNG ĐIỆN THOẠI
+   Giảm số lượng phần tử động để máy yếu không bị lag.
+========================= */
+const isMobileDevice = window.matchMedia("(max-width: 800px)").matches ||
+    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+
+/* NHIỀU CHỮ */
+const initialTextCount = isMobileDevice ? 4 : 12;
+const textIntervalMs = isMobileDevice ? 2100 : 850;
+const photoIntervalMs = isMobileDevice ? 5200 : 2200;
+const particleIntervalMs = isMobileDevice ? 1900 : 750;
+
+for(let i = 0; i < initialTextCount; i++){
+    setTimeout(spawnText, i * (isMobileDevice ? 450 : 220));
+}
+
+setInterval(spawnText, textIntervalMs);
+setInterval(spawnPhoto, photoIntervalMs);
+setInterval(spawnParticle, particleIntervalMs);
+
+
+/* =========================
+   SETTINGS MOBILE
+========================= */
+const settingsBtn = $("#settingsBtn");
+if(settingsBtn){ settingsBtn.onclick = () => $("#sidebar").classList.toggle("open"); }
+
+/* =========================
+   NHẠC
+========================= */
+
+function loadAudio(){
+
+    $("#audio").src =
+        $("#musicUrl").value.trim();
+
+    $("#audio").load();
+}
+
+
+$("#loadMusic").onclick = ()=>{
+
+    loadAudio();
+
+    audioOn = false;
+
+    $("#musicBtn").textContent = "🔇";
+};
+
+
+$("#musicBtn").onclick = async ()=>{
+
+    if(!$("#audio").src){
+
+        loadAudio();
+    }
+
+    if(audioOn){
+
+        $("#audio").pause();
+
+        audioOn = false;
+
+        $("#musicBtn").textContent = "🔇";
+
+    }else{
+
+        try{
+
+            await $("#audio").play();
+
+            audioOn = true;
+
+            $("#musicBtn").textContent = "🔊";
+
+        }catch{
+
+            alert(
+                "Trình duyệt đang chặn nhạc. Hãy bấm lại nút nhạc."
+            );
+        }
+    }
+};
+
+
+/* =========================
+   SAO
+========================= */
+
+function stars(canvas){
+
+    const c = canvas;
+    const x = c.getContext("2d");
+
+    const pts = [];
+
+
+    function resize(){
+
+        c.width = innerWidth;
+        c.height = innerHeight;
+    }
+
+
+    resize();
+
+    addEventListener(
+        "resize",
+        resize
+    );
+
+
+    const starCount = isMobileDevice ? 70 : 180;
+
+    for(let i=0;i<starCount;i++){
+
+        pts.push({
+            x:Math.random(),
+            y:Math.random(),
+            r:Math.random()*1.8,
+            a:Math.random(),
+            v:Math.random()*.008
         });
-      }
     }
-    setTimeout(startCakeDrop,350);
-  })();
-})();
-})();
+
+
+    function draw(){
+
+        if(document.hidden) return;
+
+        x.clearRect(
+            0,
+            0,
+            c.width,
+            c.height
+        );
+
+
+        for(const p of pts){
+
+            p.a += p.v;
+
+            if(
+                p.a > 1 ||
+                p.a < .1
+            ){
+
+                p.v *= -1;
+            }
+
+
+            x.globalAlpha = p.a;
+
+            x.fillStyle = "#fff";
+
+            x.beginPath();
+
+            x.arc(
+                p.x*c.width,
+                p.y*c.height,
+                p.r,
+                0,
+                7
+            );
+
+            x.fill();
+        }
+
+
+        requestAnimationFrame(draw);
+    }
+
+
+    draw();
+    document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) requestAnimationFrame(draw);
+    }, { passive:true });
+}
+
+
+stars($("#stars"));
+
+/* =========================
+   ĐIỀU KHIỂN GÓC NHÌN
+   CHUỘT + CẢM ỨNG
+========================= */
+
+const stage = document.getElementById("stage");
+const world = document.getElementById("world");
+
+let rotX = 0;
+let rotY = 0;
+let zoom = 0;
+
+let dragging = false;
+
+let lastX = 0;
+let lastY = 0;
+
+const MAX_ROT_X = 80;
+const MAX_ROT_Y = 360;
+
+const MIN_ZOOM = -350;
+const MAX_ZOOM = 350;
+
+
+/* Cập nhật góc nhìn */
+function updateView(){
+
+    world.style.setProperty(
+        "--rotX",
+        rotX + "deg"
+    );
+
+    world.style.setProperty(
+        "--rotY",
+        rotY + "deg"
+    );
+
+    world.style.setProperty(
+        "--zoom",
+        zoom + "px"
+    );
+}
+
+
+/* =========================
+   KÉO CHUỘT
+========================= */
+
+stage.addEventListener("pointerdown", e => {
+
+    if(
+        e.target.closest(".nav") ||
+        e.target.closest(".letter") ||
+        e.target.closest(".sidebar")
+    ){
+        return;
+    }
+
+    dragging = true;
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    stage.classList.add("dragging");
+
+    stage.setPointerCapture(e.pointerId);
+});
+
+
+stage.addEventListener("pointermove", e => {
+
+    if(!dragging) return;
+
+    const dx =
+        e.clientX - lastX;
+
+    const dy =
+        e.clientY - lastY;
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    /* Trái / phải */
+    rotY += dx * 0.35;
+
+    /* Lên / xuống */
+    rotX -= dy * 0.30;
+
+    /* Xoay trái/phải tự do */
+rotY %= 360;
+
+    rotY =
+        Math.max(
+            -MAX_ROT_Y,
+            Math.min(MAX_ROT_Y,rotY)
+        );
+
+    updateView();
+});
+
+
+function stopDragging(){
+
+    dragging = false;
+
+    stage.classList.remove("dragging");
+}
+
+
+stage.addEventListener(
+    "pointerup",
+    stopDragging
+);
+
+stage.addEventListener(
+    "pointercancel",
+    stopDragging
+);
+
+
+/* =========================
+   LĂN CHUỘT = ZOOM
+========================= */
+
+stage.addEventListener("wheel",e=>{
+
+    e.preventDefault();
+
+    zoom -= e.deltaY * 0.35;
+
+    zoom =
+        Math.max(
+            MIN_ZOOM,
+            Math.min(MAX_ZOOM,zoom)
+        );
+
+    updateView();
+
+},{
+    passive:false
+});
+
+
+/* =========================
+   ĐIỆN THOẠI - CHỤM 2 NGÓN
+========================= */
+
+let touchDistance = null;
+
+
+stage.addEventListener(
+    "touchstart",
+    e=>{
+
+        if(e.touches.length === 2){
+
+            const dx =
+                e.touches[0].clientX -
+                e.touches[1].clientX;
+
+            const dy =
+                e.touches[0].clientY -
+                e.touches[1].clientY;
+
+            touchDistance =
+                Math.hypot(dx,dy);
+        }
+
+    },{
+        passive:false
+    }
+);
+
+
+stage.addEventListener(
+    "touchmove",
+    e=>{
+
+        if(e.touches.length !== 2)
+            return;
+
+        e.preventDefault();
+
+        const dx =
+            e.touches[0].clientX -
+            e.touches[1].clientX;
+
+        const dy =
+            e.touches[0].clientY -
+            e.touches[1].clientY;
+
+        const distance =
+            Math.hypot(dx,dy);
+
+        if(touchDistance !== null){
+
+            const change =
+                distance - touchDistance;
+
+            zoom += change * 1.2;
+
+            zoom =
+                Math.max(
+                    MIN_ZOOM,
+                    Math.min(MAX_ZOOM,zoom)
+                );
+
+            updateView();
+        }
+
+        touchDistance = distance;
+
+    },{
+        passive:false
+    }
+);
+
+
+stage.addEventListener(
+    "touchend",
+    e=>{
+
+        if(e.touches.length < 2){
+
+            touchDistance = null;
+        }
+
+    },{
+        passive:false
+    }
+);
+
+
+/* Góc nhìn ban đầu */
+updateView();
+/* =========================
+   KHỞI TẠO
+========================= */
+
+renderTextInputs();
+renderPreviews();
+loadAudio();
 </script>
 
-<style>
-/* Nơ hồng trang trí riêng cho lời nhắc chạm vào bánh */
-.cake-hint{display:flex;align-items:center;justify-content:center;gap:7px}
-.cake-hint .hint-bow{display:inline-block;flex:0 0 auto;font-size:1.25em;line-height:1;filter:drop-shadow(0 2px 3px #e98bb855);animation:bowFloat 2.4s ease-in-out infinite}
-.cake-hint .hint-bow:last-child{animation-delay:.25s}
-@keyframes bowFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-2px) rotate(5deg)}}
-@media(prefers-reduced-motion:reduce){.cake-hint .hint-bow{animation:none}}
-</style>
 </body>
 </html>
