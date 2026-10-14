@@ -1211,7 +1211,7 @@ Chúc mọi điều dịu dàng nhất sẽ đến với em. Yêu em nhiều! �
   <button class="btn full" id="closePanel">Đóng bảng</button>
 </aside>
 
-<audio id="audio" loop preload="none"></audio>
+<audio id="audio" loop preload="auto" playsinline></audio>
 
 <!-- LETTER MODAL -->
 <section class="modal" id="letterModal" role="dialog" aria-modal="true" aria-label="Lá thư sinh nhật">
@@ -1437,6 +1437,15 @@ function startCakeDrop(){
   const cake=$('cakeStage');
   cake.classList.remove('dropping','cake-finale','cake-ready','melting');
   cakeHasLanded=false;
+  // Bắt đầu nhạc cùng lúc bánh rơi. Nếu trình duyệt chặn tự phát,
+  // lần chạm đầu tiên của người nhận sẽ thử phát lại.
+  if(audio.src && audio.paused){
+    audio.play().catch(()=>{
+      document.addEventListener('pointerdown',()=>{
+        if(audio.src && audio.paused) audio.play().catch(()=>{});
+      },{once:true,passive:true});
+    });
+  }
   void cake.offsetWidth;
   cake.classList.add('dropping');
   // Rơi đúng thứ tự tầng 3 (trên) → tầng 2 (giữa) → tầng 1 (dưới).
@@ -1897,7 +1906,26 @@ $('reset').onclick=()=>{
     const c=JSON.parse(localStorage.getItem('giftSupabaseConfig')||'null');
     if(c){$('sbUrl').value=c.url||'';$('sbKey').value=c.key||'';setSupabaseStatus('idle','Đã tìm thấy cấu hình đã lưu trên máy này. Bấm “Kiểm tra kết nối Supabase” để xác minh.')}
   }catch{}
-  applyText();updateCakeAge();setTimeout(startCakeDrop,1000);loadGift();
+  applyText();updateCakeAge();
+  // Tải quà (bao gồm URL nhạc) trước, rồi mới bắt đầu cảnh bánh rơi.
+  // Đợi nhạc có thể phát một chút để giảm độ trễ khi bắt đầu.
+  (async()=>{
+    await loadGift();
+    if(audio.src){
+      audio.preload='auto';
+      audio.load();
+      if(audio.readyState<3){
+        await new Promise(resolve=>{
+          let done=false;
+          const finish=()=>{if(done)return;done=true;clearTimeout(timer);audio.removeEventListener('canplay',finish);audio.removeEventListener('canplaythrough',finish);resolve()};
+          const timer=setTimeout(finish,4500);
+          audio.addEventListener('canplay',finish,{once:true});
+          audio.addEventListener('canplaythrough',finish,{once:true});
+        });
+      }
+    }
+    setTimeout(startCakeDrop,350);
+  })();
 })();
 })();
 </script>
